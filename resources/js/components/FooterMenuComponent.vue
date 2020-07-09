@@ -1,0 +1,51 @@
+<template>
+  <div class="footer">
+    <div>Home</div>
+    <div @click="mostrarModalAgregarReceta">Recetas</div>
+    <div>Notas</div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+     
+    };
+  },
+  mounted() {
+    //this.verReceta()
+  },
+  methods: {
+    mostrarModalAgregarReceta()
+    {
+       /**
+        * Mostrar Farmulario
+        * FormAddRecetaComponent
+        * <form-add-receta>
+        */
+       const formularioReceta = document.getElementById('formulario-receta')
+       formularioReceta.classList.add('show')
+    },
+    mostrarModalAgregarNota()
+    {
+       
+    },
+
+  }
+};
+</script>
+<style lang="scss" scoped>
+
+.footer{
+      position:fixed;
+      display: flex;
+      justify-content: space-around;
+      width: 100vw;
+      bottom:0;
+      background-color: #333;
+      line-height: 3;
+      color:#e6e6e6;
+      font-size: 1rem;
+}
+</style>
