@@ -1,78 +1,95 @@
 <template>
   <div class="formulario-receta hidden" id="formulario-receta">
-    <div class="formulario-receta-header">
-      <h1 class="formulario-receta-h1">Añade una nueva receta 🐷</h1>
-      <span @click="cerrarFormularioReceta">&times;</span>
-    </div>
-    <form method="POST" v-on:submit.prevent="crearReceta">
-      <div class="input-group mb-3">
-        <input
-          class="form-control"
-          type="text"
-          v-model="title"
-          placeholder="Titulo"
-          name="title"
-          required
-        />
+    <v-app>
+      <div class="formulario-receta-header">
+        <h1 class="formulario-receta-h1">Añade una nueva receta 🐷</h1>
+        <span @click="cerrarFormularioReceta">&times;</span>
       </div>
-
-      <div class="input-group mb-3">
-        <input
-          class="form-control"
-          type="text"
-          v-model="descripcion"
-          placeholder="Descripcion (Opcional)"
-          name="descripcion"
-        />
-      </div>
-
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect01">Categorias</label>
+      <form method="POST" v-on:submit.prevent="crearReceta">
+        <div class="input-group mb-3">
+          <input
+            class="form-control"
+            type="text"
+            v-model="title"
+            placeholder="Titulo"
+            name="title"
+            required
+          />
         </div>
-        <select class="custom-select" id="inputGroupSelect01" v-model="categoria">
-          <option selected>Elegi</option>
-          <option value="almuerzo">Almuerzo</option>
-          <option value="cena">Cena</option>
-          <option value="desayuno">Desayuno</option>
-          <option value="merienda">Merienda</option>
-          <option value="otros">Otros</option>
-          <option value="ideas">Ideas</option>
-        </select>
-      </div>
 
-      <div class="input-group mb-3" v-for="(input, k) in inputs" :key="k">
-        <input
-          class="form-control"
-          type="text"
-          v-model="input.name"
-          placeholder="Ingrediente"
-          name="ingrediente"
-          required
-        />
-        <div class="input-group-append">
-          <span class="input-group-text" @click="remove(k)" v-show="k || (!k && inputs.length > 1)">Menos</span>
-
-          <span class="input-group-text" @click="add(k)" v-show="k == inputs.length - 1">Mas</span>
+        <div class="input-group mb-3">
+          <input
+            class="form-control"
+            type="text"
+            v-model="descripcion"
+            placeholder="Descripcion (Opcional)"
+            name="descripcion"
+          />
         </div>
-      </div>
 
-      <div class="input-group mb-3" v-for="(paso, p) in pasos" :key="p+100">
-        <input
-          class="form-control"
-          type="text"
-          v-model="paso.name"
-          :placeholder="'Paso Nº'+ p"
-          name="paso"
-        />
-        <div class="input-group-append">
-          <span class="input-group-text" @click="removePaso(p)" v-show="p || (!p && pasos.length > 1)">Menos</span>
-
-          <span class="input-group-text" @click="addPaso(p)" v-show="p == pasos.length - 1">Mas</span>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Categorias</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01" v-model="categoria" required>
+            <option value="" selected>Elegi</option>
+            <option value="almuerzo">Almuerzo</option>
+            <option value="cena">Cena</option>
+            <option value="desayuno">Desayuno</option>
+            <option value="merienda">Merienda</option>
+            <option value="otros">Otros</option>
+            <option value="ideas">Ideas</option>
+          </select>
         </div>
-      </div>
-      <button type="submit" class="btn btn-primary mt-1">Guardar</button>
-    </form>
+
+        <div class="input-group mb-3" v-for="(input, k) in inputs" :key="k">
+          <input
+            class="form-control"
+            type="text"
+            v-model="input.name"
+            placeholder="Ingrediente"
+            name="ingrediente"
+            required
+          />
+          <div class="input-group-append">
+            <span
+              class="input-group-text"
+              @click="remove(k)"
+              v-show="k || (!k && inputs.length > 1)"
+            >Menos</span>
+
+            <span class="input-group-text" @click="add(k)" v-show="k == inputs.length - 1">Mas</span>
+          </div>
+        </div>
+
+        <!-- PASOS -->
+
+        <v-switch v-model="switch1" label="¿Agregar pasos?"></v-switch>
+        <div v-if="switch1">
+          <div class="input-group mb-3" v-for="(paso, p) in pasos" :key="p + 100">
+            <input
+              class="form-control"
+              type="text"
+              v-model="paso.name"
+              :placeholder="'Paso Nº' + p"
+              name="paso"
+            />
+            <div class="input-group-append">
+              <span
+                class="input-group-text"
+                @click="removePaso(p)"
+                v-show="p || (!p && pasos.length > 1)"
+              >Menos</span>
+
+              <span class="input-group-text" @click="addPaso(p)" v-show="p == pasos.length - 1">Mas</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-1">Guardar</button>
+      </form>
+  
+    </v-app>
   </div>
 </template>
 
@@ -80,6 +97,8 @@
 export default {
   data() {
     return {
+      switch1: true,
+      switch2: false,
       title: "",
       descripcion: "",
       categoria: "",
@@ -92,7 +111,7 @@ export default {
         {
           name: ""
         }
-      ],
+      ]
     };
   },
   mounted() {
@@ -109,7 +128,7 @@ export default {
     remove(index) {
       this.inputs.splice(index, 1);
     },
-     addPaso(index) {
+    addPaso(index) {
       this.pasos.push({ name: "" });
     },
     removePaso(index) {
@@ -120,7 +139,7 @@ export default {
       data.append("title", this.title);
       data.append("descripcion", this.descripcion);
       data.append("ingrediente", JSON.stringify(this.inputs));
-      data.append("categoria", JSON.stringify(this.categoria));
+      data.append("categoria", this.categoria);
       data.append("paso", JSON.stringify(this.pasos));
 
       axios
@@ -153,7 +172,7 @@ export default {
     margin-bottom: 1rem;
     font-size: 1.5rem;
   }
-  
+
   &-header {
     display: flex;
     align-items: center;
@@ -167,7 +186,7 @@ export default {
   }
 }
 .hidden {
-  display: block; //none
+  display: none; //none
 }
 .show {
   display: block;

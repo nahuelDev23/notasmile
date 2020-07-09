@@ -9,9 +9,10 @@
           <ul>
             <li v-for="ing in JSON.parse(d.ingrediente)" :key="ing">{{ing.name}}</li>
           </ul>
-          <h3 v-if="d.paso">Pasos</h3>
-          <ol>
-            <li v-for="(paso,p) in JSON.parse(d.paso)" :key="p">{{paso.paso}}</li>
+
+          <h3 v-if="JSON.parse(d.paso).length > 1">Pasos</h3>
+          <ol v-if="JSON.parse(d.paso).length > 1">
+            <li v-for="(paso,p) in JSON.parse(d.paso)" :key="p">{{paso.name}}</li>
           </ol>
         </div>
       </div>

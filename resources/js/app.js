@@ -7,7 +7,11 @@ Vue.component('menu-footer', 	require('./components/FooterMenuComponent.vue').de
 Vue.component('lista-desayuno', 	require('./components/ListaDesayunoComponent.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 import router from './routes'
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify);
 const app = new Vue({
     el: '#app',
     router,
+    vuetify: new Vuetify(),
 });

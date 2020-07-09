@@ -1,39 +1,124 @@
 <style lang="css">
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
 </style>
 <template>
-	<div>
-      <form-add-receta></form-add-receta>
-    	<div class="absolute">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <div >
-                        <li class="nav-item active"><router-link :to="{name: 'index'}" class="nav-link">Home<span class="sr-only">(current)</span></router-link></li>
-                        <li class="nav-item"><router-link :to="{name: 'desayuno'}" class="nav-link">Desayuno</router-link></li>   
-                        <li class="nav-item"><router-link :to="{name: 'almuerzo'}" class="nav-link">Almuerzo</router-link></li>
-                        <li class="nav-item"><router-link :to="{name: 'cena'}" class="nav-link">Cena</router-link></li>
-                        <li class="nav-item"><router-link :to="{name: 'ideas'}" class="nav-link">Ideas</router-link></li>
-                        <li class="nav-item"><router-link :to="{name: 'merienda'}" class="nav-link">Merienda</router-link></li>
-                        <li class="nav-item"><router-link :to="{name: 'notas'}" class="nav-link">Notas</router-link></li>
-                        <li class="nav-item"><router-link :to="{name: 'otros'}" class="nav-link">Otros</router-link></li>
-                    </div>
-                </ul>
-              </div>
-            </nav>
-        </div>
+  <div>
+    <form-add-receta></form-add-receta>
 
-		<transition name="fade" mode="out-in">
-			<router-view :key="$route.fullPath"></router-view>
-		</transition>
-      <menu-footer></menu-footer>
-     </div>
+      <v-app id="inspire">
+        <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
+          <v-app-bar color="#333" dark>
+            <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+
+            <v-toolbar-title>Mile viggie</v-toolbar-title>
+          </v-app-bar>
+
+          <v-navigation-drawer v-model="drawer" absolute temporary color="#333">
+            <v-list nav dense>
+              <v-list-item-group v-model="group" active-class="text--accent-4">
+                <v-list-item>
+                  <v-list-item-icon>
+                    <v-icon color="#cdd5dc">mdi-home</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title class="v-list-link">
+                     <router-link :to="{name: 'index'}">Home</router-link>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-icon>
+                    <v-icon color="#cdd5dc">mdi-tea</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title class="v-list-link">
+                      <router-link :to="{name: 'desayuno'}">Desayuno</router-link>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-icon>
+                    <v-icon color="#cdd5dc">mdi-apple</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title class="v-list-link">
+                      <router-link :to="{name: 'almuerzo'}">Almuerzo</router-link>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-icon>
+                    <v-icon color="#cdd5dc">mdi-moon-waning-crescent</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title class="v-list-link">
+                      <router-link :to="{name: 'cena'}">Cena</router-link>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-icon>
+                    <v-icon color="#cdd5dc">mdi-lightbulb</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title class="v-list-link">
+                      <router-link :to="{name: 'ideas'}">Ideas</router-link>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-icon>
+                    <v-icon color="#cdd5dc">mdi-cookie</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title class="v-list-link">
+                      <router-link :to="{name: 'merienda'}">Merienda</router-link>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-icon>
+                    <v-icon color="#cdd5dc">mdi-note-multiple</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title class="v-list-link">
+                      <router-link :to="{name: 'notas'}">Notas</router-link>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-icon>
+                    <v-icon color="#cdd5dc">mdi-alien</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title class="v-list-link">
+                      <router-link :to="{name: 'otros'}" >Otros</router-link>
+                  </v-list-item-title>
+                </v-list-item>
+
+               
+              </v-list-item-group>
+            </v-list>
+          </v-navigation-drawer>
+      <transition name="fade" mode="out-in">
+      <router-view :key="$route.fullPath"></router-view>
+    </transition>
+    <menu-footer></menu-footer>
+        </v-card>
+      </v-app>
+    
+
+    
+  </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      drawer: false
+    };
+  },
+  mounted() {
+    this.mostrarDetalleDesayuno();
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.v-list-link{
+  & a {
+    color:#cdd5dc;
+  }
+}
+</style>
