@@ -47,7 +47,7 @@ Route::get('buscar/otros','RecetaController@buscarOtros')->name('buscar.otros');
 Route::get('listar/notas','NotasController@listaNotas')->name('listar.notas');
 Route::get('buscar/notas','NotasController@buscarNotas')->name('buscar.notas');
 
-#guardar receta
+#general recetas y notas
 Route::post('receta/store','RecetaController@store')->name('receta.store');
 Route::delete('receta/eliminar/{receta}','RecetaController@destroy')->name('receta.destroy');
 Route::delete('notas/eliminar/{notas}','NotasController@destroy')->name('notas.destroy');
