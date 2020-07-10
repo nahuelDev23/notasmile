@@ -2351,6 +2351,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2364,7 +2369,7 @@ __webpack_require__.r(__webpack_exports__);
         to: 0
       },
       page: 1,
-      search: ''
+      search: ""
     };
   },
   created: function created() {
@@ -6951,7 +6956,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".title-List[data-v-11db154e] {\n  text-align: center;\n}", ""]);
+exports.push([module.i, ".title-List[data-v-11db154e] {\n  text-align: center;\n}\n.table-container-desayuno[data-v-11db154e] {\n  max-height: calc(100vh - 15rem);\n  min-height: calc(100vh - 15rem);\n  overflow: auto;\n}", ""]);
 
 // exports
 
@@ -39837,66 +39842,78 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("v-simple-table", {
-            attrs: { "fixed-header": "", height: "30vh" },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function() {
-                  return [
-                    _c("thead", [
-                      _c("tr", [
-                        _c("th", { staticClass: "text-left" }, [
-                          _vm._v("Titulo")
+          _c(
+            "div",
+            { staticClass: "table-container-desayuno" },
+            [
+              _c("v-simple-table", {
+                attrs: { "fixed-header": "" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function() {
+                      return [
+                        _c("thead", [
+                          _c("tr", [
+                            _c("th", { staticClass: "text-left" }, [
+                              _vm._v("Titulo")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { staticClass: "text-left" }, [
+                              _vm._v("Acción")
+                            ])
+                          ])
                         ]),
                         _vm._v(" "),
-                        _c("th", { staticClass: "text-left" }, [
-                          _vm._v("Acción")
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.listarDesayuno, function(desayuno, k) {
-                        return _c("tr", { key: k }, [
-                          _c("td", [_vm._v(_vm._s(desayuno.title))]),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.listarDesayuno, function(desayuno, k) {
+                            return _c("tr", { key: k }, [
+                              _c("td", [_vm._v(_vm._s(desayuno.title))]),
+                              _vm._v(" "),
                               _c(
-                                "router-link",
-                                {
-                                  attrs: {
-                                    to: {
-                                      name: "desayuno/detalle",
-                                      params: { id: desayuno.id }
-                                    }
-                                  }
-                                },
+                                "td",
                                 [
                                   _c(
-                                    "v-btn",
-                                    { attrs: { depressed: "", "x-small": "" } },
-                                    [_vm._v("Ver")]
+                                    "router-link",
+                                    {
+                                      attrs: {
+                                        to: {
+                                          name: "desayuno/detalle",
+                                          params: { id: desayuno.id }
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            depressed: "",
+                                            "x-small": ""
+                                          }
+                                        },
+                                        [_vm._v("Ver")]
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
                               )
-                            ],
-                            1
-                          )
-                        ])
-                      }),
-                      0
-                    )
-                  ]
-                },
-                proxy: true
-              }
-            ])
-          }),
+                            ])
+                          }),
+                          0
+                        )
+                      ]
+                    },
+                    proxy: true
+                  }
+                ])
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("v-pagination", {
             attrs: { length: _vm.pagination.last_page },
@@ -99505,14 +99522,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// When ready...
-window.addEventListener("load", function () {
-  // Set a timeout...
-  setTimeout(function () {
-    // Hide the address bar!
-    window.scrollTo(0, 1);
-  }, 0);
-});
+
 
 /***/ }),
 
