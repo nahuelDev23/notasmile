@@ -11,44 +11,50 @@ export default new Router({
 			component: require('./views/index').default
 		},
 		{
-			path: 'desayuno',
+			path: '/desayuno',
 			name: 'desayuno',
 			component: require('./views/desayuno').default
 		},
+		
 		{
-			path: '/desayuno/:id',
-			name: 'desayuno/detalle',
-			component: require('./views/desayunoDetalle').default
-		},
-		{
-			path: 'almuerzo',
+			path: '/almuerzo',
 			name: 'almuerzo',
 			component: require('./views/almuerzo').default
 		},
 		{
-			path: 'cena',
+			path: '/cena',
 			name: 'cena',
 			component: require('./views/cena').default
 		},
 		{
-			path: 'ideas',
-			name: 'ideas',
+			path: '/idea',
+			name: 'idea',
 			component: require('./views/ideas').default
 		},
 		{
-			path: 'merienda',
+			path: '/merienda',
 			name: 'merienda',
 			component: require('./views/merienda').default
 		},
 		{
-			path: 'notas',
+			path: '/notas',
 			name: 'notas',
 			component: require('./views/notas').default
 		},
 		{
-			path: 'otros',
+			path: '/otros',
 			name: 'otros',
 			component: require('./views/otros').default
+		},
+		{
+			path: '/receta/:id',
+			name: 'receta/detalle',
+			component: require('./views/recetaDetalle').default
+		},
+		{
+			path: '/notas/:id',
+			name: 'notas/detalle',
+			component: require('./views/notasDetalle').default
 		},
 		{
 			path: '*',

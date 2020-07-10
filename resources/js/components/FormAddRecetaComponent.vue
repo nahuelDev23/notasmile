@@ -5,7 +5,7 @@
         <h1 class="formulario-receta-h1">Añade una nueva receta 🐷</h1>
         <span @click="cerrarFormularioReceta">&times;</span>
       </div>
-      <form method="POST" v-on:submit.prevent="crearReceta">
+      <form id="formulario-recetas" method="POST" v-on:submit.prevent="crearReceta">
         <div class="input-group mb-3">
           <input
             class="form-control"
@@ -115,7 +115,7 @@ export default {
     };
   },
   mounted() {
-    //this.verReceta()
+    
   },
   methods: {
     cerrarFormularioReceta: function() {
@@ -145,7 +145,36 @@ export default {
       axios
         .post("api/receta/store", data)
         .then(response => {
-          console.log(response);
+           if(response.status == 200)
+          {
+              this.cerrarFormularioReceta()  
+              document.getElementById("formulario-recetas").reset()
+              if(this.categoria == 'almuerzo')
+              {
+                this.$root.$emit('almuerzo');
+              }
+              if(this.categoria == 'cena')
+              {
+                this.$root.$emit('cena');
+              }
+              if(this.categoria == 'desayuno')
+              {
+                this.$root.$emit('desayuno');
+              }
+              if(this.categoria == 'merienda')
+              {
+                this.$root.$emit('merienda');
+              }
+              if(this.categoria == 'otros')
+              {
+                this.$root.$emit('otros');
+              }
+              if(this.categoria == 'ideas')
+              {
+                this.$root.$emit('ideas');
+              }
+               
+          }
         })
         .catch(error => {
           console.log(error);

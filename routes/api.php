@@ -21,7 +21,34 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 #Listar desayuno
 Route::get('listar/desayuno','RecetaController@listaDesayuno')->name('listar.desayuno');
 Route::get('buscar/desayuno','RecetaController@buscarDesayuno')->name('buscar.desayuno');
-Route::get('mostrar/desayuno/{id}','RecetaController@mostrarDesayuno')->name('mostrar.desayuno');
+#Route::get('mostrar/desayuno/{id}','RecetaController@mostrarDesayuno')->name('mostrar.desayuno');
+
+#Listar almuerzo
+Route::get('listar/almuerzo','RecetaController@listaAlmuerzo')->name('listar.almuerzo');
+Route::get('buscar/almuerzo','RecetaController@buscarAlmuerzo')->name('buscar.almuerzo');
+
+#Listar cena
+Route::get('listar/cena','RecetaController@listaCena')->name('listar.cena');
+Route::get('buscar/cena','RecetaController@buscarCena')->name('buscar.cena');
+
+#Listar ideas
+Route::get('listar/idea','RecetaController@listaIdea')->name('listar.idea');
+Route::get('buscar/idea','RecetaController@buscarIdea')->name('buscar.idea');
+
+#Listar merienda
+Route::get('listar/merienda','RecetaController@listaMerienda')->name('listar.merienda');
+Route::get('buscar/merienda','RecetaController@buscarMerienda')->name('buscar.merienda');
+
+#Listar otros
+Route::get('listar/otros','RecetaController@listaOtros')->name('listar.otros');
+Route::get('buscar/otros','RecetaController@buscarOtros')->name('buscar.otros');
+
+#Listar notas
+Route::get('listar/notas','NotasController@listaNotas')->name('listar.notas');
+Route::get('buscar/notas','NotasController@buscarNotas')->name('buscar.notas');
 
 #guardar receta
 Route::post('receta/store','RecetaController@store')->name('receta.store');
+Route::post('notas/store','NotasController@store')->name('notas.store');
+Route::get('mostrar/receta/{id}','RecetaController@mostrarReceta')->name('mostrar.receta');
+Route::get('mostrar/notas/{id}','NotasController@mostrarNotas')->name('mostrar.notas');

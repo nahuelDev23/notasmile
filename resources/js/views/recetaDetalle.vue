@@ -28,12 +28,12 @@ export default {
     };
   },
   mounted() {
-    this.mostrarDetalleDesayuno();
+    this.mostrarDetalleReceta();
   },
   methods: {
-    mostrarDetalleDesayuno() {
+    mostrarDetalleReceta() {
       axios
-        .get("api/mostrar/desayuno/" + this.$route.params.id)
+        .get("api/mostrar/receta/" + this.$route.params.id)
         .then(response => {
           this.desayuno = response.data;
           console.log(response);

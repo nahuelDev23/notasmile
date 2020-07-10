@@ -14,13 +14,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(desayuno, k) in listarDesayuno" :key="k">
-                <td>{{ desayuno.title }}</td>
+              <tr v-for="(cena, k) in listarcena" :key="k">
+                <td>{{ cena.title }}</td>
                 <td>
                   <router-link
                     :to="{
                                             name: 'receta/detalle',
-                                            params: { id: desayuno.id }
+                                            params: { id: cena.id }
                                         }"
                   >
                     <v-btn depressed x-small>Ver</v-btn>
@@ -34,7 +34,7 @@
         <v-pagination
           v-model="page"
           :length="pagination.last_page"
-          @input="mostrarListaDesayuno(page)"
+          @input="mostrarListaCena(page)"
         ></v-pagination>
       
     </v-app>
@@ -45,7 +45,7 @@
 export default {
   data() {
     return {
-      listarDesayuno: [],
+      listarcena: [],
       pagination: {
         total: 0,
         current_page: 0,
@@ -59,18 +59,17 @@ export default {
     };
   },
   mounted: function() {
-    this.mostrarListaDesayuno();
-    this.$root.$on('desayuno',this.mostrarListaDesayuno)
+    this.mostrarListaCena();
+    this.$root.$on('cena',this.mostrarListaCena)
   },
 
   methods: {
-    mostrarListaDesayuno: function(page) {
+    mostrarListaCena: function(page) {
       axios
-        .get("api/listar/desayuno?page=" + page)
+        .get("api/listar/cena?page=" + page)
         .then(response => {
-          this.listarDesayuno = response.data.recetas.data;
+          this.listarcena = response.data.recetas.data;
           this.pagination = response.data.pagination;
-          console.log(this.pagination);
         })
         .catch(error => {
           console.log(error);
@@ -78,9 +77,9 @@ export default {
     },
     searchData: function() {
       axios
-        .get("api/buscar/desayuno?title=" + this.search)
+        .get("api/buscar/cena?title=" + this.search)
         .then(response => {
-          this.listarDesayuno = response.data.recetas.data;
+          this.listarcena = response.data.recetas.data;
         })
         .catch(error => {
           console.log(error);

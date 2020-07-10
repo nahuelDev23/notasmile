@@ -9,7 +9,6 @@
 </style>
 <template>
   <div>
-    <form-add-receta></form-add-receta>
 
     <v-app id="inspire">
       <v-card class="mx-auto overflow-hidden" height="100vh" width="100%">
@@ -59,7 +58,7 @@
                   <v-icon color="#cdd5dc">mdi-lightbulb</v-icon>
                 </v-list-item-icon>
                 <v-list-item-title class="v-list-link">
-                  <router-link :to="{name: 'ideas'}">Ideas</router-link>
+                  <router-link :to="{name: 'idea'}">Ideas</router-link>
                 </v-list-item-title>
               </v-list-item>
               <v-list-item>
@@ -92,9 +91,13 @@
         <transition>
           <router-view :key="$route.fullPath"></router-view>
         </transition>
-        <menu-footer></menu-footer>
+        
       </v-card>
+      <form-add-receta></form-add-receta>
+      <form-add-notas></form-add-notas>
+      <menu-footer></menu-footer>
     </v-app>
+        
   </div>
 </template>
 <script>

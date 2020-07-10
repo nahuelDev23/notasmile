@@ -14,13 +14,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(desayuno, k) in listarDesayuno" :key="k">
-                <td>{{ desayuno.title }}</td>
+              <tr v-for="(almuerzo, k) in listaralmuerzo" :key="k">
+                <td>{{ almuerzo.title }}</td>
                 <td>
                   <router-link
                     :to="{
                                             name: 'receta/detalle',
-                                            params: { id: desayuno.id }
+                                            params: { id: almuerzo.id }
                                         }"
                   >
                     <v-btn depressed x-small>Ver</v-btn>
@@ -34,7 +34,7 @@
         <v-pagination
           v-model="page"
           :length="pagination.last_page"
-          @input="mostrarListaDesayuno(page)"
+          @input="mostrarListaAlmuerzo(page)"
         ></v-pagination>
       
     </v-app>
@@ -45,7 +45,7 @@
 export default {
   data() {
     return {
-      listarDesayuno: [],
+      listaralmuerzo: [],
       pagination: {
         total: 0,
         current_page: 0,
@@ -59,18 +59,21 @@ export default {
     };
   },
   mounted: function() {
-    this.mostrarListaDesayuno();
-    this.$root.$on('desayuno',this.mostrarListaDesayuno)
+    this.mostrarListaAlmuerzo();
+    this.$root.$on('almuerzo',this.mostrarListaAlmuerzo)
   },
 
   methods: {
-    mostrarListaDesayuno: function(page) {
+    alerta:function()
+    {
+      console.log("ok")
+    },
+    mostrarListaAlmuerzo: function(page) {
       axios
-        .get("api/listar/desayuno?page=" + page)
+        .get("api/listar/almuerzo?page=" + page)
         .then(response => {
-          this.listarDesayuno = response.data.recetas.data;
+          this.listaralmuerzo = response.data.recetas.data;
           this.pagination = response.data.pagination;
-          console.log(this.pagination);
         })
         .catch(error => {
           console.log(error);
@@ -78,9 +81,9 @@ export default {
     },
     searchData: function() {
       axios
-        .get("api/buscar/desayuno?title=" + this.search)
+        .get("api/buscar/almuerzo?title=" + this.search)
         .then(response => {
-          this.listarDesayuno = response.data.recetas.data;
+          this.listaralmuerzo = response.data.recetas.data;
         })
         .catch(error => {
           console.log(error);

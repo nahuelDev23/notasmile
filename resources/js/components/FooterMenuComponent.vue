@@ -2,7 +2,7 @@
   <div class="footer">
     <div>Home</div>
     <div @click="mostrarModalAgregarReceta">Recetas</div>
-    <div>Notas</div>
+    <div @click="mostrarModalAgregarNotas">Notas</div>
   </div>
 </template>
 
@@ -27,9 +27,15 @@ export default {
        const formularioReceta = document.getElementById('formulario-receta')
        formularioReceta.classList.add('show')
     },
-    mostrarModalAgregarNota()
+    mostrarModalAgregarNotas()
     {
-       
+         /**
+        * Mostrar Farmulario
+        * FormAddRecetaComponent
+        * <form-add-receta>
+        */
+       const formularioNotas = document.getElementById('formulario-notas')
+       formularioNotas.classList.add('show')
     },
 
   }

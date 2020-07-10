@@ -60,8 +60,18 @@ class RecetaController extends Controller
 
     /**
      * API
+     * 
      */
 
+    public function mostrarReceta($id)
+    {
+        $receta = Receta::Where('id',$id)->get();
+        return $receta;
+    }
+
+    /**
+     * DESAYUNO
+     */
     public function listaDesayuno(Request $request)
     {
         $receta = Receta::Where('categoria','desayuno')->paginate(10);
@@ -94,9 +104,188 @@ class RecetaController extends Controller
 
         ];
     }
-    public function mostrarDesayuno($id)
+    
+
+    /**
+     * ALMUERZO
+     */
+    public function listaAlmuerzo(Request $request)
     {
-        $receta = Receta::Where('id',$id)->get();
-        return $receta;
+        $receta = Receta::Where('categoria','almuerzo')->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
     }
+    public function buscarAlmuerzo(Request $request)
+    {
+        $receta = Receta::Where('categoria','almuerzo')->where('title','like',"%$request->title%")->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+   
+
+    /**
+     * CENA
+     */
+    public function listaCena(Request $request)
+    {
+        $receta = Receta::Where('categoria','cena')->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+    public function buscarCena(Request $request)
+    {
+        $receta = Receta::Where('categoria','cena')->where('title','like',"%$request->title%")->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+
+        /**
+     * idea
+     */
+    public function listaIdea(Request $request)
+    {
+        $receta = Receta::Where('categoria','ideas')->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+    public function buscarIdea(Request $request)
+    {
+        $receta = Receta::Where('categoria','ideas')->where('title','like',"%$request->title%")->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+
+    
+        /**
+     * merienda
+     */
+    public function listaMerienda(Request $request)
+    {
+        $receta = Receta::Where('categoria','merienda')->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+    public function buscarMerienda(Request $request)
+    {
+        $receta = Receta::Where('categoria','merienda')->where('title','like',"%$request->title%")->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+
+      /**
+     * otros
+     */
+    public function listaOtros(Request $request)
+    {
+        $receta = Receta::Where('categoria','otros')->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+    public function buscarOtros(Request $request)
+    {
+        $receta = Receta::Where('categoria','otros')->where('title','like',"%$request->title%")->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+   
 }
