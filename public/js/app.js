@@ -3170,9 +3170,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      dialog: false,
       listarotros: [],
       pagination: {
         total: 0,
@@ -3188,7 +3202,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.mostrarListaOtros();
-    this.$root.$on('otros', this.mostrarListaOtros);
+    this.$root.$on("otros", this.mostrarListaOtros);
   },
   methods: {
     mostrarListaOtros: function mostrarListaOtros(page) {
@@ -42242,17 +42256,127 @@ var render = function() {
                                   ),
                                   _vm._v(" "),
                                   _c(
-                                    "v-btn",
+                                    "v-dialog",
                                     {
-                                      attrs: { depressed: "", "x-small": "" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.deleteReceta(otros.id)
-                                        }
+                                      attrs: {
+                                        persistent: "",
+                                        "max-width": "290"
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "activator",
+                                            fn: function(ref) {
+                                              var on = ref.on
+                                              var attrs = ref.attrs
+                                              return [
+                                                _c(
+                                                  "v-btn",
+                                                  _vm._g(
+                                                    _vm._b(
+                                                      {
+                                                        staticClass: "ml-2",
+                                                        attrs: {
+                                                          depressed: "",
+                                                          "x-small": ""
+                                                        }
+                                                      },
+                                                      "v-btn",
+                                                      attrs,
+                                                      false
+                                                    ),
+                                                    on
+                                                  ),
+                                                  [_vm._v("Eliminar")]
+                                                )
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      ),
+                                      model: {
+                                        value: _vm.dialog,
+                                        callback: function($$v) {
+                                          _vm.dialog = $$v
+                                        },
+                                        expression: "dialog"
                                       }
                                     },
-                                    [_vm._v("Eliminar")]
+                                    [
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card",
+                                        [
+                                          _c(
+                                            "v-card-title",
+                                            { staticClass: "headline" },
+                                            [
+                                              _vm._v(
+                                                "¿Estas segurx de que lo queres elimiar?"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("v-card-text", [
+                                            _vm._v(
+                                              "Despues no le rompas las bolas a tu novio, con que se te perdieron las recetas"
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-card-actions",
+                                            [
+                                              _c("v-spacer"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    color: "green darken-1",
+                                                    text: ""
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.dialog = false
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v("No,jeje")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    color: "green darken-1",
+                                                    text: ""
+                                                  },
+                                                  on: {
+                                                    click: [
+                                                      function($event) {
+                                                        _vm.dialog = false
+                                                      },
+                                                      function($event) {
+                                                        $event.preventDefault()
+                                                        return _vm.deleteReceta(
+                                                          otros.id
+                                                        )
+                                                      }
+                                                    ]
+                                                  }
+                                                },
+                                                [_vm._v("Si,Estoy segurx")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
