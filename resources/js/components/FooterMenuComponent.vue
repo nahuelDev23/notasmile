@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <div>Home</div>
+    <div class="v-list-link"><router-link :to="{name: 'index'}" >Home</router-link></div>
     <div @click="mostrarModalAgregarReceta">Recetas</div>
     <div @click="mostrarModalAgregarNotas">Notas</div>
   </div>
@@ -42,7 +42,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
+.v-list-link {
+  & a {
+    color: #cdd5dc;
+  }
+}
 .footer{
       position:fixed;
       display: flex;

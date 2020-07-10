@@ -78,9 +78,10 @@ class NotasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Nota $notas)
     {
-        //
+        $notas->delete();
+        return true;
     }
    /**
      * API
@@ -95,7 +96,7 @@ class NotasController extends Controller
 
     public function listaNotas(Request $request)
     {
-        $receta = Nota::paginate(10);
+        $receta = Nota::orderBy('id','DESC')->paginate(10);
         return [
             'pagination'=>[
                 'total' => $receta->total(),

@@ -25,6 +25,7 @@
                   >
                     <v-btn depressed x-small>Ver</v-btn>
                   </router-link>
+                  <v-btn depressed x-small v-on:click.prevent="deleteReceta(idea.id)">Eliminar</v-btn>
                 </td>
               </tr>
             </tbody>
@@ -42,6 +43,7 @@
 </template>
 
 <script>
+//this.$root.$emit('eliminarReceta');
 export default {
   data() {
     return {
@@ -85,7 +87,14 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    }
+    },
+    deleteReceta:function(receta){
+			var urlReceta = `api/receta/eliminar/${receta}`
+			axios.delete(urlReceta).then(response=>{
+				this.mostrarListaIdea();
+			})
+    },
+    
   }
 };
 </script>

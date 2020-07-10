@@ -49,6 +49,8 @@ Route::get('buscar/notas','NotasController@buscarNotas')->name('buscar.notas');
 
 #guardar receta
 Route::post('receta/store','RecetaController@store')->name('receta.store');
+Route::delete('receta/eliminar/{receta}','RecetaController@destroy')->name('receta.destroy');
+Route::delete('notas/eliminar/{notas}','NotasController@destroy')->name('notas.destroy');
 Route::post('notas/store','NotasController@store')->name('notas.store');
 Route::get('mostrar/receta/{id}','RecetaController@mostrarReceta')->name('mostrar.receta');
 Route::get('mostrar/notas/{id}','NotasController@mostrarNotas')->name('mostrar.notas');

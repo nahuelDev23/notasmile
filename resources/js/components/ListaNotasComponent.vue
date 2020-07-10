@@ -25,6 +25,7 @@
                   >
                     <v-btn depressed x-small>Ver</v-btn>
                   </router-link>
+                  <v-btn depressed x-small v-on:click.prevent="deleteNota(notas.id)">Eliminar</v-btn>
                 </td>
               </tr>
             </tbody>
@@ -84,7 +85,14 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    }
+    },
+    
+    deleteNota:function(notas){
+			var urlReceta = `api/notas/eliminar/${notas}`
+			axios.delete(urlReceta).then(response=>{
+				this.mostrarListaNotas();
+			})
+		},
   }
 };
 </script>

@@ -17,8 +17,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 import router from './routes'
 import Vuetify from 'vuetify'
-import VueQuillEditor from 'vue-quill-editor'
-
 
 Vue.use(Vuetify);
 

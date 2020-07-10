@@ -2,7 +2,7 @@
 	<div>
 		<div class="container">
 			<div class="display-grid">
-				<h1>Lista de Merienda</h1>
+				<h2>Lista de Merienda 🐨</h2>
                         <lista-otros></lista-otros>
 			</div>
 		</div>

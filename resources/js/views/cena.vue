@@ -2,7 +2,7 @@
 	<div>
 		<div class="container">
 			<div class="display-grid">
-				<h1>Lista de Cena</h1>
+				<h2>Lista de Cena 🐼</h2>
                         <lista-cena></lista-cena>
 			</div>
 		</div>

@@ -25,6 +25,13 @@
                   >
                     <v-btn depressed x-small>Ver</v-btn>
                   </router-link>
+                  
+
+                 
+                  <v-btn depressed x-small v-on:click.prevent="deleteReceta(desayuno.id)">Eliminar</v-btn>
+                 
+                    
+                  
                 </td>
               </tr>
             </tbody>
@@ -59,8 +66,12 @@ export default {
     };
   },
   mounted: function() {
+    /**
+     * !ACA SE ENCUENTRA LA BASE DE ELIMINAR RECETAS!
+     */
     this.mostrarListaDesayuno();
     this.$root.$on('desayuno',this.mostrarListaDesayuno)
+    this.$root.$on('eliminarReceta',this.deleteReceta)
   },
 
   methods: {
@@ -85,7 +96,13 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    }
+    },
+    deleteReceta:function(receta){
+			var urlReceta = `api/receta/eliminar/${receta}`
+			axios.delete(urlReceta).then(response=>{
+				this.mostrarListaDesayuno();
+			})
+		},
   }
 };
 </script>

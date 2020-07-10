@@ -37,7 +37,7 @@ class RecetaController extends Controller
     
     public function show(Receta $receta)
     {
-        return view('show',compact('receta'));
+        //return view('show',compact('receta'));
     }
 
   
@@ -53,9 +53,11 @@ class RecetaController extends Controller
     }
 
    
-    public function destroy($id)
+    public function destroy(Receta $receta)
     {
-        //
+        // $receta = Receta::findOrFail($id);
+        $receta->delete();
+        return true;
     }
 
     /**
@@ -74,7 +76,7 @@ class RecetaController extends Controller
      */
     public function listaDesayuno(Request $request)
     {
-        $receta = Receta::Where('categoria','desayuno')->paginate(10);
+        $receta = Receta::Where('categoria','desayuno')->orderBy('id','DESC')->paginate(10);
         return [
             'pagination'=>[
                 'total' => $receta->total(),
@@ -111,7 +113,7 @@ class RecetaController extends Controller
      */
     public function listaAlmuerzo(Request $request)
     {
-        $receta = Receta::Where('categoria','almuerzo')->paginate(10);
+        $receta = Receta::Where('categoria','almuerzo')->orderBy('id','DESC')->paginate(10);
         return [
             'pagination'=>[
                 'total' => $receta->total(),
@@ -148,7 +150,7 @@ class RecetaController extends Controller
      */
     public function listaCena(Request $request)
     {
-        $receta = Receta::Where('categoria','cena')->paginate(10);
+        $receta = Receta::Where('categoria','cena')->orderBy('id','DESC')->paginate(10);
         return [
             'pagination'=>[
                 'total' => $receta->total(),
@@ -184,7 +186,7 @@ class RecetaController extends Controller
      */
     public function listaIdea(Request $request)
     {
-        $receta = Receta::Where('categoria','ideas')->paginate(10);
+        $receta = Receta::Where('categoria','ideas')->orderBy('id','DESC')->paginate(10);
         return [
             'pagination'=>[
                 'total' => $receta->total(),
@@ -221,7 +223,7 @@ class RecetaController extends Controller
      */
     public function listaMerienda(Request $request)
     {
-        $receta = Receta::Where('categoria','merienda')->paginate(10);
+        $receta = Receta::Where('categoria','merienda')->orderBy('id','DESC')->paginate(10);
         return [
             'pagination'=>[
                 'total' => $receta->total(),
@@ -257,7 +259,7 @@ class RecetaController extends Controller
      */
     public function listaOtros(Request $request)
     {
-        $receta = Receta::Where('categoria','otros')->paginate(10);
+        $receta = Receta::Where('categoria','otros')->orderBy('id','DESC')->paginate(10);
         return [
             'pagination'=>[
                 'total' => $receta->total(),
