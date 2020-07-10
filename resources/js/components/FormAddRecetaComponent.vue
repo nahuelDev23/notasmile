@@ -159,14 +159,19 @@ export default {
   position: fixed;
   content: "";
   min-width: 100vw;
-  min-height: 100vh;
-  max-height: 100vh;
+  min-height: 100%;
+  max-height: 100%;
   background-color: #fff;
-  z-index: 2;
+  z-index: 900;
   color: #333;
   padding: 0 1rem;
   overflow-y: scroll;
-
+  & form {
+    height: 100%;
+    overflow-y: scroll;
+    margin-bottom: .5rem;
+    background-color: #fff;
+  }
   &-header span {
     cursor: pointer;
     margin-bottom: 1rem;

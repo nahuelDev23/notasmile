@@ -17,8 +17,8 @@ class Receta extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->string('descripcion')->nullable();
-            $table->string('ingrediente');
-            $table->string('paso')->nullable();
+            $table->text('ingrediente');
+            $table->text('paso')->nullable();
             $table->string('categoria');
             $table->timestamps();
         });

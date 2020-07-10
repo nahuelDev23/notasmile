@@ -6932,7 +6932,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".formulario-receta[data-v-25228a49] {\n  position: fixed;\n  content: \"\";\n  min-width: 100vw;\n  min-height: 100vh;\n  max-height: 100vh;\n  background-color: #fff;\n  z-index: 2;\n  color: #333;\n  padding: 0 1rem;\n  overflow-y: scroll;\n}\n.formulario-receta-header span[data-v-25228a49] {\n  cursor: pointer;\n  margin-bottom: 1rem;\n  font-size: 1.5rem;\n}\n.formulario-receta-header[data-v-25228a49] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 1rem;\n}\n.formulario-receta-h1[data-v-25228a49] {\n  font-size: 1.3rem;\n  margin: 0;\n  margin-bottom: 1rem;\n}\n.hidden[data-v-25228a49] {\n  display: none;\n}\n.show[data-v-25228a49] {\n  display: block;\n}", ""]);
+exports.push([module.i, ".formulario-receta[data-v-25228a49] {\n  position: fixed;\n  content: \"\";\n  min-width: 100vw;\n  min-height: 100%;\n  max-height: 100%;\n  background-color: #fff;\n  z-index: 900;\n  color: #333;\n  padding: 0 1rem;\n  overflow-y: scroll;\n}\n.formulario-receta form[data-v-25228a49] {\n  height: 100%;\n  overflow-y: scroll;\n  margin-bottom: 0.5rem;\n  background-color: #fff;\n}\n.formulario-receta-header span[data-v-25228a49] {\n  cursor: pointer;\n  margin-bottom: 1rem;\n  font-size: 1.5rem;\n}\n.formulario-receta-header[data-v-25228a49] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 1rem;\n}\n.formulario-receta-h1[data-v-25228a49] {\n  font-size: 1.3rem;\n  margin: 0;\n  margin-bottom: 1rem;\n}\n.hidden[data-v-25228a49] {\n  display: none;\n}\n.show[data-v-25228a49] {\n  display: block;\n}", ""]);
 
 // exports
 
@@ -39838,7 +39838,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("v-simple-table", {
-            attrs: { "fixed-header": "", height: "50vh" },
+            attrs: { "fixed-header": "", height: "30vh" },
             scopedSlots: _vm._u([
               {
                 key: "default",
@@ -99498,6 +99498,24 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/hiddenAdressBar.js":
+/*!*****************************************!*\
+  !*** ./resources/js/hiddenAdressBar.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// When ready...
+window.addEventListener("load", function () {
+  // Set a timeout...
+  setTimeout(function () {
+    // Hide the address bar!
+    window.scrollTo(0, 1);
+  }, 0);
+});
+
+/***/ }),
+
 /***/ "./resources/js/routes.js":
 /*!********************************!*\
   !*** ./resources/js/routes.js ***!
@@ -99990,13 +100008,14 @@ component.options.__file = "resources/js/views/otros.vue"
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!********************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/hiddenAdressBar ./resources/sass/app.scss ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\xampp1\htdocs\notasmile\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\xampp1\htdocs\notasmile\resources\js\hiddenAdressBar */"./resources/js/hiddenAdressBar.js");
 module.exports = __webpack_require__(/*! C:\xampp1\htdocs\notasmile\resources\sass\app.scss */"./resources/sass/app.scss");
 
 

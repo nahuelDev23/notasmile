@@ -7,7 +7,7 @@
          <v-text-field  v-model="search" label="Buscar receta"  v-on:keyup="searchData"></v-text-field>
       
       </div>
-      <v-simple-table fixed-header height="50vh">
+      <v-simple-table fixed-header height="30vh">
         <template v-slot:default>
           <thead>
             <tr>
