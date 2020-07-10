@@ -42644,7 +42644,7 @@ var render = function() {
         "div",
         { staticClass: "display-grid" },
         [
-          _c("h2", [_vm._v("Lista de Merienda 🐨")]),
+          _c("h2", [_vm._v("Lista de otras cosas 🐨")]),
           _vm._v(" "),
           _c("lista-otros")
         ],
