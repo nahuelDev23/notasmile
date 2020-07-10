@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Receta;
-use Laravel\Ui\Presets\React;
+
 
 class RecetaController extends Controller
 {
     public function index()
     {
-        $receta = Receta::all();
-        return $receta;
+       
     }
 
     
@@ -63,10 +62,37 @@ class RecetaController extends Controller
      * API
      */
 
-    public function listaDesayuno()
+    public function listaDesayuno(Request $request)
     {
-        $receta = Receta::Where('categoria','desayuno')->get();
-        return $receta;
+        $receta = Receta::Where('categoria','desayuno')->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+    public function buscarDesayuno(Request $request)
+    {
+        $receta = Receta::Where('categoria','desayuno')->where('title','like',"%$request->title%")->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
     }
     public function mostrarDesayuno($id)
     {

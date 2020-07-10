@@ -1,9 +1,13 @@
 <template>
   <div>
-    <v-app id="inspire">
-      <h2 class="title-List">Desayuno veggie 🐣</h2>  
-      <input type="text" v-model="name" placeholder="buscar">
-      <v-simple-table>
+   
+  
+    <v-app id="inspire" >
+      <div>
+         <v-text-field  v-model="search" label="Buscar receta"  v-on:keyup="searchData"></v-text-field>
+      
+      </div>
+      <v-simple-table fixed-header height="50vh">
         <template v-slot:default>
           <thead>
             <tr>
@@ -23,28 +27,57 @@
           </tbody>
         </template>
       </v-simple-table>
+      <v-pagination
+        v-model="page"
+        :length="pagination.last_page"
+        @input="mostrarListaDesayuno(page)"
+      ></v-pagination>
     </v-app>
   </div>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
       listarDesayuno: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      },
+      page: 1,
+      search:'',
     };
   },
-  mounted() {
+  created: function() {
     this.mostrarListaDesayuno();
   },
-  
+
   methods: {
-    mostrarListaDesayuno() {
+    mostrarListaDesayuno: function(page) {
       axios
-        .get("api/listar/desayuno")
+        .get("api/listar/desayuno?page=" + page)
         .then(response => {
-          this.listarDesayuno = response.data;
-          console.log(response);
+          this.listarDesayuno = response.data.recetas.data;
+          this.pagination = response.data.pagination;
+          console.log(this.pagination);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    searchData:function()
+    {
+      axios
+        .get("api/buscar/desayuno?title=" + this.search)
+        .then(response => {
+          this.listarDesayuno = response.data.recetas.data;
+         
         })
         .catch(error => {
           console.log(error);
@@ -54,7 +87,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.title-List{
+.title-List {
   text-align: center;
 }
 </style>

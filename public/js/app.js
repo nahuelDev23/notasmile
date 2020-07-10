@@ -2007,19 +2007,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      drawer: false
+      drawer: false,
+      group: ""
     };
-  },
-  mounted: function mounted() {
-    this.mostrarDetalleDesayuno();
   }
 });
 
@@ -2349,22 +2342,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      listarDesayuno: []
+      listarDesayuno: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      },
+      page: 1,
+      search: ''
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     this.mostrarListaDesayuno();
   },
   methods: {
-    mostrarListaDesayuno: function mostrarListaDesayuno() {
+    mostrarListaDesayuno: function mostrarListaDesayuno(page) {
       var _this = this;
 
-      axios.get("api/listar/desayuno").then(function (response) {
-        _this.listarDesayuno = response.data;
-        console.log(response);
+      axios.get("api/listar/desayuno?page=" + page).then(function (response) {
+        _this.listarDesayuno = response.data.recetas.data;
+        _this.pagination = response.data.pagination;
+        console.log(_this.pagination);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    searchData: function searchData() {
+      var _this2 = this;
+
+      axios.get("api/buscar/desayuno?title=" + this.search).then(function (response) {
+        _this2.listarDesayuno = response.data.recetas.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -38876,7 +38898,7 @@ var render = function() {
             "v-card",
             {
               staticClass: "mx-auto overflow-hidden",
-              attrs: { height: "100%", width: "100%" }
+              attrs: { height: "100vh", width: "100%" }
             },
             [
               _c(
@@ -39185,7 +39207,6 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "transition",
-                { attrs: { name: "fade", mode: "out-in" } },
                 [_c("router-view", { key: _vm.$route.fullPath })],
                 1
               ),
@@ -39798,32 +39819,26 @@ var render = function() {
         "v-app",
         { attrs: { id: "inspire" } },
         [
-          _c("h2", { staticClass: "title-List" }, [
-            _vm._v("Desayuno veggie 🐣")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.name,
-                expression: "name"
-              }
-            ],
-            attrs: { type: "text", placeholder: "buscar" },
-            domProps: { value: _vm.name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c(
+            "div",
+            [
+              _c("v-text-field", {
+                attrs: { label: "Buscar receta" },
+                on: { keyup: _vm.searchData },
+                model: {
+                  value: _vm.search,
+                  callback: function($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search"
                 }
-                _vm.name = $event.target.value
-              }
-            }
-          }),
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("v-simple-table", {
+            attrs: { "fixed-header": "", height: "50vh" },
             scopedSlots: _vm._u([
               {
                 key: "default",
@@ -39881,6 +39896,22 @@ var render = function() {
                 proxy: true
               }
             ])
+          }),
+          _vm._v(" "),
+          _c("v-pagination", {
+            attrs: { length: _vm.pagination.last_page },
+            on: {
+              input: function($event) {
+                return _vm.mostrarListaDesayuno(_vm.page)
+              }
+            },
+            model: {
+              value: _vm.page,
+              callback: function($$v) {
+                _vm.page = $$v
+              },
+              expression: "page"
+            }
           })
         ],
         1

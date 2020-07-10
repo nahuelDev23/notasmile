@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 #Listar desayuno
 Route::get('listar/desayuno','RecetaController@listaDesayuno')->name('listar.desayuno');
+Route::get('buscar/desayuno','RecetaController@buscarDesayuno')->name('buscar.desayuno');
 Route::get('mostrar/desayuno/{id}','RecetaController@mostrarDesayuno')->name('mostrar.desayuno');
 
 #guardar receta
