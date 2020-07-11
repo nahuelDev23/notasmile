@@ -75,6 +75,10 @@ export default {
               {
                 this.$root.$emit('idea');
               }
+              if(this.categoria == 'index')
+              {
+                this.$root.$emit('index');
+              }
       });
     }
   }

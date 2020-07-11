@@ -18,7 +18,7 @@
                 <td class="first-mayus">{{ Index.title }}</td>
                 <td class="btn-accion">
                    <btn-ver-receta :id_receta="Index.id"></btn-ver-receta>
-                   <btn-delete-receta :id="Index.id" :categoria="'Index'"></btn-delete-receta>
+                   <btn-delete-receta :id="Index.id" :categoria="'index'"></btn-delete-receta>
                 </td>
               </tr>
             </tbody>

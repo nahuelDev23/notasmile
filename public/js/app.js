@@ -2159,6 +2159,10 @@ __webpack_require__.r(__webpack_exports__);
         if (_this.categoria == 'ideas') {
           _this.$root.$emit('idea');
         }
+
+        if (_this.categoria == 'index') {
+          _this.$root.$emit('index');
+        }
       });
     }
   }
@@ -42295,7 +42299,7 @@ var render = function() {
                                   }),
                                   _vm._v(" "),
                                   _c("btn-delete-receta", {
-                                    attrs: { id: Index.id, categoria: "Index" }
+                                    attrs: { id: Index.id, categoria: "index" }
                                   })
                                 ],
                                 1
