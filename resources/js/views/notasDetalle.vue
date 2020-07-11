@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <div class="container">
-      <div class="display-grid">
+  <div class="container-detalle">
         <div v-for="(d,k) in desayuno" :key="k">
-          <h1>{{d.title}}</h1>
-          <h2 v-html="d.body"></h2>
+          <h1 class="detalle-title">{{d.title}}</h1>
+          <p v-html="d.body"></p>
         </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -37,4 +33,9 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+/*
+* El estilo esta declarado en recetasDetalle 
+*/
+
+</style>

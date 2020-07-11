@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="display-grid">
 				<h1>Holxs🐮 jeje</h1>
-				<lista-desayuno></lista-desayuno>
+				<lista-index></lista-index>
 			</div>
 		</div>
 	</div>

@@ -2,7 +2,8 @@
   <div>
     <v-app id="inspire">
       <div>
-        <v-text-field v-model="search" label="Buscar receta" v-on:keyup="searchData"></v-text-field>
+        
+        <search-receta :categoria="'almuerzo'"  @update:resuladoBusqueda="listarAlmuerzo = $event"></search-receta>
       </div>
       <div class="table-container-recetas">
         <v-simple-table fixed-header>
@@ -14,7 +15,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(almuerzo, k) in listaralmuerzo" :key="k">
+              <tr v-for="(almuerzo, k) in listarAlmuerzo" :key="k">
                 <td>{{ almuerzo.title }}</td>
                 <td>
                    <btn-ver-receta :id_receta="almuerzo.id"></btn-ver-receta>
@@ -39,7 +40,7 @@
 export default {
   data() {
     return {
-      listaralmuerzo: [],
+      listarAlmuerzo: [],
       pagination: {
         total: 0,
         current_page: 0,
@@ -49,47 +50,24 @@ export default {
         to: 0
       },
       page: 1,
-      search: ""
     };
   },
   mounted: function() {
     this.mostrarListaAlmuerzo();
     this.$root.$on('almuerzo',this.mostrarListaAlmuerzo)
   },
-
   methods: {
-    alerta:function()
-    {
-      console.log("ok")
-    },
     mostrarListaAlmuerzo: function(page) {
       axios
         .get("api/listar/almuerzo?page=" + page)
         .then(response => {
-          this.listaralmuerzo = response.data.recetas.data;
+          this.listarAlmuerzo = response.data.recetas.data;
           this.pagination = response.data.pagination;
         })
         .catch(error => {
           console.log(error);
         });
     },
-    searchData: function() {
-      axios
-        .get("api/buscar/almuerzo?title=" + this.search)
-        .then(response => {
-          this.listaralmuerzo = response.data.recetas.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    
-    deleteReceta:function(receta){
-			var urlReceta = `api/receta/eliminar/${receta}`
-			axios.delete(urlReceta).then(response=>{
-				this.mostrarListaAlmuerzo();
-			})
-		},
   }
 };
 </script>

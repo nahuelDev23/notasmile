@@ -46,7 +46,7 @@
        
         </div>
         
-        <button type="submit" class="btn btn-primary mt-1">Guardar</button>
+        <v-btn depressed elevation="4" color="primary" type="submit" :loading="loading">Guardar</v-btn>
       </form>
   
     </v-app>
@@ -59,6 +59,7 @@ export default {
   
   data() {
     return {
+      loading:false,
        autoGrow: true,
       autofocus: true,
       clearable: true,
@@ -95,6 +96,7 @@ export default {
     },
    
     crearNotas() {
+      this.loading=true;
       var data = new FormData();
       data.append("title", this.title);
       data.append("body", this.body);
@@ -104,6 +106,7 @@ export default {
         .then(response => {
           if(response.status == 200)
           {
+              this.loading=false;
               this.cerrarFormularioNotas()  
               document.getElementById("formulario-nota").reset()
               

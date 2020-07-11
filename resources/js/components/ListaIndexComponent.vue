@@ -2,7 +2,7 @@
   <div>
     <v-app id="inspire">
       <div>
-        <search-receta :categoria="'otros'"  @update:resuladoBusqueda="listarOtros = $event"></search-receta>
+        <search-receta :categoria="'index'"  @update:resuladoBusqueda="listarIndex = $event"></search-receta>
       </div>
       <div class="table-container-recetas">
         <v-simple-table fixed-header>
@@ -14,18 +14,23 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(otros, k) in listarOtros" :key="k">
-                <td>{{ otros.title }}</td>
+              <tr v-for="(Index, k) in listarIndex" :key="k">
+                <td>{{ Index.title }}</td>
                 <td>
-                  <btn-ver-receta :id_receta="otros.id"></btn-ver-receta>
-                  <btn-delete-receta :id="otros.id" :categoria="'otros'"></btn-delete-receta>
+                   <btn-ver-receta :id_receta="Index.id"></btn-ver-receta>
+                   <btn-delete-receta :id="Index.id" :categoria="'Index'"></btn-delete-receta>
                 </td>
               </tr>
             </tbody>
           </template>
         </v-simple-table>
-      </div>
-      <v-pagination v-model="page" :length="pagination.last_page" @input="mostrarListaOtros(page)"></v-pagination>
+        </div>
+        <v-pagination
+          v-model="page"
+          :length="pagination.last_page"
+          @input="mostrarListaIndex(page)"
+        ></v-pagination>
+      
     </v-app>
   </div>
 </template>
@@ -34,7 +39,7 @@
 export default {
   data() {
     return {
-      listarOtros: [],
+      listarIndex: [],
       pagination: {
         total: 0,
         current_page: 0,
@@ -44,22 +49,19 @@ export default {
         to: 0
       },
       page: 1,
-      search: ""
     };
   },
   mounted: function() {
-    this.mostrarListaOtros();
-    this.$root.$on("otros", this.mostrarListaOtros);
+    this.mostrarListaIndex();
+    this.$root.$on('index',this.mostrarListaIndex)
   },
-
   methods: {
-    mostrarListaOtros: function(page) {
+    mostrarListaIndex: function(page) {
       axios
-        .get("api/listar/otros?page=" + page)
+        .get("api/listar/index?page=" + page)
         .then(response => {
-          this.listarOtros = response.data.recetas.data;
+          this.listarIndex = response.data.recetas.data;
           this.pagination = response.data.pagination;
-          console.log(this.pagination);
         })
         .catch(error => {
           console.log(error);
@@ -74,8 +76,9 @@ export default {
 }
 
 .table-container-recetas {
-  max-height: calc(100vh - 18rem);
-  min-height: calc(100vh - 18rem);
-  overflow: auto;
+ max-height:calc(100vh - 18rem);
+ min-height:calc(100vh - 18rem);
+  overflow:auto;
 }
+
 </style>

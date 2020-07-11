@@ -1,14 +1,14 @@
 <template>
   <div class="container-detalle">
     <div v-for="(d,k) in desayuno" :key="k">
-      <h1>{{d.title}}</h1>
-      <h2>{{d.descripcion}}</h2>
-      <h3>Ingredientes</h3>
+      <h1 class="detalle-title">{{d.title}}</h1>
+      <p class="detalle-description">{{d.descripcion}}</p>
+      <h3 class="detalle-title-title">Ingredientes</h3>
       <ul>
         <li class="list-ing" v-for="ing in JSON.parse(d.ingrediente)" :key="ing">{{ing.name}}</li>
       </ul>
-
-      <h3 v-if="JSON.parse(d.paso).length > 1">Pasos</h3>
+      <hr/>
+      <h3 class="detalle-title-title" v-if="JSON.parse(d.paso).length > 1">Pasos</h3>
       <ol v-if="JSON.parse(d.paso).length > 1">
         <li class="list-pasos" v-for="(paso,p) in JSON.parse(d.paso)" :key="p">{{paso.name}}</li>
       </ol>
@@ -53,6 +53,17 @@ export default {
   padding: 0 1rem;
   overflow-y: scroll;
 }
+.detalle-title{
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color:red;
+}
+.detalle-description{
+   font-size: 1rem;
+}
+.detalle-title-title{
+   font-size: 1rem;
+}
 .list-ing {
   padding: 0.5rem;
   border-bottom: 0.1rem dotted rgba(51, 51, 51, 0.5);
@@ -64,4 +75,6 @@ export default {
   padding: 0.5rem;
  
 }
+
+
 </style>

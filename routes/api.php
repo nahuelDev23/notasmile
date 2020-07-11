@@ -18,6 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+#Listar index
+Route::get('listar/index','RecetaController@listaIndex')->name('listar.index');
+Route::get('buscar/index','RecetaController@buscarIndex')->name('buscar.index');
+
 #Listar desayuno
 Route::get('listar/desayuno','RecetaController@listaDesayuno')->name('listar.desayuno');
 Route::get('buscar/desayuno','RecetaController@buscarDesayuno')->name('buscar.desayuno');

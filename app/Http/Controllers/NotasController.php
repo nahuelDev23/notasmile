@@ -96,17 +96,17 @@ class NotasController extends Controller
 
     public function listaNotas(Request $request)
     {
-        $receta = Nota::orderBy('id','DESC')->paginate(10);
+        $notas = Nota::orderBy('id','DESC')->paginate(10);
         return [
             'pagination'=>[
-                'total' => $receta->total(),
-                'current_page' => $receta->currentPage(),
-                'per_page' => $receta->perPage(),
-                'last_page' => $receta->lastPage(),
-                'from' => $receta->firstItem(),
-                'to' => $receta->lastItem(),
+                'total' => $notas->total(),
+                'current_page' => $notas->currentPage(),
+                'per_page' => $notas->perPage(),
+                'last_page' => $notas->lastPage(),
+                'from' => $notas->firstItem(),
+                'to' => $notas->lastItem(),
             ],
-            'recetas' => $receta
+            'notas' => $notas
 
         ];
     }

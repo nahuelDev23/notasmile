@@ -72,6 +72,43 @@ class RecetaController extends Controller
     }
 
     /**
+     * index
+     */
+
+    public function listaIndex(Request $request)
+    {
+        $receta = Receta::orderBy('id','DESC')->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+
+    public function buscarIndex(Request $request)
+    {
+        $receta = Receta::where('title','like',"%$request->title%")->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+    /**
      * DESAYUNO
      */
     public function listaDesayuno(Request $request)

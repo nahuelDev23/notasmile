@@ -85,10 +85,8 @@
             </div>
           </div>
         </div>
-
-        <button type="submit" class="btn btn-primary mt-1">Guardar</button>
+        <v-btn depressed elevation="4" color="primary" type="submit" :loading="loading">Guardar</v-btn>
       </form>
-  
     </v-app>
   </div>
 </template>
@@ -97,8 +95,8 @@
 export default {
   data() {
     return {
+      loading:false,
       switch1: true,
-      switch2: false,
       title: "",
       descripcion: "",
       categoria: "",
@@ -135,6 +133,7 @@ export default {
       this.pasos.splice(index, 1);
     },
     crearReceta() {
+      this.loading=true
       var data = new FormData();
       data.append("title", this.title);
       data.append("descripcion", this.descripcion);
@@ -147,6 +146,7 @@ export default {
         .then(response => {
            if(response.status == 200)
           {
+              this.loading=false
               this.cerrarFormularioReceta()  
               document.getElementById("formulario-recetas").reset()
               if(this.categoria == 'almuerzo')

@@ -2,7 +2,7 @@
   <div>
     <v-app id="inspire">
       <div>
-        <v-text-field v-model="search" label="Buscar receta" v-on:keyup="searchData"></v-text-field>
+        <search-receta :categoria="'desayuno'"  @update:resuladoBusqueda="listarDesayuno = $event"></search-receta>
       </div>
       <div class="table-container-recetas">
         <v-simple-table fixed-header>
@@ -49,42 +49,25 @@ export default {
         to: 0
       },
       page: 1,
-      search: ""
     };
   },
   mounted: function() {
-    /**
-     * !ACA SE ENCUENTRA LA BASE DE ELIMINAR RECETAS!
-     */
     this.mostrarListaDesayuno();
     this.$root.$on('desayuno',this.mostrarListaDesayuno)
-    this.$root.$on('eliminarReceta',this.deleteReceta)
   },
-
   methods: {
+   
     mostrarListaDesayuno: function(page) {
       axios
         .get("api/listar/desayuno?page=" + page)
         .then(response => {
           this.listarDesayuno = response.data.recetas.data;
           this.pagination = response.data.pagination;
-          console.log(this.pagination);
         })
         .catch(error => {
           console.log(error);
         });
     },
-    searchData: function() {
-      axios
-        .get("api/buscar/desayuno?title=" + this.search)
-        .then(response => {
-          this.listarDesayuno = response.data.recetas.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    
   }
 };
 </script>

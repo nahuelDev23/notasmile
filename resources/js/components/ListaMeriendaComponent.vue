@@ -2,7 +2,7 @@
   <div>
     <v-app id="inspire">
       <div>
-        <v-text-field v-model="search" label="Buscar receta" v-on:keyup="searchData"></v-text-field>
+        <search-receta :categoria="'merienda'"  @update:resuladoBusqueda="listarMerienda = $event"></search-receta>
       </div>
       <div class="table-container-recetas">
         <v-simple-table fixed-header>
@@ -14,7 +14,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(merienda, k) in listarmerienda" :key="k">
+              <tr v-for="(merienda, k) in listarMerienda" :key="k">
                 <td>{{ merienda.title }}</td>
                 <td>
                   <btn-ver-receta :id_receta="merienda.id"></btn-ver-receta>
@@ -39,7 +39,7 @@
 export default {
   data() {
     return {
-      listarmerienda: [],
+      listarMerienda: [],
       pagination: {
         total: 0,
         current_page: 0,
@@ -62,31 +62,14 @@ export default {
       axios
         .get("api/listar/merienda?page=" + page)
         .then(response => {
-          this.listarmerienda = response.data.recetas.data;
+          this.listarMerienda = response.data.recetas.data;
           this.pagination = response.data.pagination;
           console.log(this.pagination);
         })
         .catch(error => {
           console.log(error);
         });
-    },
-    searchData: function() {
-      axios
-        .get("api/buscar/merienda?title=" + this.search)
-        .then(response => {
-          this.listarmerienda = response.data.recetas.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    deleteReceta:function(receta){
-			var urlReceta = `api/receta/eliminar/${receta}`
-			axios.delete(urlReceta).then(response=>{
-				this.mostrarListaMerienda();
-			})
-		},
-    
+    }, 
   }
 };
 </script>

@@ -2,7 +2,7 @@
   <div>
     <v-app id="inspire">
       <div>
-        <v-text-field v-model="search" label="Buscar receta" v-on:keyup="searchData"></v-text-field>
+        <search-receta :categoria="'ideas'"  @update:resuladoBusqueda="listarIdea = $event"></search-receta>
       </div>
       <div class="table-container-recetas">
         <v-simple-table fixed-header>
@@ -14,7 +14,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(idea, k) in listaridea" :key="k">
+              <tr v-for="(idea, k) in listarIdea" :key="k">
                 <td>{{ idea.title }}</td>
                 <td>
                   <btn-ver-receta :id_receta="idea.id"></btn-ver-receta>
@@ -40,7 +40,7 @@
 export default {
   data() {
     return {
-      listaridea: [],
+      listarIdea: [],
       pagination: {
         total: 0,
         current_page: 0,
@@ -63,7 +63,7 @@ export default {
       axios
         .get("api/listar/idea?page=" + page)
         .then(response => {
-          this.listaridea = response.data.recetas.data;
+          this.listarIdea = response.data.recetas.data;
           this.pagination = response.data.pagination;
           console.log(this.pagination);
         })
@@ -71,18 +71,6 @@ export default {
           console.log(error);
         });
     },
-    searchData: function() {
-      axios
-        .get("api/buscar/idea?title=" + this.search)
-        .then(response => {
-          this.listaridea = response.data.recetas.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    
-    
   }
 };
 </script>
