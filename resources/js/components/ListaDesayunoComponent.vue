@@ -17,21 +17,8 @@
               <tr v-for="(desayuno, k) in listarDesayuno" :key="k">
                 <td>{{ desayuno.title }}</td>
                 <td>
-                  <router-link
-                    :to="{
-                                            name: 'receta/detalle',
-                                            params: { id: desayuno.id }
-                                        }"
-                  >
-                    <v-btn depressed x-small>Ver</v-btn>
-                  </router-link>
-                  
-
-                 
-                  <v-btn depressed x-small v-on:click.prevent="deleteReceta(desayuno.id)">Eliminar</v-btn>
-                 
-                    
-                  
+                  <btn-ver-receta :id_receta="desayuno.id"></btn-ver-receta>
+                  <btn-delete-receta :id="desayuno.id" :categoria="'desayuno'"></btn-delete-receta>
                 </td>
               </tr>
             </tbody>
@@ -97,12 +84,7 @@ export default {
           console.log(error);
         });
     },
-    deleteReceta:function(receta){
-			var urlReceta = `api/receta/eliminar/${receta}`
-			axios.delete(urlReceta).then(response=>{
-				this.mostrarListaDesayuno();
-			})
-		},
+    
   }
 };
 </script>

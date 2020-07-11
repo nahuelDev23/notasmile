@@ -17,15 +17,8 @@
               <tr v-for="(almuerzo, k) in listaralmuerzo" :key="k">
                 <td>{{ almuerzo.title }}</td>
                 <td>
-                  <router-link
-                    :to="{
-                                            name: 'receta/detalle',
-                                            params: { id: almuerzo.id }
-                                        }"
-                  >
-                    <v-btn depressed x-small>Ver</v-btn>
-                  </router-link>
-                   <v-btn depressed x-small v-on:click.prevent="deleteReceta(almuerzo.id)">Eliminar</v-btn>
+                   <btn-ver-receta :id_receta="almuerzo.id"></btn-ver-receta>
+                   <btn-delete-receta :id="almuerzo.id" :categoria="'almuerzo'"></btn-delete-receta>
                 </td>
               </tr>
             </tbody>

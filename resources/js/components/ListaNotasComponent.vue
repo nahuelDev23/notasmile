@@ -17,15 +17,8 @@
               <tr v-for="(notas, k) in listarnotas" :key="k">
                 <td>{{ notas.title }}</td>
                 <td>
-                  <router-link
-                    :to="{
-                                            name: 'notas/detalle',
-                                            params: { id: notas.id }
-                                        }"
-                  >
-                    <v-btn depressed x-small>Ver</v-btn>
-                  </router-link>
-                  <v-btn depressed x-small v-on:click.prevent="deleteNota(notas.id)">Eliminar</v-btn>
+                  <btn-ver-notas :id_notas="notas.id"></btn-ver-notas>
+                  <btn-delete-notas :id="notas.id"></btn-delete-notas>
                 </td>
               </tr>
             </tbody>
@@ -86,13 +79,6 @@ export default {
           console.log(error);
         });
     },
-    
-    deleteNota:function(notas){
-			var urlReceta = `api/notas/eliminar/${notas}`
-			axios.delete(urlReceta).then(response=>{
-				this.mostrarListaNotas();
-			})
-		},
   }
 };
 </script>

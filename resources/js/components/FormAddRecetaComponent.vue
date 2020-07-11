@@ -61,7 +61,7 @@
             <span class="input-group-text" @click="add(k)" v-show="k == inputs.length - 1">Mas</span>
           </div>
         </div>
-
+ 
         <!-- PASOS -->
 
         <v-switch v-model="switch1" label="¿Agregar pasos?"></v-switch>
@@ -171,7 +171,7 @@ export default {
               }
               if(this.categoria == 'ideas')
               {
-                this.$root.$emit('ideas');
+                this.$root.$emit('idea');
               }
                
           }

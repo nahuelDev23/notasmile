@@ -2021,6 +2021,151 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteNotasComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DeleteNotasComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["id"],
+  data: function data() {
+    return {
+      dialog: false
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    deleteNota: function deleteNota(nota) {
+      var _this = this;
+
+      var urlReceta = "api/notas/eliminar/".concat(nota);
+      axios["delete"](urlReceta).then(function (response) {
+        _this.$root.$emit('notas');
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteRecetaComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DeleteRecetaComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["id", "categoria"],
+  data: function data() {
+    return {
+      dialog: false,
+      listarotros: [],
+      pagination: {
+        total: 0,
+        current_page: 0,
+        per_page: 0,
+        last_page: 0,
+        from: 0,
+        to: 0
+      },
+      page: 1,
+      search: ""
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    deleteReceta: function deleteReceta(receta) {
+      var _this = this;
+
+      var urlReceta = "api/receta/eliminar/".concat(receta);
+      axios["delete"](urlReceta).then(function (response) {
+        if (_this.categoria == 'almuerzo') {
+          _this.$root.$emit('almuerzo');
+        }
+
+        if (_this.categoria == 'cena') {
+          _this.$root.$emit('cena');
+        }
+
+        if (_this.categoria == 'desayuno') {
+          _this.$root.$emit('desayuno');
+        }
+
+        if (_this.categoria == 'merienda') {
+          _this.$root.$emit('merienda');
+        }
+
+        if (_this.categoria == 'otros') {
+          _this.$root.$emit('otros');
+        }
+
+        if (_this.categoria == 'ideas') {
+          _this.$root.$emit('idea');
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -2452,7 +2597,7 @@ __webpack_require__.r(__webpack_exports__);
           }
 
           if (_this.categoria == 'ideas') {
-            _this.$root.$emit('ideas');
+            _this.$root.$emit('idea');
           }
         }
       })["catch"](function (error) {
@@ -2473,13 +2618,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2619,13 +2757,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2665,14 +2796,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-    },
-    deleteReceta: function deleteReceta(receta) {
-      var _this3 = this;
-
-      var urlReceta = "api/receta/eliminar/".concat(receta);
-      axios["delete"](urlReceta).then(function (response) {
-        _this3.mostrarListaCena();
-      });
     }
   }
 });
@@ -2688,19 +2811,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2782,14 +2892,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-    },
-    deleteReceta: function deleteReceta(receta) {
-      var _this3 = this;
-
-      var urlReceta = "api/receta/eliminar/".concat(receta);
-      axios["delete"](urlReceta).then(function (response) {
-        _this3.mostrarListaDesayuno();
-      });
     }
   }
 });
@@ -2805,13 +2907,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2890,14 +2985,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-    },
-    deleteReceta: function deleteReceta(receta) {
-      var _this3 = this;
-
-      var urlReceta = "api/receta/eliminar/".concat(receta);
-      axios["delete"](urlReceta).then(function (response) {
-        _this3.mostrarListaIdea();
-      });
     }
   }
 });
@@ -2913,13 +3000,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3057,13 +3137,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3102,14 +3175,6 @@ __webpack_require__.r(__webpack_exports__);
         _this2.listarnotas = response.data.recetas.data;
       })["catch"](function (error) {
         console.log(error);
-      });
-    },
-    deleteNota: function deleteNota(notas) {
-      var _this3 = this;
-
-      var urlReceta = "api/notas/eliminar/".concat(notas);
-      axios["delete"](urlReceta).then(function (response) {
-        _this3.mostrarListaNotas();
       });
     }
   }
@@ -3158,35 +3223,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      dialog: false,
       listarotros: [],
       pagination: {
         total: 0,
@@ -3224,16 +3263,59 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-    },
-    deleteReceta: function deleteReceta(receta) {
-      var _this3 = this;
-
-      var urlReceta = "api/receta/eliminar/".concat(receta);
-      axios["delete"](urlReceta).then(function (response) {
-        _this3.mostrarListaOtros();
-      });
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerNotasComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VerNotasComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["id_notas"]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerRecetaComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VerRecetaComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["id_receta"]
 });
 
 /***/ }),
@@ -40508,6 +40590,250 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteNotasComponent.vue?vue&type=template&id=2d760e2e&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DeleteNotasComponent.vue?vue&type=template&id=2d760e2e& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { persistent: "", "max-width": "290" },
+      scopedSlots: _vm._u([
+        {
+          key: "activator",
+          fn: function(ref) {
+            var on = ref.on
+            var attrs = ref.attrs
+            return [
+              _c(
+                "v-btn",
+                _vm._g(
+                  _vm._b(
+                    {
+                      staticClass: "ml-2",
+                      attrs: { depressed: "", "x-small": "" }
+                    },
+                    "v-btn",
+                    attrs,
+                    false
+                  ),
+                  on
+                ),
+                [_vm._v("Eliminar")]
+              )
+            ]
+          }
+        }
+      ]),
+      model: {
+        value: _vm.dialog,
+        callback: function($$v) {
+          _vm.dialog = $$v
+        },
+        expression: "dialog"
+      }
+    },
+    [
+      _vm._v(" "),
+      _c(
+        "v-card",
+        [
+          _c("v-card-title", { staticClass: "headline" }, [
+            _vm._v("¿Estas segurx de que lo queres elimiar?")
+          ]),
+          _vm._v(" "),
+          _c("v-card-text", [
+            _vm._v(
+              "\n      Despues no le rompas las bolas a tu novio, con que se te\n      perdieron las recetas\n    "
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "green darken-1", text: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.dialog = false
+                    }
+                  }
+                },
+                [_vm._v("No,jeje")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "green darken-1", text: "" },
+                  on: {
+                    click: [
+                      function($event) {
+                        _vm.dialog = false
+                      },
+                      function($event) {
+                        $event.preventDefault()
+                        return _vm.deleteNota(_vm.id)
+                      }
+                    ]
+                  }
+                },
+                [_vm._v("Si,Estoy segurx")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteRecetaComponent.vue?vue&type=template&id=b3af74d6&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DeleteRecetaComponent.vue?vue&type=template&id=b3af74d6& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { persistent: "", "max-width": "290" },
+      scopedSlots: _vm._u([
+        {
+          key: "activator",
+          fn: function(ref) {
+            var on = ref.on
+            var attrs = ref.attrs
+            return [
+              _c(
+                "v-btn",
+                _vm._g(
+                  _vm._b(
+                    {
+                      staticClass: "ml-2",
+                      attrs: { depressed: "", "x-small": "" }
+                    },
+                    "v-btn",
+                    attrs,
+                    false
+                  ),
+                  on
+                ),
+                [_vm._v("Eliminar")]
+              )
+            ]
+          }
+        }
+      ]),
+      model: {
+        value: _vm.dialog,
+        callback: function($$v) {
+          _vm.dialog = $$v
+        },
+        expression: "dialog"
+      }
+    },
+    [
+      _vm._v(" "),
+      _c(
+        "v-card",
+        [
+          _c("v-card-title", { staticClass: "headline" }, [
+            _vm._v("¿Estas segurx de que lo queres elimiar?")
+          ]),
+          _vm._v(" "),
+          _c("v-card-text", [
+            _vm._v(
+              "\n      Despues no le rompas las bolas a tu novio, con que se te\n      perdieron las recetas\n    "
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "green darken-1", text: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.dialog = false
+                    }
+                  }
+                },
+                [_vm._v("No,jeje")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "green darken-1", text: "" },
+                  on: {
+                    click: [
+                      function($event) {
+                        _vm.dialog = false
+                      },
+                      function($event) {
+                        $event.preventDefault()
+                        return _vm.deleteReceta(_vm.id)
+                      }
+                    ]
+                  }
+                },
+                [_vm._v("Si,Estoy segurx")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
@@ -41294,44 +41620,16 @@ var render = function() {
                               _c(
                                 "td",
                                 [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "receta/detalle",
-                                          params: { id: almuerzo.id }
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            depressed: "",
-                                            "x-small": ""
-                                          }
-                                        },
-                                        [_vm._v("Ver")]
-                                      )
-                                    ],
-                                    1
-                                  ),
+                                  _c("btn-ver-receta", {
+                                    attrs: { id_receta: almuerzo.id }
+                                  }),
                                   _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { depressed: "", "x-small": "" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.deleteReceta(almuerzo.id)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Eliminar")]
-                                  )
+                                  _c("btn-delete-receta", {
+                                    attrs: {
+                                      id: almuerzo.id,
+                                      categoria: "almuerzo"
+                                    }
+                                  })
                                 ],
                                 1
                               )
@@ -41450,44 +41748,13 @@ var render = function() {
                               _c(
                                 "td",
                                 [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "receta/detalle",
-                                          params: { id: cena.id }
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            depressed: "",
-                                            "x-small": ""
-                                          }
-                                        },
-                                        [_vm._v("Ver")]
-                                      )
-                                    ],
-                                    1
-                                  ),
+                                  _c("btn-ver-receta", {
+                                    attrs: { id_receta: cena.id }
+                                  }),
                                   _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { depressed: "", "x-small": "" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.deleteReceta(cena.id)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Eliminar")]
-                                  )
+                                  _c("btn-delete-receta", {
+                                    attrs: { id: cena.id, categoria: "cena" }
+                                  })
                                 ],
                                 1
                               )
@@ -41606,44 +41873,16 @@ var render = function() {
                               _c(
                                 "td",
                                 [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "receta/detalle",
-                                          params: { id: desayuno.id }
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            depressed: "",
-                                            "x-small": ""
-                                          }
-                                        },
-                                        [_vm._v("Ver")]
-                                      )
-                                    ],
-                                    1
-                                  ),
+                                  _c("btn-ver-receta", {
+                                    attrs: { id_receta: desayuno.id }
+                                  }),
                                   _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { depressed: "", "x-small": "" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.deleteReceta(desayuno.id)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Eliminar")]
-                                  )
+                                  _c("btn-delete-receta", {
+                                    attrs: {
+                                      id: desayuno.id,
+                                      categoria: "desayuno"
+                                    }
+                                  })
                                 ],
                                 1
                               )
@@ -41762,44 +42001,13 @@ var render = function() {
                               _c(
                                 "td",
                                 [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "receta/detalle",
-                                          params: { id: idea.id }
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            depressed: "",
-                                            "x-small": ""
-                                          }
-                                        },
-                                        [_vm._v("Ver")]
-                                      )
-                                    ],
-                                    1
-                                  ),
+                                  _c("btn-ver-receta", {
+                                    attrs: { id_receta: idea.id }
+                                  }),
                                   _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { depressed: "", "x-small": "" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.deleteReceta(idea.id)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Eliminar")]
-                                  )
+                                  _c("btn-delete-receta", {
+                                    attrs: { id: idea.id, categoria: "ideas" }
+                                  })
                                 ],
                                 1
                               )
@@ -41903,9 +42111,14 @@ var render = function() {
                               _vm._v("Titulo")
                             ]),
                             _vm._v(" "),
-                            _c("th", { staticClass: "text-left" }, [
-                              _vm._v("Acción")
-                            ])
+                            _c(
+                              "th",
+                              {
+                                staticClass: "text-left",
+                                attrs: { colspan: "2" }
+                              },
+                              [_vm._v("Acción")]
+                            )
                           ])
                         ]),
                         _vm._v(" "),
@@ -41918,44 +42131,16 @@ var render = function() {
                               _c(
                                 "td",
                                 [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "receta/detalle",
-                                          params: { id: merienda.id }
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            depressed: "",
-                                            "x-small": ""
-                                          }
-                                        },
-                                        [_vm._v("Ver")]
-                                      )
-                                    ],
-                                    1
-                                  ),
+                                  _c("btn-ver-receta", {
+                                    attrs: { id_receta: merienda.id }
+                                  }),
                                   _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { depressed: "", "x-small": "" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.deleteReceta(merienda.id)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Eliminar")]
-                                  )
+                                  _c("btn-delete-receta", {
+                                    attrs: {
+                                      id: merienda.id,
+                                      categoria: "merienda"
+                                    }
+                                  })
                                 ],
                                 1
                               )
@@ -42074,44 +42259,13 @@ var render = function() {
                               _c(
                                 "td",
                                 [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "notas/detalle",
-                                          params: { id: notas.id }
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            depressed: "",
-                                            "x-small": ""
-                                          }
-                                        },
-                                        [_vm._v("Ver")]
-                                      )
-                                    ],
-                                    1
-                                  ),
+                                  _c("btn-ver-notas", {
+                                    attrs: { id_notas: notas.id }
+                                  }),
                                   _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { depressed: "", "x-small": "" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.deleteNota(notas.id)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Eliminar")]
-                                  )
+                                  _c("btn-delete-notas", {
+                                    attrs: { id: notas.id }
+                                  })
                                 ],
                                 1
                               )
@@ -42230,154 +42384,13 @@ var render = function() {
                               _c(
                                 "td",
                                 [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "receta/detalle",
-                                          params: { id: otros.id }
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            depressed: "",
-                                            "x-small": ""
-                                          }
-                                        },
-                                        [_vm._v("Ver")]
-                                      )
-                                    ],
-                                    1
-                                  ),
+                                  _c("btn-ver-receta", {
+                                    attrs: { id_receta: otros.id }
+                                  }),
                                   _vm._v(" "),
-                                  _c(
-                                    "v-dialog",
-                                    {
-                                      attrs: {
-                                        persistent: "",
-                                        "max-width": "290"
-                                      },
-                                      scopedSlots: _vm._u(
-                                        [
-                                          {
-                                            key: "activator",
-                                            fn: function(ref) {
-                                              var on = ref.on
-                                              var attrs = ref.attrs
-                                              return [
-                                                _c(
-                                                  "v-btn",
-                                                  _vm._g(
-                                                    _vm._b(
-                                                      {
-                                                        staticClass: "ml-2",
-                                                        attrs: {
-                                                          depressed: "",
-                                                          "x-small": ""
-                                                        }
-                                                      },
-                                                      "v-btn",
-                                                      attrs,
-                                                      false
-                                                    ),
-                                                    on
-                                                  ),
-                                                  [_vm._v("Eliminar")]
-                                                )
-                                              ]
-                                            }
-                                          }
-                                        ],
-                                        null,
-                                        true
-                                      ),
-                                      model: {
-                                        value: _vm.dialog,
-                                        callback: function($$v) {
-                                          _vm.dialog = $$v
-                                        },
-                                        expression: "dialog"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-card",
-                                        [
-                                          _c(
-                                            "v-card-title",
-                                            { staticClass: "headline" },
-                                            [
-                                              _vm._v(
-                                                "¿Estas segurx de que lo queres elimiar?"
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("v-card-text", [
-                                            _vm._v(
-                                              "Despues no le rompas las bolas a tu novio, con que se te perdieron las recetas"
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-card-actions",
-                                            [
-                                              _c("v-spacer"),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    color: "green darken-1",
-                                                    text: ""
-                                                  },
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.dialog = false
-                                                    }
-                                                  }
-                                                },
-                                                [_vm._v("No,jeje")]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    color: "green darken-1",
-                                                    text: ""
-                                                  },
-                                                  on: {
-                                                    click: [
-                                                      function($event) {
-                                                        _vm.dialog = false
-                                                      },
-                                                      function($event) {
-                                                        $event.preventDefault()
-                                                        return _vm.deleteReceta(
-                                                          otros.id
-                                                        )
-                                                      }
-                                                    ]
-                                                  }
-                                                },
-                                                [_vm._v("Si,Estoy segurx")]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
+                                  _c("btn-delete-receta", {
+                                    attrs: { id: otros.id, categoria: "otros" }
+                                  })
                                 ],
                                 1
                               )
@@ -42414,6 +42427,78 @@ var render = function() {
         1
       )
     ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerNotasComponent.vue?vue&type=template&id=51e7c340&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VerNotasComponent.vue?vue&type=template&id=51e7c340& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "router-link",
+    {
+      attrs: {
+        to: {
+          name: "notas/detalle",
+          params: { id: _vm.id_notas }
+        }
+      }
+    },
+    [_c("v-btn", { attrs: { depressed: "", "x-small": "" } }, [_vm._v("Ver")])],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerRecetaComponent.vue?vue&type=template&id=2f543ba3&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VerRecetaComponent.vue?vue&type=template&id=2f543ba3& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "router-link",
+    {
+      attrs: {
+        to: {
+          name: "receta/detalle",
+          params: { id: _vm.id_receta }
+        }
+      }
+    },
+    [_c("v-btn", { attrs: { depressed: "", "x-small": "" } }, [_vm._v("Ver")])],
     1
   )
 }
@@ -101756,6 +101841,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('app', __webpack_require__(/*! ./components/AppComponent.vue */ "./resources/js/components/AppComponent.vue")["default"]);
+Vue.component('btn-delete-receta', __webpack_require__(/*! ./components/DeleteRecetaComponent.vue */ "./resources/js/components/DeleteRecetaComponent.vue")["default"]);
+Vue.component('btn-delete-notas', __webpack_require__(/*! ./components/DeleteNotasComponent.vue */ "./resources/js/components/DeleteNotasComponent.vue")["default"]);
+Vue.component('btn-ver-receta', __webpack_require__(/*! ./components/VerRecetaComponent.vue */ "./resources/js/components/VerRecetaComponent.vue")["default"]);
+Vue.component('btn-ver-notas', __webpack_require__(/*! ./components/VerNotasComponent.vue */ "./resources/js/components/VerNotasComponent.vue")["default"]);
 Vue.component('form-add-receta', __webpack_require__(/*! ./components/FormAddRecetaComponent.vue */ "./resources/js/components/FormAddRecetaComponent.vue")["default"]);
 Vue.component('form-add-notas', __webpack_require__(/*! ./components/FormAddNotasComponent.vue */ "./resources/js/components/FormAddNotasComponent.vue")["default"]);
 Vue.component('menu-footer', __webpack_require__(/*! ./components/FooterMenuComponent.vue */ "./resources/js/components/FooterMenuComponent.vue")["default"]);
@@ -101923,6 +102012,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AppComponent_vue_vue_type_template_id_cd268472_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AppComponent_vue_vue_type_template_id_cd268472_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteNotasComponent.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/DeleteNotasComponent.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DeleteNotasComponent_vue_vue_type_template_id_2d760e2e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteNotasComponent.vue?vue&type=template&id=2d760e2e& */ "./resources/js/components/DeleteNotasComponent.vue?vue&type=template&id=2d760e2e&");
+/* harmony import */ var _DeleteNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteNotasComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/DeleteNotasComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DeleteNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DeleteNotasComponent_vue_vue_type_template_id_2d760e2e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DeleteNotasComponent_vue_vue_type_template_id_2d760e2e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/DeleteNotasComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteNotasComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/DeleteNotasComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteNotasComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteNotasComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteNotasComponent.vue?vue&type=template&id=2d760e2e&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/DeleteNotasComponent.vue?vue&type=template&id=2d760e2e& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteNotasComponent_vue_vue_type_template_id_2d760e2e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteNotasComponent.vue?vue&type=template&id=2d760e2e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteNotasComponent.vue?vue&type=template&id=2d760e2e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteNotasComponent_vue_vue_type_template_id_2d760e2e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteNotasComponent_vue_vue_type_template_id_2d760e2e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteRecetaComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/DeleteRecetaComponent.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DeleteRecetaComponent_vue_vue_type_template_id_b3af74d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteRecetaComponent.vue?vue&type=template&id=b3af74d6& */ "./resources/js/components/DeleteRecetaComponent.vue?vue&type=template&id=b3af74d6&");
+/* harmony import */ var _DeleteRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteRecetaComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/DeleteRecetaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DeleteRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DeleteRecetaComponent_vue_vue_type_template_id_b3af74d6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DeleteRecetaComponent_vue_vue_type_template_id_b3af74d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/DeleteRecetaComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteRecetaComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/DeleteRecetaComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteRecetaComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteRecetaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteRecetaComponent.vue?vue&type=template&id=b3af74d6&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/DeleteRecetaComponent.vue?vue&type=template&id=b3af74d6& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteRecetaComponent_vue_vue_type_template_id_b3af74d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteRecetaComponent.vue?vue&type=template&id=b3af74d6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteRecetaComponent.vue?vue&type=template&id=b3af74d6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteRecetaComponent_vue_vue_type_template_id_b3af74d6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteRecetaComponent_vue_vue_type_template_id_b3af74d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -102862,6 +103089,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaOtrosComponent_vue_vue_type_template_id_06d55ef4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaOtrosComponent_vue_vue_type_template_id_06d55ef4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/VerNotasComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/VerNotasComponent.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VerNotasComponent_vue_vue_type_template_id_51e7c340___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VerNotasComponent.vue?vue&type=template&id=51e7c340& */ "./resources/js/components/VerNotasComponent.vue?vue&type=template&id=51e7c340&");
+/* harmony import */ var _VerNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VerNotasComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/VerNotasComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _VerNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _VerNotasComponent_vue_vue_type_template_id_51e7c340___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _VerNotasComponent_vue_vue_type_template_id_51e7c340___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/VerNotasComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/VerNotasComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/VerNotasComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VerNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./VerNotasComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerNotasComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VerNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/VerNotasComponent.vue?vue&type=template&id=51e7c340&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/VerNotasComponent.vue?vue&type=template&id=51e7c340& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerNotasComponent_vue_vue_type_template_id_51e7c340___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./VerNotasComponent.vue?vue&type=template&id=51e7c340& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerNotasComponent.vue?vue&type=template&id=51e7c340&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerNotasComponent_vue_vue_type_template_id_51e7c340___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerNotasComponent_vue_vue_type_template_id_51e7c340___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/VerRecetaComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/VerRecetaComponent.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VerRecetaComponent_vue_vue_type_template_id_2f543ba3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VerRecetaComponent.vue?vue&type=template&id=2f543ba3& */ "./resources/js/components/VerRecetaComponent.vue?vue&type=template&id=2f543ba3&");
+/* harmony import */ var _VerRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VerRecetaComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/VerRecetaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _VerRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _VerRecetaComponent_vue_vue_type_template_id_2f543ba3___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _VerRecetaComponent_vue_vue_type_template_id_2f543ba3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/VerRecetaComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/VerRecetaComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/VerRecetaComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VerRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./VerRecetaComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerRecetaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VerRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/VerRecetaComponent.vue?vue&type=template&id=2f543ba3&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/VerRecetaComponent.vue?vue&type=template&id=2f543ba3& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerRecetaComponent_vue_vue_type_template_id_2f543ba3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./VerRecetaComponent.vue?vue&type=template&id=2f543ba3& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerRecetaComponent.vue?vue&type=template&id=2f543ba3&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerRecetaComponent_vue_vue_type_template_id_2f543ba3___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerRecetaComponent_vue_vue_type_template_id_2f543ba3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

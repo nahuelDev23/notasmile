@@ -10,22 +10,15 @@
             <thead>
               <tr>
                 <th class="text-left">Titulo</th>
-                <th class="text-left">Acción</th>
+                <th class="text-left" colspan="2">Acción</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(merienda, k) in listarmerienda" :key="k">
                 <td>{{ merienda.title }}</td>
                 <td>
-                  <router-link
-                    :to="{
-                                            name: 'receta/detalle',
-                                            params: { id: merienda.id }
-                                        }"
-                  >
-                    <v-btn depressed x-small>Ver</v-btn>
-                  </router-link>
-                  <v-btn depressed x-small v-on:click.prevent="deleteReceta(merienda.id)">Eliminar</v-btn>
+                  <btn-ver-receta :id_receta="merienda.id"></btn-ver-receta>
+                  <btn-delete-receta :id="merienda.id" :categoria="'merienda'"></btn-delete-receta>
                 </td>
               </tr>
             </tbody>
