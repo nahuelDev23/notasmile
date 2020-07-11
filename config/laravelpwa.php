@@ -4,7 +4,7 @@ return [
     'name' => 'Milee veggie',
     'manifest' => [
         'name' => env('APP_NAME', 'Milee veggie'),
-        'short_name' => 'MV',
+        'short_name' => 'Milee veggie',
         'start_url' => '/',
         'background_color' => '#ffffff',
         'theme_color' => '#000000',
