@@ -65,7 +65,10 @@ export default {
    font-size: 1rem;
 }
 .first-mayus{
-  text-transform: capitalize;
+  text-transform: lowercase;
+ &::first-letter {
+   text-transform: uppercase;
+   }
 }
 .list-ing {
   padding: 0.5rem;

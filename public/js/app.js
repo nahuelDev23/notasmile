@@ -8167,7 +8167,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".container-detalle {\n  position: relative;\n  min-width: 100vw;\n  max-height: calc(100vh - 7rem);\n  min-height: calc(100vh - 7rem);\n  background-color: #fff;\n  color: #333;\n  padding: 0 1rem;\n  overflow-y: scroll;\n}\n.detalle-title {\n  font-size: 1.5rem;\n  margin-top: 1rem;\n  color: #333;\n}\n.detalle-description {\n  font-size: 1rem;\n}\n.detalle-title-title {\n  font-size: 1rem;\n}\n.first-mayus {\n  text-transform: capitalize;\n}\n.list-ing {\n  padding: 0.5rem;\n  border-bottom: 0.1rem dotted rgba(51, 51, 51, 0.5);\n}\n.list-ing:last-child {\n  border-bottom: none;\n}\n.list-pasos {\n  padding: 0.5rem;\n}", ""]);
+exports.push([module.i, ".container-detalle {\n  position: relative;\n  min-width: 100vw;\n  max-height: calc(100vh - 7rem);\n  min-height: calc(100vh - 7rem);\n  background-color: #fff;\n  color: #333;\n  padding: 0 1rem;\n  overflow-y: scroll;\n}\n.detalle-title {\n  font-size: 1.5rem;\n  margin-top: 1rem;\n  color: #333;\n}\n.detalle-description {\n  font-size: 1rem;\n}\n.detalle-title-title {\n  font-size: 1rem;\n}\n.first-mayus {\n  text-transform: lowercase;\n}\n.first-mayus::first-letter {\n  text-transform: uppercase;\n}\n.list-ing {\n  padding: 0.5rem;\n  border-bottom: 0.1rem dotted rgba(51, 51, 51, 0.5);\n}\n.list-ing:last-child {\n  border-bottom: none;\n}\n.list-pasos {\n  padding: 0.5rem;\n}", ""]);
 
 // exports
 
