@@ -8072,7 +8072,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".title-List[data-v-18378593] {\n  text-align: center;\n}\n.table-container-recetas[data-v-18378593] {\n  max-height: calc(100vh - 18rem);\n  min-height: calc(100vh - 18rem);\n  overflow: auto;\n}", ""]);
+exports.push([module.i, ".title-List[data-v-18378593] {\n  text-align: center;\n}\n.table-container-recetas[data-v-18378593] {\n  max-height: calc(100vh - 18rem);\n  min-height: calc(100vh - 18rem);\n  overflow: auto;\n}\n.btn-accion[data-v-18378593] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}", ""]);
 
 // exports
 
@@ -42288,6 +42288,7 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "td",
+                                { staticClass: "btn-accion" },
                                 [
                                   _c("btn-ver-receta", {
                                     attrs: { id_receta: Index.id }
@@ -43288,7 +43289,7 @@ var render = function() {
               _vm._l(JSON.parse(d.paso), function(paso, p) {
                 return _c(
                   "li",
-                  { key: p, staticClass: "list-pasos first-mayus" },
+                  { key: p + 200, staticClass: "list-pasos first-mayus" },
                   [_vm._v(_vm._s(paso.name))]
                 )
               }),
