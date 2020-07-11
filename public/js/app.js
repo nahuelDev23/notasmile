@@ -8167,7 +8167,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".container-detalle {\n  position: relative;\n  min-width: 100vw;\n  max-height: calc(100vh - 7rem);\n  min-height: calc(100vh - 7rem);\n  background-color: #fff;\n  color: #333;\n  padding: 0 1rem;\n  overflow-y: scroll;\n}\n.detalle-title {\n  font-size: 1.5rem;\n  margin-top: 1rem;\n  color: red;\n}\n.detalle-description {\n  font-size: 1rem;\n}\n.detalle-title-title {\n  font-size: 1rem;\n}\n.list-ing {\n  padding: 0.5rem;\n  border-bottom: 0.1rem dotted rgba(51, 51, 51, 0.5);\n}\n.list-ing:last-child {\n  border-bottom: none;\n}\n.list-pasos {\n  padding: 0.5rem;\n}", ""]);
+exports.push([module.i, ".container-detalle {\n  position: relative;\n  min-width: 100vw;\n  max-height: calc(100vh - 7rem);\n  min-height: calc(100vh - 7rem);\n  background-color: #fff;\n  color: #333;\n  padding: 0 1rem;\n  overflow-y: scroll;\n}\n.detalle-title {\n  font-size: 1.5rem;\n  margin-top: 1rem;\n  color: #333;\n}\n.detalle-description {\n  font-size: 1rem;\n}\n.detalle-title-title {\n  font-size: 1rem;\n}\n.first-mayus {\n  text-transform: capitalize;\n}\n.list-ing {\n  padding: 0.5rem;\n  border-bottom: 0.1rem dotted rgba(51, 51, 51, 0.5);\n}\n.list-ing:last-child {\n  border-bottom: none;\n}\n.list-pasos {\n  padding: 0.5rem;\n}", ""]);
 
 // exports
 
@@ -41780,7 +41780,9 @@ var render = function() {
                           "tbody",
                           _vm._l(_vm.listarAlmuerzo, function(almuerzo, k) {
                             return _c("tr", { key: k }, [
-                              _c("td", [_vm._v(_vm._s(almuerzo.title))]),
+                              _c("td", { staticClass: "first-mayus" }, [
+                                _vm._v(_vm._s(almuerzo.title))
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -41905,7 +41907,9 @@ var render = function() {
                           "tbody",
                           _vm._l(_vm.listarCena, function(cena, k) {
                             return _c("tr", { key: k }, [
-                              _c("td", [_vm._v(_vm._s(cena.title))]),
+                              _c("td", { staticClass: "first-mayus" }, [
+                                _vm._v(_vm._s(cena.title))
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -42027,7 +42031,9 @@ var render = function() {
                           "tbody",
                           _vm._l(_vm.listarDesayuno, function(desayuno, k) {
                             return _c("tr", { key: k }, [
-                              _c("td", [_vm._v(_vm._s(desayuno.title))]),
+                              _c("td", { staticClass: "first-mayus" }, [
+                                _vm._v(_vm._s(desayuno.title))
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -42152,7 +42158,9 @@ var render = function() {
                           "tbody",
                           _vm._l(_vm.listarIdea, function(idea, k) {
                             return _c("tr", { key: k }, [
-                              _c("td", [_vm._v(_vm._s(idea.title))]),
+                              _c("td", { staticClass: "first-mayus" }, [
+                                _vm._v(_vm._s(idea.title))
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -42274,7 +42282,9 @@ var render = function() {
                           "tbody",
                           _vm._l(_vm.listarIndex, function(Index, k) {
                             return _c("tr", { key: k }, [
-                              _c("td", [_vm._v(_vm._s(Index.title))]),
+                              _c("td", { staticClass: "first-mayus" }, [
+                                _vm._v(_vm._s(Index.title))
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -42401,7 +42411,9 @@ var render = function() {
                           "tbody",
                           _vm._l(_vm.listarMerienda, function(merienda, k) {
                             return _c("tr", { key: k }, [
-                              _c("td", [_vm._v(_vm._s(merienda.title))]),
+                              _c("td", { staticClass: "first-mayus" }, [
+                                _vm._v(_vm._s(merienda.title))
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -42525,7 +42537,9 @@ var render = function() {
                           "tbody",
                           _vm._l(_vm.listarNotas, function(notas, k) {
                             return _c("tr", { key: k }, [
-                              _c("td", [_vm._v(_vm._s(notas.title))]),
+                              _c("td", { staticClass: "first-mayus" }, [
+                                _vm._v(_vm._s(notas.title))
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -42647,7 +42661,9 @@ var render = function() {
                           "tbody",
                           _vm._l(_vm.listarOtros, function(otros, k) {
                             return _c("tr", { key: k }, [
-                              _c("td", [_vm._v(_vm._s(otros.title))]),
+                              _c("td", { staticClass: "first-mayus" }, [
+                                _vm._v(_vm._s(otros.title))
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -43161,9 +43177,14 @@ var render = function() {
     { staticClass: "container-detalle" },
     _vm._l(_vm.desayuno, function(d, k) {
       return _c("div", { key: k }, [
-        _c("h1", { staticClass: "detalle-title" }, [_vm._v(_vm._s(d.title))]),
+        _c("h1", { staticClass: "detalle-title first-mayus" }, [
+          _vm._v(_vm._s(d.title))
+        ]),
         _vm._v(" "),
-        _c("p", { domProps: { innerHTML: _vm._s(d.body) } })
+        _c("p", {
+          staticClass: "first-mayus",
+          domProps: { innerHTML: _vm._s(d.body) }
+        })
       ])
     }),
     0
@@ -43233,9 +43254,11 @@ var render = function() {
     { staticClass: "container-detalle" },
     _vm._l(_vm.desayuno, function(d, k) {
       return _c("div", { key: k }, [
-        _c("h1", { staticClass: "detalle-title" }, [_vm._v(_vm._s(d.title))]),
+        _c("h1", { staticClass: "detalle-title first-mayus" }, [
+          _vm._v(_vm._s(d.title))
+        ]),
         _vm._v(" "),
-        _c("p", { staticClass: "detalle-description" }, [
+        _c("p", { staticClass: "detalle-description first-mayus" }, [
           _vm._v(_vm._s(d.descripcion))
         ]),
         _vm._v(" "),
@@ -43246,7 +43269,7 @@ var render = function() {
         _c(
           "ul",
           _vm._l(JSON.parse(d.ingrediente), function(ing) {
-            return _c("li", { key: ing, staticClass: "list-ing" }, [
+            return _c("li", { key: ing, staticClass: "list-ing first-mayus" }, [
               _vm._v(_vm._s(ing.name))
             ])
           }),
@@ -43263,9 +43286,11 @@ var render = function() {
           ? _c(
               "ol",
               _vm._l(JSON.parse(d.paso), function(paso, p) {
-                return _c("li", { key: p, staticClass: "list-pasos" }, [
-                  _vm._v(_vm._s(paso.name))
-                ])
+                return _c(
+                  "li",
+                  { key: p, staticClass: "list-pasos first-mayus" },
+                  [_vm._v(_vm._s(paso.name))]
+                )
               }),
               0
             )

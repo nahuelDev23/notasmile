@@ -15,7 +15,7 @@
             </thead>
             <tbody>
               <tr v-for="(notas, k) in listarNotas" :key="k">
-                <td>{{ notas.title }}</td>
+                <td class="first-mayus">{{ notas.title }}</td>
                 <td>
                   <btn-ver-notas :id_notas="notas.id"></btn-ver-notas>
                   <btn-delete-notas :id="notas.id"></btn-delete-notas>

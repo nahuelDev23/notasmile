@@ -15,7 +15,7 @@
             </thead>
             <tbody>
               <tr v-for="(otros, k) in listarOtros" :key="k">
-                <td>{{ otros.title }}</td>
+                <td class="first-mayus">{{ otros.title }}</td>
                 <td>
                   <btn-ver-receta :id_receta="otros.id"></btn-ver-receta>
                   <btn-delete-receta :id="otros.id" :categoria="'otros'"></btn-delete-receta>

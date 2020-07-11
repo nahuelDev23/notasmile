@@ -1,16 +1,16 @@
 <template>
   <div class="container-detalle">
     <div v-for="(d,k) in desayuno" :key="k">
-      <h1 class="detalle-title">{{d.title}}</h1>
-      <p class="detalle-description">{{d.descripcion}}</p>
+      <h1 class="detalle-title first-mayus">{{d.title}}</h1>
+      <p class="detalle-description first-mayus">{{d.descripcion}}</p>
       <h3 class="detalle-title-title">Ingredientes</h3>
       <ul>
-        <li class="list-ing" v-for="ing in JSON.parse(d.ingrediente)" :key="ing">{{ing.name}}</li>
+        <li class="list-ing first-mayus" v-for="ing in JSON.parse(d.ingrediente)" :key="ing">{{ing.name}}</li>
       </ul>
       <hr/>
       <h3 class="detalle-title-title" v-if="JSON.parse(d.paso).length > 1">Pasos</h3>
       <ol v-if="JSON.parse(d.paso).length > 1">
-        <li class="list-pasos" v-for="(paso,p) in JSON.parse(d.paso)" :key="p">{{paso.name}}</li>
+        <li class="list-pasos first-mayus" v-for="(paso,p) in JSON.parse(d.paso)" :key="p">{{paso.name}}</li>
       </ol>
     </div>
   </div>
@@ -56,13 +56,16 @@ export default {
 .detalle-title{
   font-size: 1.5rem;
   margin-top: 1rem;
-  color:red;
+  color:#333;
 }
 .detalle-description{
    font-size: 1rem;
 }
 .detalle-title-title{
    font-size: 1rem;
+}
+.first-mayus{
+  text-transform: capitalize;
 }
 .list-ing {
   padding: 0.5rem;

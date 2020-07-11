@@ -15,7 +15,7 @@
             </thead>
             <tbody>
               <tr v-for="(idea, k) in listarIdea" :key="k">
-                <td>{{ idea.title }}</td>
+                <td class="first-mayus">{{ idea.title }}</td>
                 <td>
                   <btn-ver-receta :id_receta="idea.id"></btn-ver-receta>
                   <btn-delete-receta :id="idea.id" :categoria="'ideas'"></btn-delete-receta>

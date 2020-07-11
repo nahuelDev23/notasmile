@@ -1,8 +1,8 @@
 <template>
   <div class="container-detalle">
         <div v-for="(d,k) in desayuno" :key="k">
-          <h1 class="detalle-title">{{d.title}}</h1>
-          <p v-html="d.body"></p>
+          <h1 class="detalle-title first-mayus">{{d.title}}</h1>
+          <p class="first-mayus" v-html="d.body"></p>
         </div>
   </div>
 </template>
