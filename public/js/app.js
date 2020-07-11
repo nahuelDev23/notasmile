@@ -40412,7 +40412,7 @@ var render = function() {
             "v-card",
             {
               staticClass: "mx-auto overflow-hidden",
-              attrs: { height: "100vh", width: "100%" }
+              attrs: { height: "100vh", width: "100%", tile: "" }
             },
             [
               _c(

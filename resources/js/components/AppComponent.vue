@@ -11,7 +11,7 @@
   <div>
 
     <v-app id="inspire">
-      <v-card class="mx-auto overflow-hidden" height="100vh" width="100%">
+      <v-card class="mx-auto overflow-hidden" height="100vh" width="100%" tile>
         <v-app-bar color="#333" dark>
           <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
