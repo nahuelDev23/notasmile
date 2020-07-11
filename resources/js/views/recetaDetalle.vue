@@ -10,7 +10,7 @@
       <hr/>
       <h3 class="detalle-title-title" v-if="JSON.parse(d.paso).length > 1">Pasos</h3>
       <ol v-if="JSON.parse(d.paso).length > 1">
-        <li class="list-pasos first-mayus" v-for="(paso,p) in JSON.parse(d.paso)" :key="p">{{paso.name}}</li>
+        <li class="list-pasos first-mayus" v-for="(paso,p) in JSON.parse(d.paso)" :key="p+200">{{paso.name}}</li>
       </ol>
     </div>
   </div>

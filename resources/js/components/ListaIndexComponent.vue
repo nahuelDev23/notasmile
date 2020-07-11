@@ -16,7 +16,7 @@
             <tbody>
               <tr v-for="(Index, k) in listarIndex" :key="k">
                 <td class="first-mayus">{{ Index.title }}</td>
-                <td>
+                <td class="btn-accion">
                    <btn-ver-receta :id_receta="Index.id"></btn-ver-receta>
                    <btn-delete-receta :id="Index.id" :categoria="'Index'"></btn-delete-receta>
                 </td>
@@ -81,4 +81,9 @@ export default {
   overflow:auto;
 }
 
+.btn-accion{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
