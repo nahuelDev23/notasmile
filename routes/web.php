@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','IndexController@index')->name('index.index');
 Route::get('receta','RecetaController@index')->name('receta.index');
 
+Route::get('/offline','OfflineController@index');
 #APIS
 
 
