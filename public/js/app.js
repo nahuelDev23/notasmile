@@ -42625,7 +42625,7 @@ var render = function() {
       _c(
         "div",
         { staticClass: "display-grid" },
-        [_c("h1", [_vm._v("Holis🐮")]), _vm._v(" "), _c("lista-desayuno")],
+        [_c("h1", [_vm._v("Holxs🐮 jeje")]), _vm._v(" "), _c("lista-desayuno")],
         1
       )
     ])
