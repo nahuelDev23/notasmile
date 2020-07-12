@@ -47,9 +47,20 @@ class RecetaController extends Controller
     }
 
     
-    public function update(Request $request, Receta $receta)
+    public function update(Request $request, $id)
     {
-        $receta->update($request->all());
+        
+        // $receta = Receta::Find($id);
+        // $receta->title = $request->title;
+        // // $receta->ingrediente = $request->ingrediente;
+        //  $receta->descripcion = $request->descripcion;
+        // $receta->categoria = $request->categoria;
+        // // $receta->paso = $request->paso;
+        
+        // $receta->save();
+        //Receta::find($id)->update($request->all());
+        return Receta::find($id)->update($request->all());;
+    
     }
 
    

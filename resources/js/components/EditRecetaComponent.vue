@@ -13,13 +13,14 @@ export default {
   mounted: function() {},
 
   methods: {
-    getReceta: function(receta) {
-      var urlReceta = `api/receta/edit/${receta}`;
-      axios.get(urlReceta).then(response => {
-        document.getElementById('formulario-edit-receta').classList.add('show')
-        console.log(response)
-      });
-    }
+    // getReceta: function(receta) {
+    //   var urlReceta = `api/receta/edit/${receta}`;
+    //   axios.get(urlReceta).then(response => {
+    //     document.getElementById('formulario-edit-receta').classList.add('show')
+		// 	  this.fillReceta.title = response.data.title;
+    //     console.log(response)
+    //   });
+    // }
   }
 };
 </script>

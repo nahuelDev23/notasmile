@@ -18,7 +18,7 @@
                 <td class="first-mayus">{{ receta.title }}</td>
                 <td class="btn-accion">
                    <btn-ver-receta :id_receta="receta.id"></btn-ver-receta>
-                   <btn-edit-receta :id="receta.id"></btn-edit-receta>
+                   <v-btn class="ml-2" depressed x-small @click="getFillRecetaEdit(receta.id)">Editar</v-btn>
                    <btn-delete-receta :id="receta.id" :categoria="categoriaReceta"></btn-delete-receta>
                 </td>
               </tr>
@@ -50,14 +50,26 @@ export default {
         from: 0,
         to: 0
       },
+      
       page: 1,
     };
   },
   mounted: function() {
+   
     this.mostrarListaReceta();
     this.$root.$on(this.categoriaReceta,this.mostrarListaReceta)
   },
   methods: {
+    /**
+     * helper para ejecutar el root.on que esta en formEditReceta
+     * lo que hago es pasar el id que consigo iterando arriba y se lo paso al otro archivo para que
+     * triga los datos que me sirven para rellenar los input
+     */
+    getFillRecetaEdit(id)
+    {
+      this.$root.$emit("llenarFormEdit",id)
+      
+    },
     mostrarListaReceta: function(page) {
       axios
         .get("api/listar/"+this.categoriaReceta+"?page=" + page)

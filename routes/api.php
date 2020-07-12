@@ -55,6 +55,7 @@ Route::get('buscar/notas','NotasController@buscarNotas')->name('buscar.notas');
 Route::post('receta/store','RecetaController@store')->name('receta.store');
 Route::delete('receta/eliminar/{receta}','RecetaController@destroy')->name('receta.destroy');
 Route::get('receta/edit/{receta}','RecetaController@edit')->name('receta.edit');
+Route::put('receta/update/{receta}','RecetaController@update')->name('receta.update');
 Route::delete('notas/eliminar/{notas}','NotasController@destroy')->name('notas.destroy');
 Route::post('notas/store','NotasController@store')->name('notas.store');
 Route::get('mostrar/receta/{id}','RecetaController@mostrarReceta')->name('mostrar.receta');

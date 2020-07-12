@@ -2166,14 +2166,14 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   mounted: function mounted() {},
-  methods: {
-    getReceta: function getReceta(receta) {
-      var urlReceta = "api/receta/edit/".concat(receta);
-      axios.get(urlReceta).then(function (response) {
-        document.getElementById('formulario-edit-receta').classList.add('show');
-        console.log(response);
-      });
-    }
+  methods: {// getReceta: function(receta) {
+    //   var urlReceta = `api/receta/edit/${receta}`;
+    //   axios.get(urlReceta).then(response => {
+    //     document.getElementById('formulario-edit-receta').classList.add('show')
+    // 	  this.fillReceta.title = response.data.title;
+    //     console.log(response)
+    //   });
+    // }
   }
 });
 
@@ -2635,14 +2635,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      idReceta: "",
       loading: false,
       switch1: true,
-      title: "",
       descripcion: "",
       categoria: "",
+      fillReceta: {
+        title: "",
+        descripcion: "",
+        categoria: ""
+      },
       inputs: [{
         name: ""
       }],
@@ -2651,7 +2661,11 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    console.log("formeditreceta");
+    this.$root.$on("llenarFormEdit", this.getRecetaEdit);
+    this.$root.$on("actualizarTablaUpdate", this.actualizarTablaUpdate);
+  },
   methods: {
     cerrarFormularioEditarReceta: function cerrarFormularioEditarReceta() {
       var formularioEditarReceta = document.getElementById("formulario-edit-receta");
@@ -2673,51 +2687,46 @@ __webpack_require__.r(__webpack_exports__);
     removePaso: function removePaso(index) {
       this.pasos.splice(index, 1);
     },
-    crearReceta: function crearReceta() {
+
+    /**
+     * Obtengo los datos para llenar el formulario
+     */
+    getRecetaEdit: function getRecetaEdit(receta) {
       var _this = this;
 
+      var urlReceta = "api/receta/edit/".concat(receta);
+      axios.get(urlReceta).then(function (response) {
+        document.getElementById("formulario-edit-receta").classList.add("show");
+        _this.fillReceta.title = response.data.title;
+        _this.fillReceta.descripcion = response.data.descripcion;
+        _this.fillReceta.categoria = response.data.categoria;
+        _this.inputs = JSON.parse(response.data.ingrediente);
+        _this.pasos = JSON.parse(response.data.paso);
+        _this.idReceta = receta;
+      });
+    },
+    updateReceta: function updateReceta() {
+      var _this2 = this;
+
       this.loading = true;
-      var data = new FormData();
-      data.append("title", this.title);
-      data.append("descripcion", this.descripcion);
-      data.append("ingrediente", JSON.stringify(this.inputs));
-      data.append("categoria", this.categoria);
-      data.append("paso", JSON.stringify(this.pasos));
-      axios.post("api/receta/store", data).then(function (response) {
+      this.fillReceta.ingrediente = this.inputs;
+      this.fillReceta.paso = this.pasos;
+      axios.put("api/receta/update/" + this.idReceta, this.fillReceta).then(function (response) {
         if (response.status == 200) {
-          _this.loading = false;
+          _this2.loading = false;
 
-          _this.cerrarFormularioReceta();
+          _this2.cerrarFormularioEditarReceta();
 
-          document.getElementById("formulario-recetas").reset();
+          document.getElementById("formulario-edit-recetas").reset();
 
-          if (_this.categoria == 'almuerzo') {
-            _this.$root.$emit('almuerzo');
-          }
-
-          if (_this.categoria == 'cena') {
-            _this.$root.$emit('cena');
-          }
-
-          if (_this.categoria == 'desayuno') {
-            _this.$root.$emit('desayuno');
-          }
-
-          if (_this.categoria == 'merienda') {
-            _this.$root.$emit('merienda');
-          }
-
-          if (_this.categoria == 'otros') {
-            _this.$root.$emit('otros');
-          }
-
-          if (_this.categoria == 'ideas') {
-            _this.$root.$emit('idea');
-          }
+          _this2.actualizarTablaUpdate();
         }
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    actualizarTablaUpdate: function actualizarTablaUpdate(categoriaUpdate) {
+      this.$root.$emit(categoriaUpdate);
     }
   }
 });
@@ -2875,6 +2884,14 @@ __webpack_require__.r(__webpack_exports__);
     this.$root.$on(this.categoriaReceta, this.mostrarListaReceta);
   },
   methods: {
+    /**
+     * helper para ejecutar el root.on que esta en formEditReceta
+     * lo que hago es pasar el id que consigo iterando arriba y se lo paso al otro archivo para que
+     * triga los datos que me sirven para rellenar los input
+     */
+    getFillRecetaEdit: function getFillRecetaEdit(id) {
+      this.$root.$emit("llenarFormEdit", id);
+    },
     mostrarListaReceta: function mostrarListaReceta(page) {
       var _this = this;
 
@@ -41004,11 +41021,11 @@ var render = function() {
         _c(
           "form",
           {
-            attrs: { id: "formulario-recetas", method: "POST" },
+            attrs: { id: "formulario-edit-recetas", method: "POST" },
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.crearReceta($event)
+                return _vm.updateReceta($event)
               }
             }
           },
@@ -41019,8 +41036,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.title,
-                    expression: "title"
+                    value: _vm.fillReceta.title,
+                    expression: "fillReceta.title"
                   }
                 ],
                 staticClass: "form-control",
@@ -41030,13 +41047,13 @@ var render = function() {
                   name: "title",
                   required: ""
                 },
-                domProps: { value: _vm.title },
+                domProps: { value: _vm.fillReceta.title },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.title = $event.target.value
+                    _vm.$set(_vm.fillReceta, "title", $event.target.value)
                   }
                 }
               })
@@ -41048,8 +41065,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.descripcion,
-                    expression: "descripcion"
+                    value: _vm.fillReceta.descripcion,
+                    expression: "fillReceta.descripcion"
                   }
                 ],
                 staticClass: "form-control",
@@ -41058,13 +41075,13 @@ var render = function() {
                   placeholder: "Descripcion (Opcional)",
                   name: "descripcion"
                 },
-                domProps: { value: _vm.descripcion },
+                domProps: { value: _vm.fillReceta.descripcion },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.descripcion = $event.target.value
+                    _vm.$set(_vm.fillReceta, "descripcion", $event.target.value)
                   }
                 }
               })
@@ -41089,8 +41106,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.categoria,
-                      expression: "categoria"
+                      value: _vm.fillReceta.categoria,
+                      expression: "fillReceta.categoria"
                     }
                   ],
                   staticClass: "custom-select",
@@ -41105,9 +41122,13 @@ var render = function() {
                           var val = "_value" in o ? o._value : o.value
                           return val
                         })
-                      _vm.categoria = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
+                      _vm.$set(
+                        _vm.fillReceta,
+                        "categoria",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
                     }
                   }
                 },
@@ -41213,6 +41234,7 @@ var render = function() {
                 ])
               ])
             }),
+            _vm._v("\n      " + _vm._s(_vm.inputs) + "\n      "),
             _vm._v(" "),
             _c("v-switch", {
               attrs: { label: "¿Agregar pasos?" },
@@ -41536,9 +41558,21 @@ var render = function() {
                                     attrs: { id_receta: receta.id }
                                   }),
                                   _vm._v(" "),
-                                  _c("btn-edit-receta", {
-                                    attrs: { id: receta.id }
-                                  }),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "ml-2",
+                                      attrs: { depressed: "", "x-small": "" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.getFillRecetaEdit(
+                                            receta.id
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Editar")]
+                                  ),
                                   _vm._v(" "),
                                   _c("btn-delete-receta", {
                                     attrs: {
@@ -102276,17 +102310,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/hiddenAdressBar.js":
-/*!*****************************************!*\
-  !*** ./resources/js/hiddenAdressBar.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
 /***/ "./resources/js/routes.js":
 /*!********************************!*\
   !*** ./resources/js/routes.js ***!
@@ -103014,14 +103037,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/hiddenAdressBar ./resources/sass/app.scss ***!
-  \********************************************************************************************/
+/*!*************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\xampp1\htdocs\notasmile\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\xampp1\htdocs\notasmile\resources\js\hiddenAdressBar */"./resources/js/hiddenAdressBar.js");
 module.exports = __webpack_require__(/*! C:\xampp1\htdocs\notasmile\resources\sass\app.scss */"./resources/sass/app.scss");
 
 

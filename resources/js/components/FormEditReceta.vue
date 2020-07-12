@@ -5,12 +5,12 @@
         <h1 class="formulario-receta-h1">Editar receta 🐷</h1>
         <span @click="cerrarFormularioEditarReceta">&times;</span>
       </div>
-      <form id="formulario-recetas" method="POST" v-on:submit.prevent="crearReceta">
+      <form id="formulario-edit-recetas" method="POST" v-on:submit.prevent="updateReceta">
         <div class="input-group mb-3">
           <input
             class="form-control"
             type="text"
-            v-model="title"
+            v-model="fillReceta.title"
             placeholder="Titulo"
             name="title"
             required
@@ -21,7 +21,7 @@
           <input
             class="form-control"
             type="text"
-            v-model="descripcion"
+            v-model="fillReceta.descripcion"
             placeholder="Descripcion (Opcional)"
             name="descripcion"
           />
@@ -31,8 +31,13 @@
           <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">Categorias</label>
           </div>
-          <select class="custom-select" id="inputGroupSelect01" v-model="categoria" required>
-            <option value="" selected>Elegi</option>
+          <select
+            class="custom-select"
+            id="inputGroupSelect01"
+            v-model="fillReceta.categoria"
+            required
+          >
+            <option value selected>Elegi</option>
             <option value="almuerzo">Almuerzo</option>
             <option value="cena">Cena</option>
             <option value="desayuno">Desayuno</option>
@@ -61,7 +66,7 @@
             <span class="input-group-text" @click="add(k)" v-show="k == inputs.length - 1">Mas</span>
           </div>
         </div>
- 
+        {{inputs}}
         <!-- PASOS -->
 
         <v-switch v-model="switch1" label="¿Agregar pasos?"></v-switch>
@@ -95,11 +100,16 @@
 export default {
   data() {
     return {
-      loading:false,
+      idReceta: "",
+      loading: false,
       switch1: true,
-      title: "",
       descripcion: "",
       categoria: "",
+      fillReceta: {
+        title: "",
+        descripcion: "",
+        categoria: ""
+      },
       inputs: [
         {
           name: ""
@@ -113,11 +123,16 @@ export default {
     };
   },
   mounted() {
+    console.log("formeditreceta");
+    this.$root.$on("llenarFormEdit", this.getRecetaEdit);
+    this.$root.$on("actualizarTablaUpdate", this.actualizarTablaUpdate);
     
   },
   methods: {
     cerrarFormularioEditarReceta: function() {
-      const formularioEditarReceta = document.getElementById("formulario-edit-receta");
+      const formularioEditarReceta = document.getElementById(
+        "formulario-edit-receta"
+      );
       formularioEditarReceta.classList.remove("show");
     },
     add(index) {
@@ -132,53 +147,43 @@ export default {
     removePaso(index) {
       this.pasos.splice(index, 1);
     },
-    crearReceta() {
-      this.loading=true
-      var data = new FormData();
-      data.append("title", this.title);
-      data.append("descripcion", this.descripcion);
-      data.append("ingrediente", JSON.stringify(this.inputs));
-      data.append("categoria", this.categoria);
-      data.append("paso", JSON.stringify(this.pasos));
+    /**
+     * Obtengo los datos para llenar el formulario
+     */
+    getRecetaEdit: function(receta) {
+      let urlReceta = `api/receta/edit/${receta}`;
+      axios.get(urlReceta).then(response => {
+        document.getElementById("formulario-edit-receta").classList.add("show");
+        this.fillReceta.title = response.data.title;
+        this.fillReceta.descripcion = response.data.descripcion;
+        this.fillReceta.categoria = response.data.categoria;
+        this.inputs = JSON.parse(response.data.ingrediente);
+        this.pasos = JSON.parse(response.data.paso);
+        this.idReceta = receta;
+      });
+    },
+    updateReceta: function() {
+      this.loading = true;
+      this.fillReceta.ingrediente = this.inputs;
+      this.fillReceta.paso = this.pasos;
 
       axios
-        .post("api/receta/store", data)
+        .put("api/receta/update/" + this.idReceta, this.fillReceta)
         .then(response => {
-           if(response.status == 200)
-          {
-              this.loading=false
-              this.cerrarFormularioReceta()  
-              document.getElementById("formulario-recetas").reset()
-              if(this.categoria == 'almuerzo')
-              {
-                this.$root.$emit('almuerzo');
-              }
-              if(this.categoria == 'cena')
-              {
-                this.$root.$emit('cena');
-              }
-              if(this.categoria == 'desayuno')
-              {
-                this.$root.$emit('desayuno');
-              }
-              if(this.categoria == 'merienda')
-              {
-                this.$root.$emit('merienda');
-              }
-              if(this.categoria == 'otros')
-              {
-                this.$root.$emit('otros');
-              }
-              if(this.categoria == 'ideas')
-              {
-                this.$root.$emit('idea');
-              }
-               
+          if (response.status == 200) {
+            this.loading = false;
+            this.cerrarFormularioEditarReceta();
+            document.getElementById("formulario-edit-recetas").reset();
+            this.actualizarTablaUpdate()
           }
         })
         .catch(error => {
           console.log(error);
         });
+    },
+    actualizarTablaUpdate:function(categoriaUpdate)
+    {
+          this.$root.$emit(categoriaUpdate)
     }
   }
 };
@@ -198,7 +203,7 @@ export default {
   & form {
     height: 100%;
     overflow-y: scroll;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     background-color: #fff;
   }
   &-header span {
