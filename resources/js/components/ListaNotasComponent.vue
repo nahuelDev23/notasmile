@@ -89,4 +89,10 @@ export default {
   overflow:auto;
 }
 
+.btn-accion{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
 </style>
