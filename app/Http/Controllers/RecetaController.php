@@ -59,7 +59,7 @@ class RecetaController extends Controller
         
         // $receta->save();
         //Receta::find($id)->update($request->all());
-        return Receta::find($id)->update($request->all());;
+        return Receta::find($id)->update($request->all());
     
     }
 

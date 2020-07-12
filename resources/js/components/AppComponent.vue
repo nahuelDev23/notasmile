@@ -94,6 +94,7 @@
         
       </v-card>
       <form-edit-receta></form-edit-receta>
+      <form-edit-notas></form-edit-notas>
       <form-add-receta></form-add-receta>
       <form-add-notas></form-add-notas>
       <menu-footer></menu-footer>

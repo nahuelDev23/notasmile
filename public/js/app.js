@@ -2011,6 +2011,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2479,10 +2480,145 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditReceta.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditReceta.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditNotasComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditNotasComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    var _ref;
+
+    return _ref = {
+      idNota: "",
+      loading: false,
+      autoGrow: true,
+      autofocus: true,
+      clearable: true,
+      counter: 10000,
+      filled: false,
+      flat: false,
+      hint: "",
+      label: ""
+    }, _defineProperty(_ref, "loading", false), _defineProperty(_ref, "noResize", false), _defineProperty(_ref, "outlined", false), _defineProperty(_ref, "persistentHint", false), _defineProperty(_ref, "rounded", false), _defineProperty(_ref, "rowHeight", 24), _defineProperty(_ref, "rows", 1), _defineProperty(_ref, "shaped", false), _defineProperty(_ref, "singleLine", false), _defineProperty(_ref, "solo", false), _defineProperty(_ref, "title", ""), _defineProperty(_ref, "body", ""), _defineProperty(_ref, "fillNotas", {
+      title: "",
+      body: ""
+    }), _ref;
+  },
+  mounted: function mounted() {
+    this.$root.$on("llenarFormEditNota", this.getNotaEdit);
+  },
+  computed: {},
+  methods: {
+    cerrarFormularioEditarNotas: function cerrarFormularioEditarNotas() {
+      var formularioNotas = document.getElementById("formulario-edit-notas");
+      formularioNotas.classList.remove("show");
+    },
+
+    /**
+     * Obtengo los datos para llenar el formulario
+     */
+    getNotaEdit: function getNotaEdit(nota) {
+      var _this = this;
+
+      var urlNota = "api/notas/edit/".concat(nota);
+      axios.get(urlNota).then(function (response) {
+        document.getElementById("formulario-edit-notas").classList.add("show");
+        _this.title = response.data.title;
+        _this.body = response.data.body;
+        console.log(response);
+        _this.idNota = nota;
+      });
+    },
+    updateNota: function updateNota() {
+      var _this2 = this;
+
+      this.loading = true;
+      this.fillNotas.title = this.title;
+      this.fillNotas.body = this.body;
+      axios.put("api/notas/update/" + this.idNota, this.fillNotas).then(function (response) {
+        if (response.status == 200) {
+          _this2.loading = false;
+
+          _this2.cerrarFormularioEditarNotas();
+          /**
+           * Actualizo la tabla el $on se encuentra en ListaNotaComponent
+           * linea 59
+           */
+
+
+          _this2.$root.$emit('notas');
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditRecetaComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditRecetaComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2608,7 +2744,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log("formeditreceta");
     this.$root.$on("llenarFormEdit", this.getRecetaEdit);
     this.$root.$on("actualizaVariableCategoriaActual", this.setterCategoriaActual);
   },
@@ -2733,6 +2868,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2754,11 +2890,13 @@ __webpack_require__.r(__webpack_exports__);
     this.$root.$on('notas', this.mostrarListaNotas);
   },
   methods: {
+    getFillNotaEdit: function getFillNotaEdit(id) {
+      this.$root.$emit("llenarFormEditNota", id);
+    },
     mostrarListaNotas: function mostrarListaNotas(page) {
       var _this = this;
 
       axios.get("api/listar/notas?page=" + page).then(function (response) {
-        console.log(response);
         _this.listarNotas = response.data.notas.data;
         _this.pagination = response.data.pagination;
       })["catch"](function (error) {
@@ -7597,10 +7735,10 @@ exports.push([module.i, ".formulario-receta[data-v-25228a49] {\n  position: fixe
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true&":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7609,7 +7747,26 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".formulario-receta[data-v-681d58bb] {\n  position: fixed;\n  content: \"\";\n  min-width: 100vw;\n  min-height: 100%;\n  max-height: 100%;\n  background-color: #fff;\n  z-index: 900;\n  color: #333;\n  padding: 0 1rem;\n  overflow-y: scroll;\n}\n.formulario-receta form[data-v-681d58bb] {\n  height: 100%;\n  overflow-y: scroll;\n  margin-bottom: 0.5rem;\n  background-color: #fff;\n}\n.formulario-receta-header span[data-v-681d58bb] {\n  cursor: pointer;\n  margin-bottom: 1rem;\n  font-size: 1.5rem;\n}\n.formulario-receta-header[data-v-681d58bb] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 1rem;\n}\n.formulario-receta-h1[data-v-681d58bb] {\n  font-size: 1.3rem;\n  margin: 0;\n  margin-bottom: 1rem;\n}\n.hidden[data-v-681d58bb] {\n  display: none;\n}\n.show[data-v-681d58bb] {\n  display: block;\n}", ""]);
+exports.push([module.i, ".formulario-receta[data-v-ba8bfc1e] {\n  position: fixed;\n  content: \"\";\n  min-width: 100vw;\n  min-height: 100%;\n  max-height: 100%;\n  background-color: #fff;\n  z-index: 900;\n  color: #333;\n  padding: 0 1rem;\n  overflow-y: scroll;\n}\n.formulario-receta form[data-v-ba8bfc1e] {\n  height: 100%;\n  overflow-y: scroll;\n  margin-bottom: 0.5rem;\n  background-color: #fff;\n}\n.formulario-receta-header span[data-v-ba8bfc1e] {\n  cursor: pointer;\n  margin-bottom: 1rem;\n  font-size: 1.5rem;\n}\n.formulario-receta-header[data-v-ba8bfc1e] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 1rem;\n}\n.formulario-receta-h1[data-v-ba8bfc1e] {\n  font-size: 1.3rem;\n  margin: 0;\n  margin-bottom: 1rem;\n}\n.hidden[data-v-ba8bfc1e] {\n  display: none;\n}\n.show[data-v-ba8bfc1e] {\n  display: block;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".formulario-receta[data-v-4d3a6b9c] {\n  position: fixed;\n  content: \"\";\n  min-width: 100vw;\n  min-height: 100%;\n  max-height: 100%;\n  background-color: #fff;\n  z-index: 900;\n  color: #333;\n  padding: 0 1rem;\n  overflow-y: scroll;\n}\n.formulario-receta form[data-v-4d3a6b9c] {\n  height: 100%;\n  overflow-y: scroll;\n  margin-bottom: 0.5rem;\n  background-color: #fff;\n}\n.formulario-receta-header span[data-v-4d3a6b9c] {\n  cursor: pointer;\n  margin-bottom: 1rem;\n  font-size: 1.5rem;\n}\n.formulario-receta-header[data-v-4d3a6b9c] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 1rem;\n}\n.formulario-receta-h1[data-v-4d3a6b9c] {\n  font-size: 1.3rem;\n  margin: 0;\n  margin-bottom: 1rem;\n}\n.hidden[data-v-4d3a6b9c] {\n  display: none;\n}\n.show[data-v-4d3a6b9c] {\n  display: block;\n}", ""]);
 
 // exports
 
@@ -38990,15 +39147,45 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true&":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true&");
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -40098,6 +40285,8 @@ var render = function() {
           _vm._v(" "),
           _c("form-edit-receta"),
           _vm._v(" "),
+          _c("form-edit-notas"),
+          _vm._v(" "),
           _c("form-add-receta"),
           _vm._v(" "),
           _c("form-add-notas"),
@@ -40914,10 +41103,151 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditReceta.vue?vue&type=template&id=681d58bb&scoped=true&":
-/*!*****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditReceta.vue?vue&type=template&id=681d58bb&scoped=true& ***!
-  \*****************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditNotasComponent.vue?vue&type=template&id=ba8bfc1e&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditNotasComponent.vue?vue&type=template&id=ba8bfc1e&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "formulario-receta hidden",
+      attrs: { id: "formulario-edit-notas" }
+    },
+    [
+      _c("v-app", [
+        _c("div", { staticClass: "formulario-receta-header" }, [
+          _c("h1", { staticClass: "formulario-receta-h1" }, [
+            _vm._v("Añade una nueva nota 🐷")
+          ]),
+          _vm._v(" "),
+          _c("span", { on: { click: _vm.cerrarFormularioEditarNotas } }, [
+            _vm._v("×")
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            attrs: { id: "formulario-edit-nota", method: "POST" },
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.updateNota($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "input-group mb-3" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.title,
+                    expression: "title"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  placeholder: "Titulo",
+                  name: "title",
+                  required: ""
+                },
+                domProps: { value: _vm.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.title = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "input-group mb-3" },
+              [
+                _c("v-textarea", {
+                  attrs: {
+                    "auto-grow": _vm.autoGrow,
+                    clearable: _vm.clearable,
+                    counter: _vm.counter ? _vm.counter : false,
+                    filled: _vm.filled,
+                    flat: _vm.flat,
+                    hint: _vm.hint,
+                    label: _vm.label,
+                    loading: _vm.loading,
+                    "no-resize": _vm.noResize,
+                    outlined: _vm.outlined,
+                    "persistent-hint": _vm.persistentHint,
+                    placeholder: "Estoy pensando en...",
+                    rounded: _vm.rounded,
+                    "row-height": _vm.rowHeight,
+                    rows: _vm.rows,
+                    shaped: _vm.shaped,
+                    "single-line": _vm.singleLine,
+                    solo: _vm.solo,
+                    name: "body",
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.body,
+                    callback: function($$v) {
+                      _vm.body = $$v
+                    },
+                    expression: "body"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              {
+                attrs: {
+                  depressed: "",
+                  elevation: "4",
+                  color: "primary",
+                  type: "submit",
+                  loading: _vm.loading
+                }
+              },
+              [_vm._v("Guardar")]
+            )
+          ],
+          1
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditRecetaComponent.vue?vue&type=template&id=4d3a6b9c&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditRecetaComponent.vue?vue&type=template&id=4d3a6b9c&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -41360,6 +41690,20 @@ var render = function() {
                                   _c("btn-ver-notas", {
                                     attrs: { id_notas: notas.id }
                                   }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "ml-2",
+                                      attrs: { depressed: "", "x-small": "" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.getFillNotaEdit(notas.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Editar")]
+                                  ),
                                   _vm._v(" "),
                                   _c("btn-delete-notas", {
                                     attrs: { id: notas.id }
@@ -101064,12 +101408,12 @@ Vue.component('btn-delete-receta', __webpack_require__(/*! ./components/DeleteRe
 Vue.component('btn-delete-notas', __webpack_require__(/*! ./components/DeleteNotasComponent.vue */ "./resources/js/components/DeleteNotasComponent.vue")["default"]);
 Vue.component('btn-ver-receta', __webpack_require__(/*! ./components/VerRecetaComponent.vue */ "./resources/js/components/VerRecetaComponent.vue")["default"]);
 Vue.component('btn-ver-notas', __webpack_require__(/*! ./components/VerNotasComponent.vue */ "./resources/js/components/VerNotasComponent.vue")["default"]);
-Vue.component('btn-edit-receta', __webpack_require__(/*! ./components/EditRecetaComponent.vue */ "./resources/js/components/EditRecetaComponent.vue")["default"]);
 Vue.component('search-receta', __webpack_require__(/*! ./components/SearchRecetaComponent.vue */ "./resources/js/components/SearchRecetaComponent.vue")["default"]);
 Vue.component('search-notas', __webpack_require__(/*! ./components/SearchNotasComponent.vue */ "./resources/js/components/SearchNotasComponent.vue")["default"]);
 Vue.component('form-add-receta', __webpack_require__(/*! ./components/FormAddRecetaComponent.vue */ "./resources/js/components/FormAddRecetaComponent.vue")["default"]);
 Vue.component('form-add-notas', __webpack_require__(/*! ./components/FormAddNotasComponent.vue */ "./resources/js/components/FormAddNotasComponent.vue")["default"]);
-Vue.component('form-edit-receta', __webpack_require__(/*! ./components/FormEditReceta.vue */ "./resources/js/components/FormEditReceta.vue")["default"]);
+Vue.component('form-edit-receta', __webpack_require__(/*! ./components/FormEditRecetaComponent.vue */ "./resources/js/components/FormEditRecetaComponent.vue")["default"]);
+Vue.component('form-edit-notas', __webpack_require__(/*! ./components/FormEditNotasComponent.vue */ "./resources/js/components/FormEditNotasComponent.vue")["default"]);
 Vue.component('menu-footer', __webpack_require__(/*! ./components/FooterMenuComponent.vue */ "./resources/js/components/FooterMenuComponent.vue")["default"]);
 Vue.component('lista-receta', __webpack_require__(/*! ./components/ListaRecetaComponent.vue */ "./resources/js/components/ListaRecetaComponent.vue")["default"]);
 Vue.component('lista-notas', __webpack_require__(/*! ./components/ListaNotasComponent.vue */ "./resources/js/components/ListaNotasComponent.vue")["default"]);
@@ -101372,38 +101716,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/EditRecetaComponent.vue":
-/*!*********************************************************!*\
-  !*** ./resources/js/components/EditRecetaComponent.vue ***!
-  \*********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-var script = {}
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
-  script,
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-component.options.__file = "resources/js/components/EditRecetaComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
 /***/ "./resources/js/components/FooterMenuComponent.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/components/FooterMenuComponent.vue ***!
@@ -101665,18 +101977,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/FormEditReceta.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/components/FormEditReceta.vue ***!
-  \****************************************************/
+/***/ "./resources/js/components/FormEditNotasComponent.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/FormEditNotasComponent.vue ***!
+  \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FormEditReceta_vue_vue_type_template_id_681d58bb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormEditReceta.vue?vue&type=template&id=681d58bb&scoped=true& */ "./resources/js/components/FormEditReceta.vue?vue&type=template&id=681d58bb&scoped=true&");
-/* harmony import */ var _FormEditReceta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormEditReceta.vue?vue&type=script&lang=js& */ "./resources/js/components/FormEditReceta.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _FormEditReceta_vue_vue_type_style_index_0_id_681d58bb_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true& */ "./resources/js/components/FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true&");
+/* harmony import */ var _FormEditNotasComponent_vue_vue_type_template_id_ba8bfc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormEditNotasComponent.vue?vue&type=template&id=ba8bfc1e&scoped=true& */ "./resources/js/components/FormEditNotasComponent.vue?vue&type=template&id=ba8bfc1e&scoped=true&");
+/* harmony import */ var _FormEditNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormEditNotasComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/FormEditNotasComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _FormEditNotasComponent_vue_vue_type_style_index_0_id_ba8bfc1e_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true& */ "./resources/js/components/FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -101687,66 +101999,153 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _FormEditReceta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _FormEditReceta_vue_vue_type_template_id_681d58bb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _FormEditReceta_vue_vue_type_template_id_681d58bb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _FormEditNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormEditNotasComponent_vue_vue_type_template_id_ba8bfc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FormEditNotasComponent_vue_vue_type_template_id_ba8bfc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "681d58bb",
+  "ba8bfc1e",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/FormEditReceta.vue"
+component.options.__file = "resources/js/components/FormEditNotasComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/FormEditReceta.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/components/FormEditReceta.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
+/***/ "./resources/js/components/FormEditNotasComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/FormEditNotasComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditReceta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditReceta.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditReceta.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditReceta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditNotasComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditNotasComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditNotasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true&":
-/*!**************************************************************************************************************!*\
-  !*** ./resources/js/components/FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true& ***!
-  \**************************************************************************************************************/
+/***/ "./resources/js/components/FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true&":
+/*!**********************************************************************************************************************!*\
+  !*** ./resources/js/components/FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true& ***!
+  \**********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditReceta_vue_vue_type_style_index_0_id_681d58bb_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditReceta.vue?vue&type=style&index=0&id=681d58bb&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditReceta_vue_vue_type_style_index_0_id_681d58bb_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditReceta_vue_vue_type_style_index_0_id_681d58bb_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditReceta_vue_vue_type_style_index_0_id_681d58bb_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditReceta_vue_vue_type_style_index_0_id_681d58bb_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditReceta_vue_vue_type_style_index_0_id_681d58bb_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditNotasComponent_vue_vue_type_style_index_0_id_ba8bfc1e_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditNotasComponent.vue?vue&type=style&index=0&id=ba8bfc1e&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditNotasComponent_vue_vue_type_style_index_0_id_ba8bfc1e_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditNotasComponent_vue_vue_type_style_index_0_id_ba8bfc1e_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditNotasComponent_vue_vue_type_style_index_0_id_ba8bfc1e_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditNotasComponent_vue_vue_type_style_index_0_id_ba8bfc1e_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditNotasComponent_vue_vue_type_style_index_0_id_ba8bfc1e_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ "./resources/js/components/FormEditReceta.vue?vue&type=template&id=681d58bb&scoped=true&":
-/*!***********************************************************************************************!*\
-  !*** ./resources/js/components/FormEditReceta.vue?vue&type=template&id=681d58bb&scoped=true& ***!
-  \***********************************************************************************************/
+/***/ "./resources/js/components/FormEditNotasComponent.vue?vue&type=template&id=ba8bfc1e&scoped=true&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/FormEditNotasComponent.vue?vue&type=template&id=ba8bfc1e&scoped=true& ***!
+  \*******************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditReceta_vue_vue_type_template_id_681d58bb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditReceta.vue?vue&type=template&id=681d58bb&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditReceta.vue?vue&type=template&id=681d58bb&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditReceta_vue_vue_type_template_id_681d58bb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditNotasComponent_vue_vue_type_template_id_ba8bfc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditNotasComponent.vue?vue&type=template&id=ba8bfc1e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditNotasComponent.vue?vue&type=template&id=ba8bfc1e&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditNotasComponent_vue_vue_type_template_id_ba8bfc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditReceta_vue_vue_type_template_id_681d58bb_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditNotasComponent_vue_vue_type_template_id_ba8bfc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/FormEditRecetaComponent.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/FormEditRecetaComponent.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FormEditRecetaComponent_vue_vue_type_template_id_4d3a6b9c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormEditRecetaComponent.vue?vue&type=template&id=4d3a6b9c&scoped=true& */ "./resources/js/components/FormEditRecetaComponent.vue?vue&type=template&id=4d3a6b9c&scoped=true&");
+/* harmony import */ var _FormEditRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormEditRecetaComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/FormEditRecetaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _FormEditRecetaComponent_vue_vue_type_style_index_0_id_4d3a6b9c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true& */ "./resources/js/components/FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _FormEditRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormEditRecetaComponent_vue_vue_type_template_id_4d3a6b9c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FormEditRecetaComponent_vue_vue_type_template_id_4d3a6b9c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "4d3a6b9c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/FormEditRecetaComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/FormEditRecetaComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/FormEditRecetaComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditRecetaComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditRecetaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true&":
+/*!***********************************************************************************************************************!*\
+  !*** ./resources/js/components/FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true& ***!
+  \***********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditRecetaComponent_vue_vue_type_style_index_0_id_4d3a6b9c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditRecetaComponent.vue?vue&type=style&index=0&id=4d3a6b9c&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditRecetaComponent_vue_vue_type_style_index_0_id_4d3a6b9c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditRecetaComponent_vue_vue_type_style_index_0_id_4d3a6b9c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditRecetaComponent_vue_vue_type_style_index_0_id_4d3a6b9c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditRecetaComponent_vue_vue_type_style_index_0_id_4d3a6b9c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditRecetaComponent_vue_vue_type_style_index_0_id_4d3a6b9c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/FormEditRecetaComponent.vue?vue&type=template&id=4d3a6b9c&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/FormEditRecetaComponent.vue?vue&type=template&id=4d3a6b9c&scoped=true& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditRecetaComponent_vue_vue_type_template_id_4d3a6b9c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditRecetaComponent.vue?vue&type=template&id=4d3a6b9c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditRecetaComponent.vue?vue&type=template&id=4d3a6b9c&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditRecetaComponent_vue_vue_type_template_id_4d3a6b9c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditRecetaComponent_vue_vue_type_template_id_4d3a6b9c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -7,14 +7,14 @@ Vue.component('btn-delete-receta', 				require('./components/DeleteRecetaCompone
 Vue.component('btn-delete-notas', 				require('./components/DeleteNotasComponent.vue').default);
 Vue.component('btn-ver-receta', 				require('./components/VerRecetaComponent.vue').default);
 Vue.component('btn-ver-notas', 				    require('./components/VerNotasComponent.vue').default);
-Vue.component('btn-edit-receta', 				require('./components/EditRecetaComponent.vue').default);
 
 Vue.component('search-receta', 				    require('./components/SearchRecetaComponent.vue').default);
 Vue.component('search-notas', 				    require('./components/SearchNotasComponent.vue').default);
 
 Vue.component('form-add-receta', 				require('./components/FormAddRecetaComponent.vue').default);
 Vue.component('form-add-notas', 				require('./components/FormAddNotasComponent.vue').default);
-Vue.component('form-edit-receta', 				require('./components/FormEditReceta.vue').default);
+Vue.component('form-edit-receta', 				require('./components/FormEditRecetaComponent.vue').default);
+Vue.component('form-edit-notas', 				require('./components/FormEditNotasComponent.vue').default);
 
 Vue.component('menu-footer', 	                require('./components/FooterMenuComponent.vue').default);
 

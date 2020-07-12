@@ -123,7 +123,6 @@ export default {
     };
   },
   mounted() {
-    console.log("formeditreceta");
     this.$root.$on("llenarFormEdit", this.getRecetaEdit);
     this.$root.$on("actualizaVariableCategoriaActual", this.setterCategoriaActual);
     

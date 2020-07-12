@@ -18,6 +18,7 @@
                 <td class="first-mayus">{{ notas.title }}</td>
                 <td>
                   <btn-ver-notas :id_notas="notas.id"></btn-ver-notas>
+                  <v-btn class="ml-2" depressed x-small @click="getFillNotaEdit(notas.id)">Editar</v-btn>
                   <btn-delete-notas :id="notas.id"></btn-delete-notas>
                 </td>
               </tr>
@@ -58,11 +59,14 @@ export default {
   },
 
   methods: {
+    getFillNotaEdit(id)
+    {
+      this.$root.$emit("llenarFormEditNota",id)
+    },
     mostrarListaNotas: function(page) {
       axios
         .get("api/listar/notas?page=" + page)
         .then(response => {
-          console.log(response)
           this.listarNotas = response.data.notas.data;
           this.pagination = response.data.pagination;
         })
