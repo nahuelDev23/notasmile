@@ -1,5 +1,9 @@
 <template>
-  <v-btn class="ml-2" depressed x-small @click="getReceta(id)">Editar</v-btn>
+<div>
+<v-btn class="ml-2" depressed x-small @click="getReceta(id)">Editar</v-btn>
+</div>
+  
+
 </template>
 
 <script>

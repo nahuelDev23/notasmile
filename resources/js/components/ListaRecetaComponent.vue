@@ -18,7 +18,7 @@
                 <td class="first-mayus">{{ receta.title }}</td>
                 <td class="btn-accion">
                    <btn-ver-receta :id_receta="receta.id"></btn-ver-receta>
-                   <v-btn class="ml-2" depressed x-small @click="getFillRecetaEdit(receta.id)">Editar</v-btn>
+                   <v-btn class="ml-2" depressed x-small @click="getFillRecetaEdit(receta.id,categoriaReceta)">Editar</v-btn>
                    <btn-delete-receta :id="receta.id" :categoria="categoriaReceta"></btn-delete-receta>
                 </td>
               </tr>
@@ -55,7 +55,6 @@ export default {
     };
   },
   mounted: function() {
-   
     this.mostrarListaReceta();
     this.$root.$on(this.categoriaReceta,this.mostrarListaReceta)
   },
@@ -65,9 +64,19 @@ export default {
      * lo que hago es pasar el id que consigo iterando arriba y se lo paso al otro archivo para que
      * triga los datos que me sirven para rellenar los input
      */
-    getFillRecetaEdit(id)
+    getFillRecetaEdit(id,updateTable)
     {
       this.$root.$emit("llenarFormEdit",id)
+
+      /**
+       * en formEditReceta uso $on("actualizarTablaUpdate", this.actualizarTablaUpdate)
+       * y aca le paso la categoria en la que estoy (updateTable) 
+       * la funcion actualizarTablaUpdate(categoriaUpdate) en formEditReceta lo que hace es asignar 
+       * el valor que paso updateTable a una variable que se encuentra en formEditReceta
+       * y de ahi una vez que el status del update es 200 uso this.$root.$emit(this.categoriaU)
+       * el cual proviene de este mismo documento en la linea 59
+       */
+      this.$root.$emit("actualizarTablaUpdate",updateTable)
       
     },
     mostrarListaReceta: function(page) {

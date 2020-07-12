@@ -100,6 +100,7 @@
 export default {
   data() {
     return {
+      categoriaU:'',
       idReceta: "",
       loading: false,
       switch1: true,
@@ -174,7 +175,7 @@ export default {
             this.loading = false;
             this.cerrarFormularioEditarReceta();
             document.getElementById("formulario-edit-recetas").reset();
-            this.actualizarTablaUpdate()
+            this.$root.$emit(this.categoriaU)
           }
         })
         .catch(error => {
@@ -183,7 +184,7 @@ export default {
     },
     actualizarTablaUpdate:function(categoriaUpdate)
     {
-          this.$root.$emit(categoriaUpdate)
+         this.categoriaU = categoriaUpdate;
     }
   }
 };

@@ -2160,6 +2160,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
   data: function data() {
@@ -2643,6 +2647,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      categoriaU: '',
       idReceta: "",
       loading: false,
       switch1: true,
@@ -2719,14 +2724,14 @@ __webpack_require__.r(__webpack_exports__);
 
           document.getElementById("formulario-edit-recetas").reset();
 
-          _this2.actualizarTablaUpdate();
+          _this2.$root.$emit(_this2.categoriaU);
         }
       })["catch"](function (error) {
         console.log(error);
       });
     },
     actualizarTablaUpdate: function actualizarTablaUpdate(categoriaUpdate) {
-      this.$root.$emit(categoriaUpdate);
+      this.categoriaU = categoriaUpdate;
     }
   }
 });
@@ -2889,8 +2894,18 @@ __webpack_require__.r(__webpack_exports__);
      * lo que hago es pasar el id que consigo iterando arriba y se lo paso al otro archivo para que
      * triga los datos que me sirven para rellenar los input
      */
-    getFillRecetaEdit: function getFillRecetaEdit(id) {
+    getFillRecetaEdit: function getFillRecetaEdit(id, updateTable) {
       this.$root.$emit("llenarFormEdit", id);
+      /**
+       * en formEditReceta uso $on("actualizarTablaUpdate", this.actualizarTablaUpdate)
+       * y aca le paso la categoria en la que estoy (updateTable) 
+       * la funcion actualizarTablaUpdate(categoriaUpdate) en formEditReceta lo que hace es asignar 
+       * el valor que paso updateTable a una variable que se encuentra en formEditReceta
+       * y de ahi una vez que el status del update es 200 uso this.$root.$emit(this.categoriaU)
+       * el cual proviene de este mismo documento en la linea 59
+       */
+
+      this.$root.$emit("actualizarTablaUpdate", updateTable);
     },
     mostrarListaReceta: function mostrarListaReceta(page) {
       var _this = this;
@@ -40412,17 +40427,23 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-btn",
-    {
-      staticClass: "ml-2",
-      attrs: { depressed: "", "x-small": "" },
-      on: {
-        click: function($event) {
-          return _vm.getReceta(_vm.id)
-        }
-      }
-    },
-    [_vm._v("Editar")]
+    "div",
+    [
+      _c(
+        "v-btn",
+        {
+          staticClass: "ml-2",
+          attrs: { depressed: "", "x-small": "" },
+          on: {
+            click: function($event) {
+              return _vm.getReceta(_vm.id)
+            }
+          }
+        },
+        [_vm._v("Editar")]
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -41566,7 +41587,8 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           return _vm.getFillRecetaEdit(
-                                            receta.id
+                                            receta.id,
+                                            _vm.categoriaReceta
                                           )
                                         }
                                       }
