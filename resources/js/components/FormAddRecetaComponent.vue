@@ -140,46 +140,26 @@ export default {
       data.append("ingrediente", JSON.stringify(this.inputs));
       data.append("categoria", this.categoria);
       data.append("paso", JSON.stringify(this.pasos));
-
       axios
         .post("api/receta/store", data)
         .then(response => {
            if(response.status == 200)
           {
+            
               this.loading=false
               this.cerrarFormularioReceta()  
-              document.getElementById("formulario-recetas").reset()
-              if(this.categoria == 'almuerzo')
-              {
-                this.$root.$emit('almuerzo');
-              }
-              if(this.categoria == 'cena')
-              {
-                this.$root.$emit('cena');
-              }
-              if(this.categoria == 'desayuno')
-              {
-                this.$root.$emit('desayuno');
-              }
-              if(this.categoria == 'merienda')
-              {
-                this.$root.$emit('merienda');
-              }
-              if(this.categoria == 'otros')
-              {
-                this.$root.$emit('otros');
-              }
-              if(this.categoria == 'ideas')
-              {
-                this.$root.$emit('idea');
-              }
+              
+             if(this.categoria)
+            {
+              this.$root.$emit(this.categoria);
+            }
                
           }
         })
         .catch(error => {
           console.log(error);
         });
-    }
+    },
   }
 };
 </script>

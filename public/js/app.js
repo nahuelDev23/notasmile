@@ -2147,42 +2147,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditRecetaComponent.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditRecetaComponent.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["id"],
-  data: function data() {
-    return {};
-  },
-  mounted: function mounted() {},
-  methods: {// getReceta: function(receta) {
-    //   var urlReceta = `api/receta/edit/${receta}`;
-    //   axios.get(urlReceta).then(response => {
-    //     document.getElementById('formulario-edit-receta').classList.add('show')
-    // 	  this.fillReceta.title = response.data.title;
-    //     console.log(response)
-    //   });
-    // }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FooterMenuComponent.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FooterMenuComponent.vue?vue&type=script&lang=js& ***!
@@ -2502,30 +2466,8 @@ __webpack_require__.r(__webpack_exports__);
 
           _this.cerrarFormularioReceta();
 
-          document.getElementById("formulario-recetas").reset();
-
-          if (_this.categoria == 'almuerzo') {
-            _this.$root.$emit('almuerzo');
-          }
-
-          if (_this.categoria == 'cena') {
-            _this.$root.$emit('cena');
-          }
-
-          if (_this.categoria == 'desayuno') {
-            _this.$root.$emit('desayuno');
-          }
-
-          if (_this.categoria == 'merienda') {
-            _this.$root.$emit('merienda');
-          }
-
-          if (_this.categoria == 'otros') {
-            _this.$root.$emit('otros');
-          }
-
-          if (_this.categoria == 'ideas') {
-            _this.$root.$emit('idea');
+          if (_this.categoria) {
+            _this.$root.$emit(_this.categoria);
           }
         }
       })["catch"](function (error) {
@@ -2643,11 +2585,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      categoriaU: '',
+      categoriaActual: '',
       idReceta: "",
       loading: false,
       switch1: true,
@@ -2669,7 +2610,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log("formeditreceta");
     this.$root.$on("llenarFormEdit", this.getRecetaEdit);
-    this.$root.$on("actualizarTablaUpdate", this.actualizarTablaUpdate);
+    this.$root.$on("actualizaVariableCategoriaActual", this.setterCategoriaActual);
   },
   methods: {
     cerrarFormularioEditarReceta: function cerrarFormularioEditarReceta() {
@@ -2718,20 +2659,28 @@ __webpack_require__.r(__webpack_exports__);
       this.fillReceta.paso = this.pasos;
       axios.put("api/receta/update/" + this.idReceta, this.fillReceta).then(function (response) {
         if (response.status == 200) {
+          _this2.resetForm();
+
           _this2.loading = false;
 
           _this2.cerrarFormularioEditarReceta();
+          /**
+           * Actualizo la tabla el $on se encuentra en ListaRecetaComponent
+           * linea 59
+           */
 
-          document.getElementById("formulario-edit-recetas").reset();
 
-          _this2.$root.$emit(_this2.categoriaU);
+          _this2.$root.$emit(_this2.categoriaActual);
         }
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    actualizarTablaUpdate: function actualizarTablaUpdate(categoriaUpdate) {
-      this.categoriaU = categoriaUpdate;
+    setterCategoriaActual: function setterCategoriaActual(valorCategoriaActual) {
+      this.categoriaActual = valorCategoriaActual;
+    },
+    resetForm: function resetForm() {
+      document.getElementById("formulario-edit-recetas").reset();
     }
   }
 });
@@ -2894,18 +2843,19 @@ __webpack_require__.r(__webpack_exports__);
      * lo que hago es pasar el id que consigo iterando arriba y se lo paso al otro archivo para que
      * triga los datos que me sirven para rellenar los input
      */
-    getFillRecetaEdit: function getFillRecetaEdit(id, updateTable) {
+    getFillRecetaEdit: function getFillRecetaEdit(id, valorCategoriaActual) {
       this.$root.$emit("llenarFormEdit", id);
       /**
-       * en formEditReceta uso $on("actualizarTablaUpdate", this.actualizarTablaUpdate)
-       * y aca le paso la categoria en la que estoy (updateTable) 
-       * la funcion actualizarTablaUpdate(categoriaUpdate) en formEditReceta lo que hace es asignar 
-       * el valor que paso updateTable a una variable que se encuentra en formEditReceta
-       * y de ahi una vez que el status del update es 200 uso this.$root.$emit(this.categoriaU)
+       * en formEditReceta uso $on("actualizaVariableCategoriaActual", this.setterCategoriaActual);
+       * y aca le paso la categoria en la que estoy (valorCategoriaActual) 
+       * la funcion setterCategoriaActual:function(valorCategoriaActual) 
+       * en formEditReceta lo que hace es asignar 
+       * el valor que paso valorCategoriaActual a una variable que se encuentra en formEditReceta (categoriaActual)
+       * y de ahi una vez que el status del update es 200 uso this.$root.$emit(this.categoriaActual)
        * el cual proviene de este mismo documento en la linea 59
        */
 
-      this.$root.$emit("actualizarTablaUpdate", updateTable);
+      this.$root.$emit("actualizaVariableCategoriaActual", valorCategoriaActual);
     },
     mostrarListaReceta: function mostrarListaReceta(page) {
       var _this = this;
@@ -40411,48 +40361,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditRecetaComponent.vue?vue&type=template&id=6f1aebd4&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditRecetaComponent.vue?vue&type=template&id=6f1aebd4& ***!
-  \**********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "v-btn",
-        {
-          staticClass: "ml-2",
-          attrs: { depressed: "", "x-small": "" },
-          on: {
-            click: function($event) {
-              return _vm.getReceta(_vm.id)
-            }
-          }
-        },
-        [_vm._v("Editar")]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FooterMenuComponent.vue?vue&type=template&id=009cd4e8&scoped=true&":
 /*!**********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FooterMenuComponent.vue?vue&type=template&id=009cd4e8&scoped=true& ***!
@@ -41255,7 +41163,6 @@ var render = function() {
                 ])
               ])
             }),
-            _vm._v("\n      " + _vm._s(_vm.inputs) + "\n      "),
             _vm._v(" "),
             _c("v-switch", {
               attrs: { label: "¿Agregar pasos?" },
@@ -101474,20 +101381,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EditRecetaComponent_vue_vue_type_template_id_6f1aebd4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditRecetaComponent.vue?vue&type=template&id=6f1aebd4& */ "./resources/js/components/EditRecetaComponent.vue?vue&type=template&id=6f1aebd4&");
-/* harmony import */ var _EditRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditRecetaComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/EditRecetaComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _EditRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _EditRecetaComponent_vue_vue_type_template_id_6f1aebd4___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _EditRecetaComponent_vue_vue_type_template_id_6f1aebd4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
   false,
   null,
   null,
@@ -101495,42 +101399,8 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   
 )
 
-/* hot reload */
-if (false) { var api; }
 component.options.__file = "resources/js/components/EditRecetaComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/EditRecetaComponent.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/EditRecetaComponent.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EditRecetaComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditRecetaComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditRecetaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/EditRecetaComponent.vue?vue&type=template&id=6f1aebd4&":
-/*!****************************************************************************************!*\
-  !*** ./resources/js/components/EditRecetaComponent.vue?vue&type=template&id=6f1aebd4& ***!
-  \****************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditRecetaComponent_vue_vue_type_template_id_6f1aebd4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EditRecetaComponent.vue?vue&type=template&id=6f1aebd4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditRecetaComponent.vue?vue&type=template&id=6f1aebd4&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditRecetaComponent_vue_vue_type_template_id_6f1aebd4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditRecetaComponent_vue_vue_type_template_id_6f1aebd4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
 
 /***/ }),
 

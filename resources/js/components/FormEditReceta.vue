@@ -66,7 +66,6 @@
             <span class="input-group-text" @click="add(k)" v-show="k == inputs.length - 1">Mas</span>
           </div>
         </div>
-        {{inputs}}
         <!-- PASOS -->
 
         <v-switch v-model="switch1" label="¿Agregar pasos?"></v-switch>
@@ -100,7 +99,7 @@
 export default {
   data() {
     return {
-      categoriaU:'',
+      categoriaActual:'',
       idReceta: "",
       loading: false,
       switch1: true,
@@ -126,7 +125,7 @@ export default {
   mounted() {
     console.log("formeditreceta");
     this.$root.$on("llenarFormEdit", this.getRecetaEdit);
-    this.$root.$on("actualizarTablaUpdate", this.actualizarTablaUpdate);
+    this.$root.$on("actualizaVariableCategoriaActual", this.setterCategoriaActual);
     
   },
   methods: {
@@ -172,19 +171,28 @@ export default {
         .put("api/receta/update/" + this.idReceta, this.fillReceta)
         .then(response => {
           if (response.status == 200) {
+            this.resetForm()
             this.loading = false;
             this.cerrarFormularioEditarReceta();
-            document.getElementById("formulario-edit-recetas").reset();
-            this.$root.$emit(this.categoriaU)
+
+            /**
+             * Actualizo la tabla el $on se encuentra en ListaRecetaComponent
+             * linea 59
+             */
+            this.$root.$emit(this.categoriaActual)
           }
         })
         .catch(error => {
           console.log(error);
         });
     },
-    actualizarTablaUpdate:function(categoriaUpdate)
+    setterCategoriaActual:function(valorCategoriaActual)
     {
-         this.categoriaU = categoriaUpdate;
+         this.categoriaActual = valorCategoriaActual;
+    },
+    resetForm:function()
+    {
+      document.getElementById("formulario-edit-recetas").reset();
     }
   }
 };
