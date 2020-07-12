@@ -41,21 +41,20 @@ class RecetaController extends Controller
     }
 
   
-    public function edit($id)
+    public function edit(Receta $receta)
     {
-        //
+        return $receta;
     }
 
     
-    public function update(Request $request, $id)
+    public function update(Request $request, Receta $receta)
     {
-        //
+        $receta->update($request->all());
     }
 
    
     public function destroy(Receta $receta)
     {
-        // $receta = Receta::findOrFail($id);
         $receta->delete();
         return true;
     }

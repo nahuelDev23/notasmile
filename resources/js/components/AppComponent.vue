@@ -93,6 +93,7 @@
         </transition>
         
       </v-card>
+      <form-edit-receta></form-edit-receta>
       <form-add-receta></form-add-receta>
       <form-add-notas></form-add-notas>
       <menu-footer></menu-footer>

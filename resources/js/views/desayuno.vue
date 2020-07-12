@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="display-grid">
 				<h2>Lista de Desayunos 🐐</h2>
-                        <lista-desayuno></lista-desayuno>
+                        <lista-receta :categoriaReceta="'desayuno'"></lista-receta>
 			</div>
 		</div>
 	</div>

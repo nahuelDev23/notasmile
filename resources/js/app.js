@@ -2,26 +2,24 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 Vue.component('app', 				            require('./components/AppComponent.vue').default);
+
 Vue.component('btn-delete-receta', 				require('./components/DeleteRecetaComponent.vue').default);
 Vue.component('btn-delete-notas', 				require('./components/DeleteNotasComponent.vue').default);
 Vue.component('btn-ver-receta', 				require('./components/VerRecetaComponent.vue').default);
 Vue.component('btn-ver-notas', 				    require('./components/VerNotasComponent.vue').default);
+Vue.component('btn-edit-receta', 				require('./components/EditRecetaComponent.vue').default);
+
 Vue.component('search-receta', 				    require('./components/SearchRecetaComponent.vue').default);
 Vue.component('search-notas', 				    require('./components/SearchNotasComponent.vue').default);
+
 Vue.component('form-add-receta', 				require('./components/FormAddRecetaComponent.vue').default);
 Vue.component('form-add-notas', 				require('./components/FormAddNotasComponent.vue').default);
+Vue.component('form-edit-receta', 				require('./components/FormEditReceta.vue').default);
+
 Vue.component('menu-footer', 	                require('./components/FooterMenuComponent.vue').default);
-Vue.component('lista-desayuno', 	            require('./components/ListaDesayunoComponent.vue').default);
-Vue.component('lista-index', 	                require('./components/ListaIndexComponent.vue').default);
-Vue.component('lista-almuerzo', 	            require('./components/ListaAlmuerzoComponent.vue').default);
-Vue.component('lista-cena', 	                require('./components/ListaCenaComponent.vue').default);
-Vue.component('lista-idea', 	                require('./components/ListaIdeaComponent.vue').default);
-Vue.component('lista-merienda', 	            require('./components/ListaMeriendaComponent.vue').default);
-Vue.component('lista-otros', 	                require('./components/ListaOtrosComponent.vue').default);
+
+Vue.component('lista-receta', 	                require('./components/ListaRecetaComponent.vue').default);
 Vue.component('lista-notas', 	                require('./components/ListaNotasComponent.vue').default);
-Vue.component('example-component',              require('./components/ExampleComponent.vue').default);
-
-
 
 import router from './routes'
 import Vuetify from 'vuetify'

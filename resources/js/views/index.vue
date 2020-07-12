@@ -3,8 +3,7 @@
 		<div class="container">
 			<div class="display-grid">
 				<h1>Holxs🐮 jeje</h1>
-				<lista-index></lista-index>
-				
+				<lista-receta :categoriaReceta="'index'"></lista-receta>
 			</div>
 		</div>
 	</div>

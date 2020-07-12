@@ -51,34 +51,10 @@ export default {
     deleteReceta: function(receta) {
       var urlReceta = `api/receta/eliminar/${receta}`;
       axios.delete(urlReceta).then(response => {
-         if(this.categoria == 'almuerzo')
-              {
-                this.$root.$emit('almuerzo');
-              }
-              if(this.categoria == 'cena')
-              {
-                this.$root.$emit('cena');
-              }
-              if(this.categoria == 'desayuno')
-              {
-                this.$root.$emit('desayuno');
-              }
-              if(this.categoria == 'merienda')
-              {
-                this.$root.$emit('merienda');
-              }
-              if(this.categoria == 'otros')
-              {
-                this.$root.$emit('otros');
-              }
-              if(this.categoria == 'ideas')
-              {
-                this.$root.$emit('idea');
-              }
-              if(this.categoria == 'index')
-              {
-                this.$root.$emit('index');
-              }
+         if(this.categoria)
+            {
+              this.$root.$emit(this.categoria);
+            }
       });
     }
   }

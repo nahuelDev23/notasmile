@@ -2,7 +2,7 @@
   <div>
     <v-app id="inspire">
       <div>
-        <search-receta :categoria="'ideas'"  @update:resuladoBusqueda="listarIdea = $event"></search-receta>
+        <search-receta :categoria="categoriaReceta"  @update:resuladoBusqueda="listarReceta = $event"></search-receta>
       </div>
       <div class="table-container-recetas">
         <v-simple-table fixed-header>
@@ -14,11 +14,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(idea, k) in listarIdea" :key="k">
-                <td class="first-mayus">{{ idea.title }}</td>
-                <td>
-                  <btn-ver-receta :id_receta="idea.id"></btn-ver-receta>
-                  <btn-delete-receta :id="idea.id" :categoria="'ideas'"></btn-delete-receta>
+              <tr v-for="(receta, k) in listarReceta" :key="k">
+                <td class="first-mayus">{{ receta.title }}</td>
+                <td class="btn-accion">
+                   <btn-ver-receta :id_receta="receta.id"></btn-ver-receta>
+                   <btn-edit-receta :id="receta.id"></btn-edit-receta>
+                   <btn-delete-receta :id="receta.id" :categoria="categoriaReceta"></btn-delete-receta>
                 </td>
               </tr>
             </tbody>
@@ -28,7 +29,7 @@
         <v-pagination
           v-model="page"
           :length="pagination.last_page"
-          @input="mostrarListaIdea(page)"
+          @input="mostrarListaReceta(page)"
         ></v-pagination>
       
     </v-app>
@@ -36,11 +37,11 @@
 </template>
 
 <script>
-//this.$root.$emit('eliminarReceta');
 export default {
+  props: ["categoriaReceta"],
   data() {
     return {
-      listarIdea: [],
+      listarReceta: [],
       pagination: {
         total: 0,
         current_page: 0,
@@ -50,22 +51,19 @@ export default {
         to: 0
       },
       page: 1,
-      search: ""
     };
   },
   mounted: function() {
-    this.mostrarListaIdea();
-    this.$root.$on('idea',this.mostrarListaIdea)
+    this.mostrarListaReceta();
+    this.$root.$on(this.categoriaReceta,this.mostrarListaReceta)
   },
-
   methods: {
-    mostrarListaIdea: function(page) {
+    mostrarListaReceta: function(page) {
       axios
-        .get("api/listar/idea?page=" + page)
+        .get("api/listar/"+this.categoriaReceta+"?page=" + page)
         .then(response => {
-          this.listarIdea = response.data.recetas.data;
+          this.listarReceta = response.data.recetas.data;
           this.pagination = response.data.pagination;
-          console.log(this.pagination);
         })
         .catch(error => {
           console.log(error);
