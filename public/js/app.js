@@ -40279,7 +40279,7 @@ var render = function() {
                   ),
                   on
                 ),
-                [_vm._v("Eliminar")]
+                [_vm._v("x")]
               )
             ]
           }
