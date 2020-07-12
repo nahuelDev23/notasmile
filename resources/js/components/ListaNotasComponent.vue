@@ -16,7 +16,7 @@
             <tbody>
               <tr v-for="(notas, k) in listarNotas" :key="k">
                 <td class="first-mayus">{{ notas.title }}</td>
-                <td>
+                <td class="btn-accion">
                   <btn-ver-notas :id_notas="notas.id"></btn-ver-notas>
                   <v-btn class="ml-2" depressed x-small @click="getFillNotaEdit(notas.id)">Editar</v-btn>
                   <btn-delete-notas :id="notas.id"></btn-delete-notas>

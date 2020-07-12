@@ -98,6 +98,7 @@
       <form-add-receta></form-add-receta>
       <form-add-notas></form-add-notas>
       <menu-footer></menu-footer>
+      
     </v-app>
         
   </div>

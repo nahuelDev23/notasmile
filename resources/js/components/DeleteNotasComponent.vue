@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="290">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn class="ml-2" v-bind="attrs" v-on="on" depressed x-small>Eliminar</v-btn>
+      <v-btn class="ml-2" v-bind="attrs" v-on="on" depressed x-small>x</v-btn>
     </template>
     <v-card>
       <v-card-title class="headline">¿Estas segurx de que lo queres elimiar?</v-card-title>

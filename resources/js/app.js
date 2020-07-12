@@ -23,8 +23,10 @@ Vue.component('lista-notas', 	                require('./components/ListaNotasCo
 
 import router from './routes'
 import Vuetify from 'vuetify'
+import CKEditor from '@ckeditor/ckeditor5-vue';
 
 Vue.use(Vuetify);
+Vue.use( CKEditor );
 
 const app = new Vue({
     el: '#app',

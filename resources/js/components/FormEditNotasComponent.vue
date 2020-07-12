@@ -18,29 +18,9 @@
         </div>
 
         <div class="input-group mb-3">
-          <v-textarea
-            v-model="body"
-            :auto-grow="autoGrow"
-            :clearable="clearable"
-            :counter="counter ? counter : false"
-            :filled="filled"
-            :flat="flat"
-            :hint="hint"
-            :label="label"
-            :loading="loading"
-            :no-resize="noResize"
-            :outlined="outlined"
-            :persistent-hint="persistentHint"
-            placeholder="Estoy pensando en..."
-            :rounded="rounded"
-            :row-height="rowHeight"
-            :rows="rows"
-            :shaped="shaped"
-            :single-line="singleLine"
-            :solo="solo"
-            name="body"
-            required
-          ></v-textarea>
+ <div class="ck">
+          <ckeditor :editor="editor" v-model="body" :config="editorConfig"></ckeditor>
+       </div>
         </div>
 
         <v-btn depressed elevation="4" color="primary" type="submit" :loading="loading">Guardar</v-btn>
@@ -50,29 +30,16 @@
 </template>
 
 <script>
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default {
   data() {
     return {
+       editor: ClassicEditor,
+        editorData: '<p>Content of the editor.</p>',
+        editorConfig: {
+             toolbar: [ 'bold', 'bulletedList', '|', 'link' ]
+        },
       idNota: "",
-      loading: false,
-      autoGrow: true,
-      autofocus: true,
-      clearable: true,
-      counter: 10000,
-      filled: false,
-      flat: false,
-      hint: "",
-      label: "",
-      loading: false,
-      noResize: false,
-      outlined: false,
-      persistentHint: false,
-      rounded: false,
-      rowHeight: 24,
-      rows: 1,
-      shaped: false,
-      singleLine: false,
-      solo: false,
       title: "",
       body: "",
       fillNotas: {
@@ -131,6 +98,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.ck{
+  background-color: red;
+  width:100%;
+  max-width: 100%;
+  overflow-x:auto;
+}
 .formulario-receta {
   position: fixed;
   content: "";
