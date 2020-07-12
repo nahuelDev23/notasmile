@@ -7647,7 +7647,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".title-List[data-v-c0ee49fa] {\n  text-align: center;\n}\n.table-container-recetas[data-v-c0ee49fa] {\n  max-height: calc(100vh - 18rem);\n  min-height: calc(100vh - 18rem);\n  overflow: auto;\n}", ""]);
+exports.push([module.i, ".btn-accion[data-v-c0ee49fa] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.title-List[data-v-c0ee49fa] {\n  text-align: center;\n}\n.table-container-recetas[data-v-c0ee49fa] {\n  max-height: calc(100vh - 18rem);\n  min-height: calc(100vh - 18rem);\n  overflow: auto;\n}", ""]);
 
 // exports
 

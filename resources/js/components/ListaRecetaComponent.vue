@@ -95,6 +95,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.btn-accion{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
 .title-List {
   text-align: center;
 }
