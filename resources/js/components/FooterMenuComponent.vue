@@ -1,9 +1,24 @@
 <template>
-  <div class="footer">
-    <div class="v-list-link"><router-link :to="{name: 'index'}" >Home</router-link></div>
-    <div @click="mostrarModalAgregarReceta">Recetas</div>
-    <div @click="mostrarModalAgregarNotas">Notas</div>
-  </div>
+      <v-bottom-navigation
+      :value="activeBtn"
+      color="purple lighten-1"
+      fixed
+    >
+      <v-btn>
+        <span><div class="v-list-link"><router-link :to="{name: 'index'}" >Home</router-link></div></span>
+        <v-icon>mdi-history</v-icon>
+      </v-btn>
+  
+      <v-btn>
+        <span  @click="mostrarModalAgregarReceta"> Recetas</span>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+  
+      <v-btn>
+        <span @click="mostrarModalAgregarNotas">Notas</span>
+        <v-icon>mdi-map-marker</v-icon>
+      </v-btn>
+    </v-bottom-navigation>
 </template>
 
 <script>
