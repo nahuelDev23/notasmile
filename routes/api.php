@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 #general recetas 
-Route::get('listar/receta','RecetaController@listaReceta')->name('listar.receta');
+Route::get('listar/receta/','RecetaController@listaReceta')->name('listar.receta');
 Route::get('receta/buscar/','RecetaController@buscarReceta')->name('receta.buscar');
 Route::post('receta/store','RecetaController@store')->name('receta.store');
 Route::delete('receta/eliminar/{receta}','RecetaController@destroy')->name('receta.destroy');
