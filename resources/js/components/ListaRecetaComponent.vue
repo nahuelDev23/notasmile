@@ -77,7 +77,7 @@ export default {
     },
     mostrarListaReceta: function(page) {
       axios
-        .get("api/listar/receta/?page=" + page+"&categoria="+this.categoriaReceta)
+        .get("api/listar/receta/")
         .then(response => {
           this.listarReceta = response.data.recetas.data;
           this.pagination = response.data.pagination;
