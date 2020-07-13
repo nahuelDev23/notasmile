@@ -2198,6 +2198,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -2978,7 +2993,7 @@ __webpack_require__.r(__webpack_exports__);
     mostrarListaReceta: function mostrarListaReceta(page) {
       var _this = this;
 
-      axios.get("api/listar/receta/?categoria=" + this.categoriaReceta + "&page=" + page).then(function (response) {
+      axios.get("api/listar/receta?categoria=".concat(this.categoriaReceta, "&page=").concat(page)).then(function (response) {
         _this.listarReceta = response.data.recetas.data;
         _this.pagination = response.data.pagination;
       })["catch"](function (error) {
@@ -40545,26 +40560,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "footer" }, [
-    _c(
-      "div",
-      { staticClass: "v-list-link" },
-      [
-        _c("router-link", { attrs: { to: { name: "index" } } }, [
-          _vm._v("Home")
-        ])
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { on: { click: _vm.mostrarModalAgregarReceta } }, [
-      _vm._v("Recetas")
-    ]),
-    _vm._v(" "),
-    _c("div", { on: { click: _vm.mostrarModalAgregarNotas } }, [
-      _vm._v("Notas")
-    ])
-  ])
+  return _c(
+    "v-bottom-navigation",
+    { attrs: { value: _vm.activeBtn, color: "purple lighten-1", fixed: "" } },
+    [
+      _c(
+        "v-btn",
+        [
+          _c("span", [
+            _c(
+              "div",
+              { staticClass: "v-list-link" },
+              [
+                _c("router-link", { attrs: { to: { name: "index" } } }, [
+                  _vm._v("Home")
+                ])
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("v-icon", [_vm._v("mdi-history")])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        [
+          _c("span", { on: { click: _vm.mostrarModalAgregarReceta } }, [
+            _vm._v(" Recetas")
+          ]),
+          _vm._v(" "),
+          _c("v-icon", [_vm._v("mdi-heart")])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        [
+          _c("span", { on: { click: _vm.mostrarModalAgregarNotas } }, [
+            _vm._v("Notas")
+          ]),
+          _vm._v(" "),
+          _c("v-icon", [_vm._v("mdi-map-marker")])
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
