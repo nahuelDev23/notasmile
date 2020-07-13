@@ -2993,7 +2993,7 @@ __webpack_require__.r(__webpack_exports__);
     mostrarListaReceta: function mostrarListaReceta(page) {
       var _this = this;
 
-      axios.get("api/listar/receta/?page=" + page + "&categoria=" + this.categoriaReceta).then(function (response) {
+      axios.get("api/listar/" + this.categoriaReceta + "?page=" + page).then(function (response) {
         _this.listarReceta = response.data.recetas.data;
         _this.pagination = response.data.pagination;
       })["catch"](function (error) {
@@ -3067,7 +3067,7 @@ __webpack_require__.r(__webpack_exports__);
     searchData: function searchData() {
       var _this = this;
 
-      axios.get("api/receta/buscar/?categoria=" + this.categoria + "&title=" + this.search).then(function (response) {
+      axios.get("api/buscar/" + this.categoria + "?title=" + this.search).then(function (response) {
         _this.$emit("update:resuladoBusqueda", response.data.recetas.data);
       })["catch"](function (error) {
         console.log(error);
@@ -41798,7 +41798,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("th", { staticClass: "text-left" }, [
-                              _vm._v("Acción!!!!")
+                              _vm._v("Acción")
                             ])
                           ])
                         ]),
