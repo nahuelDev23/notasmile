@@ -11,9 +11,9 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="green darken-1" text @click="dialog = false">No,jeje</v-btn>
+        <v-btn color="blue darken-1" text @click="dialog = false">No,jeje</v-btn>
         <v-btn
-          color="green darken-1"
+          color="blue darken-1"
           text
           @click="dialog = false"
           v-on:click.prevent="deleteReceta(id)"

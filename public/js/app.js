@@ -40363,7 +40363,7 @@ var render = function() {
               _c(
                 "v-btn",
                 {
-                  attrs: { color: "green darken-1", text: "" },
+                  attrs: { color: "blue darken-1", text: "" },
                   on: {
                     click: function($event) {
                       _vm.dialog = false
@@ -40376,7 +40376,7 @@ var render = function() {
               _c(
                 "v-btn",
                 {
-                  attrs: { color: "green darken-1", text: "" },
+                  attrs: { color: "blue darken-1", text: "" },
                   on: {
                     click: [
                       function($event) {
@@ -40485,7 +40485,7 @@ var render = function() {
               _c(
                 "v-btn",
                 {
-                  attrs: { color: "green darken-1", text: "" },
+                  attrs: { color: "blue darken-1", text: "" },
                   on: {
                     click: function($event) {
                       _vm.dialog = false
@@ -40498,7 +40498,7 @@ var render = function() {
               _c(
                 "v-btn",
                 {
-                  attrs: { color: "green darken-1", text: "" },
+                  attrs: { color: "blue darken-1", text: "" },
                   on: {
                     click: [
                       function($event) {
