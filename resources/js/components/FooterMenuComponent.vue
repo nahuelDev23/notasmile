@@ -6,7 +6,7 @@
     >
       <v-btn>
         <span><div class="v-list-link"><router-link :to="{name: 'index'}" >Home</router-link></div></span>
-        <v-icon>mdi-history</v-icon>
+        <v-icon>mdi-home</v-icon>
       </v-btn>
   
       <v-btn>
@@ -16,7 +16,7 @@
   
       <v-btn>
         <span @click="mostrarModalAgregarNotas">Notas</span>
-        <v-icon>mdi-map-marker</v-icon>
+        <v-icon>mdi-note</v-icon>
       </v-btn>
     </v-bottom-navigation>
 </template>

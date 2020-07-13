@@ -40580,7 +40580,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("v-icon", [_vm._v("mdi-history")])
+          _c("v-icon", [_vm._v("mdi-home")])
         ],
         1
       ),
@@ -40604,7 +40604,7 @@ var render = function() {
             _vm._v("Notas")
           ]),
           _vm._v(" "),
-          _c("v-icon", [_vm._v("mdi-map-marker")])
+          _c("v-icon", [_vm._v("mdi-note")])
         ],
         1
       )
