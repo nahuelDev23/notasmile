@@ -43,12 +43,7 @@ export default {
     return {
       listarReceta: [],
       pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
         last_page: 0,
-        from: 0,
-        to: 0
       },
       
       page: 1,
@@ -64,9 +59,9 @@ export default {
      * lo que hago es pasar el id que consigo iterando arriba y se lo paso al otro archivo para que
      * triga los datos que me sirven para rellenar los input
      */
-    getFillRecetaEdit(id,valorCategoriaActual)
+    getFillRecetaEdit(idDeLaReceta,valorCategoriaActual)
     {
-      this.$root.$emit("llenarFormEdit",id)
+      this.$root.$emit("llenarFormEdit",idDeLaReceta)
 
       /**
        * en formEditReceta uso $on("actualizaVariableCategoriaActual", this.setterCategoriaActual);
@@ -82,7 +77,7 @@ export default {
     },
     mostrarListaReceta: function(page) {
       axios
-        .get("api/listar/"+this.categoriaReceta+"?page=" + page)
+        .get("api/listar/receta/?categoria="+this.categoriaReceta+"&page=" + page)
         .then(response => {
           this.listarReceta = response.data.recetas.data;
           this.pagination = response.data.pagination;

@@ -2757,10 +2757,10 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * Obtengo los datos para llenar el formulario
      */
-    getRecetaEdit: function getRecetaEdit(receta) {
+    getRecetaEdit: function getRecetaEdit(idDeLaReceta) {
       var _this = this;
 
-      var urlReceta = "api/receta/edit/".concat(receta);
+      var urlReceta = "api/receta/edit/".concat(idDeLaReceta);
       axios.get(urlReceta).then(function (response) {
         document.getElementById("formulario-edit-receta").classList.add("show");
         _this.fillReceta.title = response.data.title;
@@ -2768,7 +2768,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.fillReceta.categoria = response.data.categoria;
         _this.inputs = JSON.parse(response.data.ingrediente);
         _this.pasos = JSON.parse(response.data.paso);
-        _this.idReceta = receta;
+        _this.idReceta = idDeLaReceta;
       });
     },
     updateReceta: function updateReceta() {
@@ -2946,12 +2946,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       listarReceta: [],
       pagination: {
-        total: 0,
-        current_page: 0,
-        per_page: 0,
-        last_page: 0,
-        from: 0,
-        to: 0
+        last_page: 0
       },
       page: 1
     };
@@ -2966,8 +2961,8 @@ __webpack_require__.r(__webpack_exports__);
      * lo que hago es pasar el id que consigo iterando arriba y se lo paso al otro archivo para que
      * triga los datos que me sirven para rellenar los input
      */
-    getFillRecetaEdit: function getFillRecetaEdit(id, valorCategoriaActual) {
-      this.$root.$emit("llenarFormEdit", id);
+    getFillRecetaEdit: function getFillRecetaEdit(idDeLaReceta, valorCategoriaActual) {
+      this.$root.$emit("llenarFormEdit", idDeLaReceta);
       /**
        * en formEditReceta uso $on("actualizaVariableCategoriaActual", this.setterCategoriaActual);
        * y aca le paso la categoria en la que estoy (valorCategoriaActual) 
@@ -2983,7 +2978,7 @@ __webpack_require__.r(__webpack_exports__);
     mostrarListaReceta: function mostrarListaReceta(page) {
       var _this = this;
 
-      axios.get("api/listar/" + this.categoriaReceta + "?page=" + page).then(function (response) {
+      axios.get("api/listar/receta/?categoria=" + this.categoriaReceta + "&page=" + page).then(function (response) {
         _this.listarReceta = response.data.recetas.data;
         _this.pagination = response.data.pagination;
       })["catch"](function (error) {
@@ -3057,7 +3052,7 @@ __webpack_require__.r(__webpack_exports__);
     searchData: function searchData() {
       var _this = this;
 
-      axios.get("api/buscar/" + this.categoria + "?title=" + this.search).then(function (response) {
+      axios.get("api/receta/buscar/?categoria=" + this.categoria + "&title=" + this.search).then(function (response) {
         _this.$emit("update:resuladoBusqueda", response.data.recetas.data);
       })["catch"](function (error) {
         console.log(error);

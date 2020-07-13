@@ -149,8 +149,8 @@ export default {
     /**
      * Obtengo los datos para llenar el formulario
      */
-    getRecetaEdit: function(receta) {
-      let urlReceta = `api/receta/edit/${receta}`;
+    getRecetaEdit: function(idDeLaReceta) {
+      let urlReceta = `api/receta/edit/${idDeLaReceta}`;
       axios.get(urlReceta).then(response => {
         document.getElementById("formulario-edit-receta").classList.add("show");
         this.fillReceta.title = response.data.title;
@@ -158,7 +158,7 @@ export default {
         this.fillReceta.categoria = response.data.categoria;
         this.inputs = JSON.parse(response.data.ingrediente);
         this.pasos = JSON.parse(response.data.paso);
-        this.idReceta = receta;
+        this.idReceta = idDeLaReceta;
       });
     },
     updateReceta: function() {
