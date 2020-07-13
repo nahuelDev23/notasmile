@@ -10,7 +10,7 @@
             <thead>
               <tr>
                 <th class="text-left">Titulo</th>
-                <th class="text-left">Acción</th>
+                <th class="text-left">Acción!!!!</th>
               </tr>
             </thead>
             <tbody>
@@ -77,7 +77,7 @@ export default {
     },
     mostrarListaReceta: function(page) {
       axios
-        .get("api/listar/receta/")
+        .get("api/listar/receta/?page=" + page+"&categoria="+this.categoriaReceta)
         .then(response => {
           this.listarReceta = response.data.recetas.data;
           this.pagination = response.data.pagination;
