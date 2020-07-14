@@ -63,3 +63,5 @@ Route::get('notas/edit/{notas}','NotasController@edit')->name('notas.edit');
 Route::post('notas/store','NotasController@store')->name('notas.store');
 Route::delete('notas/eliminar/{notas}','NotasController@destroy')->name('notas.destroy');
 Route::get('mostrar/notas/{id}','NotasController@mostrarNotas')->name('mostrar.notas');
+
+#dnd estoy
