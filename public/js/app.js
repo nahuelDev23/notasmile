@@ -41804,7 +41804,7 @@ var render = function() {
                         _c("thead", [
                           _c("tr", [
                             _c("th", { staticClass: "text-left" }, [
-                              _vm._v("Titulo test3")
+                              _vm._v("Titulo")
                             ]),
                             _vm._v(" "),
                             _c("th", { staticClass: "text-left" }, [
