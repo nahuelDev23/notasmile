@@ -9,7 +9,7 @@
           <template v-slot:default>
             <thead>
               <tr>
-                <th class="text-left">Titulo</th>
+                <th class="text-left">Titulo test</th>
                 <th class="text-left">Acción</th>
               </tr>
             </thead>
