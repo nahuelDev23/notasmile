@@ -3208,10 +3208,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      desayuno: []
+      desayuno: [],
+      loading: true,
+      transition: "scale-transition",
+      transitions: [{
+        text: "None",
+        value: undefined
+      }, {
+        text: "Fade Transition",
+        value: "fade-transition"
+      }]
     };
   },
   mounted: function mounted() {
@@ -3222,6 +3246,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get("api/mostrar/receta/" + this.$route.params.id).then(function (response) {
+        _this.loading = false;
         _this.desayuno = response.data;
         console.log(response);
       })["catch"](function (error) {
@@ -42435,54 +42460,71 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { staticClass: "container-detalle" },
-    _vm._l(_vm.desayuno, function(d, k) {
-      return _c("div", { key: k }, [
-        _c("h1", { staticClass: "detalle-title first-mayus" }, [
-          _vm._v(_vm._s(d.title))
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "detalle-description first-mayus" }, [
-          _vm._v(_vm._s(d.descripcion))
-        ]),
-        _vm._v(" "),
-        _c("h3", { staticClass: "detalle-title-title" }, [
-          _vm._v("Ingredientes")
-        ]),
-        _vm._v(" "),
-        _c(
-          "ul",
-          _vm._l(JSON.parse(d.ingrediente), function(ing) {
-            return _c("li", { key: ing, staticClass: "list-ing first-mayus" }, [
-              _vm._v(_vm._s(ing.name))
-            ])
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        JSON.parse(d.paso).length > 1
-          ? _c("h3", { staticClass: "detalle-title-title" }, [_vm._v("Pasos")])
-          : _vm._e(),
-        _vm._v(" "),
-        JSON.parse(d.paso).length > 1
-          ? _c(
-              "ol",
-              _vm._l(JSON.parse(d.paso), function(paso, p) {
+    "v-skeleton-loader",
+    {
+      attrs: {
+        loading: _vm.loading,
+        transition: _vm.transition,
+        height: "94",
+        type: "list-item-two-line"
+      }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "container-detalle" },
+        _vm._l(_vm.desayuno, function(d, k) {
+          return _c("div", { key: k }, [
+            _c("h1", { staticClass: "detalle-title first-mayus" }, [
+              _vm._v(_vm._s(d.title))
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "detalle-description first-mayus" }, [
+              _vm._v(_vm._s(d.descripcion))
+            ]),
+            _vm._v(" "),
+            _c("h3", { staticClass: "detalle-title-title" }, [
+              _vm._v("Ingredientes")
+            ]),
+            _vm._v(" "),
+            _c(
+              "ul",
+              _vm._l(JSON.parse(d.ingrediente), function(ing) {
                 return _c(
                   "li",
-                  { key: p + 200, staticClass: "list-pasos first-mayus" },
-                  [_vm._v(_vm._s(paso.name))]
+                  { key: ing, staticClass: "list-ing first-mayus" },
+                  [_vm._v(_vm._s(ing.name))]
                 )
               }),
               0
-            )
-          : _vm._e()
-      ])
-    }),
-    0
+            ),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            JSON.parse(d.paso).length > 1
+              ? _c("h3", { staticClass: "detalle-title-title" }, [
+                  _vm._v("Pasos")
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            JSON.parse(d.paso).length > 1
+              ? _c(
+                  "ol",
+                  _vm._l(JSON.parse(d.paso), function(paso, p) {
+                    return _c(
+                      "li",
+                      { key: p + 200, staticClass: "list-pasos first-mayus" },
+                      [_vm._v(_vm._s(paso.name))]
+                    )
+                  }),
+                  0
+                )
+              : _vm._e()
+          ])
+        }),
+        0
+      )
+    ]
   )
 }
 var staticRenderFns = []
