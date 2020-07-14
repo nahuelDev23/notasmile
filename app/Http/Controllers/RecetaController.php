@@ -338,15 +338,15 @@ class RecetaController extends Controller
     }
 
     #test buscar
-    public function buscarReceta($catgoria,$title="")
+    public function buscarReceta(Request $request)
     {
-        if($catgoria == 'index')
+        if($category == 'index')
         {
-            $receta = Receta::where('title','like',"%$title%")->paginate(10);
+            $receta = Receta::where('title','like',"%$request->title%")->paginate(10);
         }
         else
         {
-            $receta = Receta::Where('categoria',$catgoria)->where('title','like',"%$title%")->paginate(10);
+            $receta = Receta::Where('categoria',$request->category)->where('title','like',"%$request->title%")->paginate(10);
         }
         
         return [

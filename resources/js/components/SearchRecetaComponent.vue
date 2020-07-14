@@ -15,7 +15,7 @@ export default {
   methods: {
     searchData: function() {
       axios
-        .get("api/receta/buscar/" + this.categoria + "/" + this.search)
+        .get("api/receta/buscar/?category=" + this.categoria + "&title=" + this.search)
         .then(response => {
           this.$emit("update:resuladoBusqueda", response.data.recetas.data);
         })
