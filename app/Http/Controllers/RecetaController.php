@@ -340,7 +340,7 @@ class RecetaController extends Controller
     #test buscar
     public function buscarReceta(Request $request)
     {
-        if($category == 'index')
+        if($request->category == 'index')
         {
             $receta = Receta::where('title','like',"%$request->title%")->paginate(10);
         }
