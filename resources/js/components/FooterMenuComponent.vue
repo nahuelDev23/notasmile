@@ -5,19 +5,28 @@
       fixed
     >
       <v-btn>
-        <span><div class="v-list-link"><router-link :to="{name: 'index'}" >Home</router-link></div></span>
+        <div class="v-list-link">
+        <router-link :to="{name: 'index'}" >
+        <span>Home</span>
         <v-icon>mdi-home</v-icon>
+        </router-link>
+        </div>
       </v-btn>
   
-      <v-btn>
-        <span  @click="mostrarModalAgregarReceta"> Recetas</span>
+      <v-btn @click="mostrarModalAgregarReceta">
+        <div class="v-list-link">
+        <span  > Recetas</span>
         <v-icon>mdi-heart</v-icon>
+        </div>
       </v-btn>
   
-      <v-btn>
-        <span @click="mostrarModalAgregarNotas">Notas</span>
+      <v-btn @click="mostrarModalAgregarNotas">
+        <div class="v-list-link">
+        <span >Notas</span>
         <v-icon>mdi-note</v-icon>
+         </div>
       </v-btn>
+     
     </v-bottom-navigation>
 </template>
 
@@ -58,8 +67,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 .v-list-link {
+    display: flex;
+    flex-direction: column-reverse;
+    text-decoration: none;
+    color: #333;
   & a {
-    color: #cdd5dc;
+     display: flex;
+    flex-direction: column-reverse;
+    text-decoration: none;
+    color: #333;
   }
 }
 .footer{

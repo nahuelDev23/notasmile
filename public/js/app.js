@@ -2213,6 +2213,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -7685,7 +7694,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".v-list-link a[data-v-009cd4e8] {\n  color: #cdd5dc;\n}\n.footer[data-v-009cd4e8] {\n  position: fixed;\n  display: flex;\n  justify-content: space-around;\n  width: 100vw;\n  bottom: 0;\n  background-color: #333;\n  line-height: 3;\n  color: #e6e6e6;\n  font-size: 1rem;\n}", ""]);
+exports.push([module.i, ".v-list-link[data-v-009cd4e8] {\n  display: flex;\n  flex-direction: column-reverse;\n  text-decoration: none;\n  color: #333;\n}\n.v-list-link a[data-v-009cd4e8] {\n  display: flex;\n  flex-direction: column-reverse;\n  text-decoration: none;\n  color: #333;\n}\n.footer[data-v-009cd4e8] {\n  position: fixed;\n  display: flex;\n  justify-content: space-around;\n  width: 100vw;\n  bottom: 0;\n  background-color: #333;\n  line-height: 3;\n  color: #e6e6e6;\n  font-size: 1rem;\n}", ""]);
 
 // exports
 
@@ -40564,50 +40573,51 @@ var render = function() {
     "v-bottom-navigation",
     { attrs: { value: _vm.activeBtn, color: "purple lighten-1", fixed: "" } },
     [
-      _c(
-        "v-btn",
-        [
-          _c("span", [
+      _c("v-btn", [
+        _c(
+          "div",
+          { staticClass: "v-list-link" },
+          [
             _c(
-              "div",
-              { staticClass: "v-list-link" },
+              "router-link",
+              { attrs: { to: { name: "index" } } },
               [
-                _c("router-link", { attrs: { to: { name: "index" } } }, [
-                  _vm._v("Home")
-                ])
+                _c("span", [_vm._v("Home")]),
+                _vm._v(" "),
+                _c("v-icon", [_vm._v("mdi-home")])
               ],
               1
             )
-          ]),
-          _vm._v(" "),
-          _c("v-icon", [_vm._v("mdi-home")])
-        ],
-        1
-      ),
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
-      _c(
-        "v-btn",
-        [
-          _c("span", { on: { click: _vm.mostrarModalAgregarReceta } }, [
-            _vm._v(" Recetas")
-          ]),
-          _vm._v(" "),
-          _c("v-icon", [_vm._v("mdi-heart")])
-        ],
-        1
-      ),
+      _c("v-btn", { on: { click: _vm.mostrarModalAgregarReceta } }, [
+        _c(
+          "div",
+          { staticClass: "v-list-link" },
+          [
+            _c("span", [_vm._v(" Recetas")]),
+            _vm._v(" "),
+            _c("v-icon", [_vm._v("mdi-heart")])
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
-      _c(
-        "v-btn",
-        [
-          _c("span", { on: { click: _vm.mostrarModalAgregarNotas } }, [
-            _vm._v("Notas")
-          ]),
-          _vm._v(" "),
-          _c("v-icon", [_vm._v("mdi-note")])
-        ],
-        1
-      )
+      _c("v-btn", { on: { click: _vm.mostrarModalAgregarNotas } }, [
+        _c(
+          "div",
+          { staticClass: "v-list-link" },
+          [
+            _c("span", [_vm._v("Notas")]),
+            _vm._v(" "),
+            _c("v-icon", [_vm._v("mdi-note")])
+          ],
+          1
+        )
+      ])
     ],
     1
   )
