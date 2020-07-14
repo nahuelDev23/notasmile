@@ -65,4 +65,4 @@ Route::delete('notas/eliminar/{notas}','NotasController@destroy')->name('notas.d
 Route::get('mostrar/notas/{id}','NotasController@mostrarNotas')->name('mostrar.notas');
 
 #test buscar
-Route::get('buscar/receta','RecetaController@buscarReceta')->name('buscar.receta');
+Route::get('buscar/receta/{category}','RecetaController@buscarReceta')->name('buscar.receta');
