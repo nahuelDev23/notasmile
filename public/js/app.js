@@ -3076,7 +3076,7 @@ __webpack_require__.r(__webpack_exports__);
     searchData: function searchData() {
       var _this = this;
 
-      axios.get("api/buscar/" + this.categoria + "?title=" + this.search).then(function (response) {
+      axios.get("api/receta/buscar/" + this.categoria + "/" + this.search).then(function (response) {
         _this.$emit("update:resuladoBusqueda", response.data.recetas.data);
       })["catch"](function (error) {
         console.log(error);

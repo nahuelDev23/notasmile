@@ -336,5 +336,31 @@ class RecetaController extends Controller
 
         ];
     }
+
+    #test buscar
+    public function buscarReceta($catgoria,$title="")
+    {
+        if($catgoria == 'index')
+        {
+            $receta = Receta::where('title','like',"%$title%")->paginate(10);
+        }
+        else
+        {
+            $receta = Receta::Where('categoria',$catgoria)->where('title','like',"%$title%")->paginate(10);
+        }
+        
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
    
 }
