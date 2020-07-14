@@ -3002,7 +3002,7 @@ __webpack_require__.r(__webpack_exports__);
     mostrarListaReceta: function mostrarListaReceta(page) {
       var _this = this;
 
-      axios.get("api/listar/" + this.categoriaReceta + "?page=" + page).then(function (response) {
+      axios.get("api/receta/listar?category=" + this.categoriaReceta + "&page=" + page).then(function (response) {
         _this.listarReceta = response.data.recetas.data;
         _this.pagination = response.data.pagination;
       })["catch"](function (error) {

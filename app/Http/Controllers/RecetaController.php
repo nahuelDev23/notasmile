@@ -338,6 +338,25 @@ class RecetaController extends Controller
     }
 
     #test buscar
+
+    public function listar(Request $request)
+    {
+        $receta = Receta::Where('categoria',$request->category)->paginate(10);
+        return [
+            'pagination'=>[
+                'total' => $receta->total(),
+                'current_page' => $receta->currentPage(),
+                'per_page' => $receta->perPage(),
+                'last_page' => $receta->lastPage(),
+                'from' => $receta->firstItem(),
+                'to' => $receta->lastItem(),
+            ],
+            'recetas' => $receta
+
+        ];
+    }
+
+
     public function buscarReceta(Request $request,$category)
     {
         if($category == 'index')
