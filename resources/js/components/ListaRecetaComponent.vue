@@ -77,6 +77,7 @@ export default {
     },
     mostrarListaReceta: function(page) {
       let url = "api/receta/listar?category="+this.categoriaReceta+"&page=" + page
+      console.log("mostrar lista receta antes del axios :" +url)
       axios
         .get(url)
         .then(response => {

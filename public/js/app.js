@@ -2305,7 +2305,8 @@ __webpack_require__.r(__webpack_exports__);
         toolbar: ['bold', 'bulletedList', '|', 'link']
       },
       title: "",
-      body: ""
+      body: "",
+      loading: false
     };
   },
   mounted: function mounted() {//this.verReceta()
@@ -2568,7 +2569,8 @@ __webpack_require__.r(__webpack_exports__);
       fillNotas: {
         title: "",
         body: ""
-      }
+      },
+      loading: false
     };
   },
   mounted: function mounted() {
@@ -3003,6 +3005,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var url = "api/receta/listar?category=" + this.categoriaReceta + "&page=" + page;
+      console.log("mostrar lista receta antes del axios :" + url);
       axios.get(url).then(function (response) {
         _this.listarReceta = response.data.recetas.data;
         _this.pagination = response.data.pagination;
