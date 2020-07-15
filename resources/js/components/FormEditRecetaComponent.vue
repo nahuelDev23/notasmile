@@ -29,11 +29,11 @@
 
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Categorias</label>
+            <label class="input-group-text" for="inputGroupSelect02">Categorias</label>
           </div>
           <select
             class="custom-select"
-            id="inputGroupSelect01"
+            id="inputGroupSelect02"
             v-model="fillReceta.categoria"
             required
           >

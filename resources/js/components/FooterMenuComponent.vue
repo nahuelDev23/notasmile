@@ -34,7 +34,7 @@
 export default {
   data() {
     return {
-     
+      activeBtn: 1,
     };
   },
   mounted() {

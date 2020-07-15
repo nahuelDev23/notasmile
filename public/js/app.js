@@ -2224,7 +2224,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      activeBtn: 1
+    };
   },
   mounted: function mounted() {//this.verReceta()
   },
@@ -41381,7 +41383,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "input-group-text",
-                    attrs: { for: "inputGroupSelect01" }
+                    attrs: { for: "inputGroupSelect02" }
                   },
                   [_vm._v("Categorias")]
                 )
@@ -41399,7 +41401,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "custom-select",
-                  attrs: { id: "inputGroupSelect01", required: "" },
+                  attrs: { id: "inputGroupSelect02", required: "" },
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
