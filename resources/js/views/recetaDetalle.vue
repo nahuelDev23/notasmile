@@ -29,6 +29,7 @@
       </div>
     </div>
   </v-skeleton-loader>
+  
 </template>
 
 <script>
