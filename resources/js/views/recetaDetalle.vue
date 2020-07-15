@@ -6,30 +6,21 @@
     type="list-item-two-line"
   >
     <div class="container-detalle">
-      <div v-for="(d, k) in desayuno" :key="k">
+      <div v-for="(d, k) in desayuno">
         <h1 class="detalle-title first-mayus">{{ d.title }}</h1>
         <p class="detalle-description first-mayus">{{ d.descripcion }}</p>
         <h3 class="detalle-title-title">Ingredientes</h3>
         <ul>
-          <li
-            class="list-ing first-mayus"
-            v-for="ing in JSON.parse(d.ingrediente)"
-            :key="ing"
-          >{{ ing.name }}</li>
+          <li class="list-ing first-mayus" v-for="ing in JSON.parse(d.ingrediente)">{{ ing.name }}</li>
         </ul>
         <hr />
         <h3 class="detalle-title-title" v-if="JSON.parse(d.paso).length > 1">Pasos</h3>
         <ol v-if="JSON.parse(d.paso).length > 1">
-          <li
-            class="list-pasos first-mayus"
-            v-for="(paso, p) in JSON.parse(d.paso)"
-            :key="p + 200"
-          >{{ paso.name }}</li>
+          <li class="list-pasos first-mayus" v-for="(paso, p) in JSON.parse(d.paso)">{{ paso.name }}</li>
         </ol>
       </div>
     </div>
   </v-skeleton-loader>
-  
 </template>
 
 <script>
@@ -59,7 +50,7 @@ export default {
       axios
         .get("api/mostrar/receta/" + this.$route.params.id)
         .then(response => {
-          this.loading = false
+          this.loading = false;
           this.desayuno = response.data;
           console.log(response);
         })
