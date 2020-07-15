@@ -76,11 +76,13 @@ export default {
       
     },
     mostrarListaReceta: function(page) {
+      let url = "api/receta/listar?category="+this.categoriaReceta+"&page=" + page
       axios
-        .get("api/receta/listar?category="+this.categoriaReceta+"&page=" + page)
+        .get(url)
         .then(response => {
           this.listarReceta = response.data.recetas.data;
           this.pagination = response.data.pagination;
+          console.log("mostrar lista receta :" +url)
         })
         .catch(error => {
           console.log(error);
